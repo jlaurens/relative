@@ -523,7 +523,7 @@
 % \begin{syntax}
 %  \cs{RLTVLevelSetBase} \marg{base level}
 % \end{syntax}
-% Sets the \textbf{base level} to the given value. This is a local assignment
+% Sets the \textbf{base level} to the given value, which can be either an integer or a name. This is a local assignment
 % in the sense that it does not change the \textbf{base level} in the parent file where an eventual \mylstinline|input| has been executed.
 % \end{function}
 %
@@ -683,13 +683,37 @@
 % \end{variable}
 %    \begin{macrocode}
 \NewDocumentCommand\RLTVLevelSetBase { m } {
-  \int_gset:Nn \g_@@_base_int { #1 }
+  \group_begin:
+  \bool_set_true:N \l_tmpa_bool
+  \int_zero:N \l_tmpa_int
+  \clist_map_inline:Nn \c_@@_clist {
+    \int_incr:N \l_tmpa_int
+    \tl_if_eq:nnT { ##1 } { #1 } {
+      \int_gset:Nn \g_@@_base_int \l_tmpa_int
+      \bool_set_false:N \l_tmpa_bool
+      \clist_map_break:
+    }
+  }
+  \bool_if:NT \l_tmpa_bool {
+    \int_set:Nn \l_tmpa_int { #1 }
+    \int_compare:nNnTF \l_tmpa_int > 0 {
+      \int_compare:nNnTF \l_tmpa_int > \c_@@_sxn_max_int {
+        \msg_error:nnx { relative } { Bad-base-value } { #1 }
+      } {
+        \int_gset:Nn \g_@@_base_int \l_tmpa_int
+      }
+    } {
+      \msg_error:nnx { relative } { Bad-base-value } { #1 }
+    }
+  }
+  \group_end:
 }
+\cs_new:Nn \@@_tmpa:nn {}
 \NewDocumentCommand\RLTVLevelSetBaseOfFile { mm } {
   \group_begin:
   \cs_set:Nn \@@_tmpa:nn {
-    \AddToHook { file/before/##1 } {
-      \RLTVLevelSetBase { ##2 }
+    \AddToHook { file/before/##2 } {
+      \RLTVLevelSetBase { ##1 }
     }
   }
   \cs_generate_variant:Nn \@@_tmpa:nn { xx }
@@ -1111,9 +1135,10 @@
       }
     }
   }
-\iow_term:x {!***~\int_use:N \g_@@_base_int }
-\iow_term:x {!***~\int_use:N \g_@@_rqrd_int }
-\iow_term:x {!***~\int_use:N \g_@@_actv_int }
+\iow_term:x {!***~parent:~\int_use:N \g_@@_prnt_int }
+\iow_term:x {!***~base:~\int_use:N \g_@@_base_int }
+\iow_term:x {!***~active:~\int_use:N \g_@@_rqrd_int }
+\iow_term:x {!***~required:~\int_use:N \g_@@_actv_int }
   \group_end:
   \seq_item:Nn \c_@@_sxn_seq \g_@@_actv_int
 }
@@ -1217,6 +1242,17 @@
 } {
   Choose~an~upper~level,~
   for~example~change~some~\subsubsection~into~\subsection.
+}
+%    \end{macrocode}
+%
+%    \end{macrocode}
+% \subsubsection { Mad base level }
+% Used when \meta{level descriptor} is too large as an integer.
+%    \begin{macrocode}
+\msg_new:nnnn { relative } { Bad-base-value } {
+  Unexpected~base~level~#1~\msg_line_context:.
+} {
+  Either~the~provided~name~is~unknown~or~the~provided~value~is~out~of~bounds.
 }
 %    \end{macrocode}
 %

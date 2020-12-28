@@ -16,6 +16,81 @@
 \input{input/expect}
 \begin{document}
 \START
-\DeclareDocumentCommand\myRLTVLevelBase {} { \RLTVLevelBase }
-\input{input/base}
+\ExplSyntaxOn
+\cs_new:Npn \myRLTVLevelBaseSaved {2}
+\cs_new:Npn \myRLTVLevelBaseExpected {2}
+\cs_new:Npn \myTest #1 {
+  \cs_set:Npx \myRLTVLevelBaseSaved { #1 }
+  \RLTVLevelSetBase { #1 }
+  \XPCTIntCompare{
+    lhs = \RLTVLevelBase,
+    rhs = \myRLTVLevelBaseSaved,
+    relation = {=}
+  }
+  \cs_set:Npx \myRLTVLevelBaseExpected { \RLTVLevelBase }
+\iow_term:x {****~base~level:~\myRLTVLevelBaseSaved}
+  \input{input/base}
+  \XPCTIntCompare{
+    lhs = \RLTVLevelBase,
+    rhs = \myRLTVLevelBaseSaved,
+    relation = {=}
+  }
+}
+\ExplSyntaxOff
+\myTest{1}
+\myTest{2}
+\myTest{3}
+\myTest{4}
+\myTest{5}
+\myTest{6}
+\ExplSyntaxOn
+\cs_set:Npn \myTest #1 #2 {
+  \cs_set:Npx \myRLTVLevelBaseSaved { #2 }
+  \RLTVLevelSetBase { #1 }
+  \XPCTIntCompare{
+    lhs = \RLTVLevelBase,
+    rhs = \myRLTVLevelBaseSaved,
+    relation = {=}
+  }
+  \cs_set:Npx \myRLTVLevelBaseExpected { \RLTVLevelBase }
+\iow_term:x {****~\myRLTVLevelBaseSaved}
+  \input{input/base}
+  \XPCTIntCompare{
+    lhs = \RLTVLevelBase,
+    rhs = \myRLTVLevelBaseSaved,
+    relation = {=}
+  }
+}
+\ExplSyntaxOff
+\myTest{myPart}{1}
+\myTest{mySection}{2}
+\myTest{mySubsection}{3}
+\myTest{mySubsubsection}{4}
+\myTest{myParagraph}{5}
+\myTest{mySubparagraph}{6}
+\ExplSyntaxOn
+\cs_set:Npn \myTest #1 {
+  \cs_set:Npx \myRLTVLevelBaseSaved { \RLTVLevelBase }
+  \RLTVLevelSetBaseOfFile { #1 } { base.tex } % do not forget the extension
+  \XPCTIntCompare{
+    lhs = \RLTVLevelBase,
+    rhs = \myRLTVLevelBaseSaved,
+    relation = {=}
+  }
+  \cs_set:Npx \myRLTVLevelBaseExpected { #1 }
+\iow_term:x {****~base~expected:~\myRLTVLevelBaseExpected}
+  \input{input/base}
+  \XPCTIntCompare{
+    lhs = \RLTVLevelBase,
+    rhs = \myRLTVLevelBaseSaved,
+    relation = {=}
+  }
+}
+\ExplSyntaxOff
+\myTest{1}
+\myTest{2}
+\myTest{3}
+\myTest{4}
+\myTest{5}
+\myTest{6}
 \end{document}

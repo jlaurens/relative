@@ -1,5 +1,12 @@
 #!/usr/bin/env texlua
 
+local function execute_cmd(cmd) {
+  local pfile = assert(io.popen(cmd, 'r'))
+  local stdout = pfile:read('*a')
+  pfile:close()
+  return stdout
+}
+
 local function insert_unik(list, item)
   for _, v in pairs(list) do
     if v == item then
@@ -13,13 +20,27 @@ local function insert_unik(list, item)
 end
 
 local function file_remove (filename)
-  local extensions = {'aux', 'glo', 'synctex', 'synctex.gz', 'fls', 'hd', 'idx', 'ilg', 'ind', 'log', 'out', 'pdf', 'fdb_latexmk'}
+  local extensions = {
+    'aux',
+    'glo',
+    'synctex',
+    'synctex.gz',
+    'fls',
+    'hd',
+    'idx',
+    'ilg',
+    'ind',
+    'log',
+    'out',
+    'pdf',
+    'fdb_latexmk'
+  }
   for _, ext in pairs(extensions) do
     os.remove (filename .. '.' .. ext)
   end
 end
 
-local function clear_test ()
+local function clean_test ()
   local pfile = assert(io.popen(("find testfiles -mindepth 1 -maxdepth 1 -type f -print0"), 'r'))
   local list = pfile:read('*a')
   pfile:close()
@@ -35,10 +56,8 @@ local function clear_test ()
   end
 end
 
-local function clear_test_input ()
-  local pfile = assert(io.popen(("find testfiles/input/ -type f -print0"), 'r'))
-  local list = pfile:read('*a')
-  pfile:close()
+local function clean_test_input ()
+  local list = execute_cmd("find testfiles/input/ -type f -print0")
   local files = {}
   for filename in string.gmatch(list, '[^%z]+') do
     local m = string.match(filename, ".-[^\\/]-%.?([^%.\\/]+)(%.[^%.\\/]*)$")
@@ -51,7 +70,7 @@ local function clear_test_input ()
   end
 end
 
-local function clear_source()
+local function clean_source()
   remove('relative')
   remove('relative-doc')
   remove('relative-code')
@@ -61,16 +80,11 @@ local function test_save (what)
   local function build(basename)
     local cmd = string.format("l3build save '%s'", basename)
     print('Execute `' .. cmd .. '`...')
-    local pfile = assert(io.popen(cmd, 'r'))
-    local list = pfile:read('*a')
-    pfile:close()
-    return list
+    return execute_cmd(cmd)
   end
   local list
   if what == 'all' then
-    local pfile = assert(io.popen(("find testfiles -type f -name '*.lvt' -print0"), 'r'))
-    list = pfile:read('*a')
-    pfile:close()
+    list = execute_cmd("find testfiles -type f -name '*.lvt' -print0")
   elseif what then
     list = what
   else
@@ -99,17 +113,9 @@ end
 local function test_tlg (what, how)
   local list
   if what == 'all' then
-    local pfile = assert(io.popen(string.format(
-      "find testfiles -name '*.tlg' -type f -exec grep '%s' '{}' \\; -print0"
-      , how), 'r'))
-    list = pfile:read('*a')
-    pfile:close()
+    list = execute_cmd("find testfiles -name '*.tlg' -type f -exec grep '%s' '{}' \\; -print0")
   elseif what then
-    local pfile = assert(io.popen(string.format(
-      "find testfiles -name '%s.tlg' -type f -exec grep '%s' '{}' \\; -print0"
-      , what, how), 'r'))
-    list = pfile:read('*a')
-    pfile:close()
+    list = execute_cmd("find testfiles -name '%s.tlg' -type f -exec grep '%s' '{}' \\; -print0")
   else
     print('Problem ', arg[3])
     os.exit()
@@ -126,20 +132,18 @@ local function build_doc (what)
   makeindex -s gind.ist %s
   pdflatex %s
   ]], what, what, what, what, what)
-  local pfile = assert(io.popen(cmd, 'r'))
-  local list = pfile:read('*a')
-  pfile:close()
+  execute_cmd(cmd)
 end
 
 local pwd = os.getenv('PWD')
-if arg[1] == 'clear' then
-  if arg[2] == 'source' or arg[2] == 'all' then
-    clear_source()
+if arg[1] == 'clean' then
+  if arg[2] == 'source' or arg[2] == 'all' or not arg[2] then
+    clean_source()
     os.exit()
   end
-  if arg[2] == 'test' or arg[2] == 'all' then
-    clear_test()
-    clear_test_input()
+  if arg[2] == 'test' or arg[2] == 'all' or not arg[2] then
+    clean_test()
+    clean_test_input()
     os.exit()
   end
 elseif arg[1] == 'test' then
@@ -154,6 +158,8 @@ elseif arg[1] == 'build' then
     build_doc('relative-doc')
   elseif arg[2] == 'code' then
     build_code('relative-code')
+  elseif arg[2] == 'all' or not arg[2] then
+    execute_cmd('l3build doc')
   else
     build_code('relative.dtx')
   end

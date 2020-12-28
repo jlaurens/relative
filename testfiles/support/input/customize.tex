@@ -1,8 +1,21 @@
+%
+% 
 \ExplSyntaxOn
-\newcommand\myProj[1]{ \int_max:nn 1 { \int_min:nn 6 { #1 } } }
 \NewDocumentCommand\myGeneric{mm}{
+\iow_term:x {****~parent:~\RLTVLevelParent}
+\iow_term:x {****~base:~\RLTVLevelBase}
+\iow_term:x {****~active:~\RLTVLevelActive}
+\iow_term:x {****~required:~\RLTVLevelRequired}
+\iow_term:x {****~\#1:~#1}
+\iow_term:x {****~\#2:~#2}
+
   \XPCTIntCompare {
-    lhs = \myProj{ \RLTVLevelRequired },
+    lhs = \RLTVLevelActive,
+    rhs = { #1 },
+    relation = {=}
+  }
+  \XPCTIntCompare {
+    lhs = { \int_max:nn 1 { \int_min:nn 6 { \RLTVLevelRequired } } },
     rhs = { #1 },
     relation = {=}
   }
@@ -13,23 +26,23 @@
   }
   \int_compare:nNnF { #2 } = \RLTVLevelRequired { \END }
 }
-\NewDocumentCommand\myPart{m}{
-  \myGeneric{1}{#1}
+\NewDocumentCommand\myPart{}{
+  \myGeneric{1}
 }
-\NewDocumentCommand\mySection{m}{
-  \myGeneric{2}{#1}
+\NewDocumentCommand\mySection{}{
+  \myGeneric{2}
 }
-\NewDocumentCommand\mySubsection{m}{
-  \myGeneric{3}{#1}
+\NewDocumentCommand\mySubsection{}{
+  \myGeneric{3}
 }
-\NewDocumentCommand\mySubsubsection{m}{
-  \myGeneric{4}{#1}
+\NewDocumentCommand\mySubsubsection{}{
+  \myGeneric{4}
 }
-\NewDocumentCommand\myParagraph{m}{
-  \myGeneric{5}{#1}
+\NewDocumentCommand\myParagraph{}{
+  \myGeneric{5}
 }
-\NewDocumentCommand\mySubparagraph{m}{
-  \myGeneric{6}{#1}
+\NewDocumentCommand\mySubparagraph{}{
+  \myGeneric{6}
 }
 \AtBeginDocument{
   \AddToHook{file/before}{

@@ -4,27 +4,13 @@
 Building the documentation
 ==========================
 ```
-pdflatex relative-doc
-makeindex -s gind.ist relative-doc.idx
-makeindex -s gglo.ist -o relative.glo relative.-docgls
-pdflatex relative-doc
-makeindex -s gind.ist relative-doc.idx
-makeindex -s gglo.ist -o relative-doc.glo relative-doc.gls
-pdflatex relative-doc
+l3build doc
 ```
 
 Clean the top folder
 --------------------
 ```
-rm -f relative.aux
-rm -f relative.glo
-rm -f relative.hd
-rm -f relative.idx
-rm -f relative.ilg
-rm -f relative.ind
-rm -f relative.log
-rm -f relative.out
-rm -f relative.pdf
+texlua util.lua clean
 ```
 
 Testing

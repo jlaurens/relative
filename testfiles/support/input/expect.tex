@@ -26,7 +26,7 @@
 \cs_new:Npn \l__xpct_tmpa_cs {}
 \cs_new:Npn \l__xpct_tmpb_cs {}
 
-\keys_define:nn { XPCT/int/compare } {
+\keys_define:nn { XPCTIntCompare } {
   lhs         .tl_set:N = \l__xpct_lhs_tl,
   lhs_name    .tl_set:N = \l__xpct_lhs_name_tl,
   lhs_counter .tl_set:N = \l__xpct_lhs_counter_tl,
@@ -38,11 +38,11 @@
         You~tried~to~set~unknown~key~’\l_keys_key_str’~to~’#1’.
 }
 \NewDocumentCommand\XPCTIntCompareSetup { m } {
-  \keys_set:nn { XPCT/int/compare } { #1 }
+  \keys_set:nn { XPCTIntCompare } { #1 }
 }
 
 \NewDocumentCommand\XPCTIntCompareClear { m } {
-  \keys_set:nn { XPCT/int/compare } {
+  \keys_set:nn { XPCTIntCompare } {
     lhs         = ,
     lhs_name    = ,
     lhs_counter = ,

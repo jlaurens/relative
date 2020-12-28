@@ -1,0 +1,207 @@
+% !TEX root = ... 
+
+\START
+
+\XPCTIntCompare {
+  lhs = \RLTVLevelActive,
+  rhs = 0,
+  relation = {=}
+}
+\XPCTIntCompare {
+  lhs = \RLTVLevelRequired,
+  rhs = 0,
+  relation = {=}
+}
+
+
+\ExplSyntaxOn
+
+\cs_if_exist:NF \g__my_rltv_clist {
+  \clist_new:N \g__my_rltv_clist
+  \clist_gset:Nn \g__my_rltv_clist {
+    part,
+    section,
+    subsection,
+    subsubsection,
+    paragraph,
+    subparagraph
+  }
+}
+\cs_if_exist:NF \g__my_coef_clist {
+  \clist_new:N \g__my_coef_clist
+  \clist_set:Nn \g__my_coef_clist { 1, 1, 1, 1, 0, 0 } % paragraphs and subparagraphs are not numbered.
+}
+\NewDocumentCommand\myReset{} {
+  \clist_map_inline:Nn \g__my_rltv_clist {
+    \setcounter { ##1 } { 0 }
+  }
+	\XPCTIntCompareClear {
+	  relation = {=}
+	}
+	\tl_clear:N \l_my_level_tl
+	\tl_clear:N \l_my_counter_tl
+	\tl_clear:N \l_my_expected_tl
+	\tl_clear:N \l_my_special_tl
+}
+
+\keys_define:nn { my } {
+  level    .tl_set:N = \l_my_level_tl,
+  counter  .tl_set:N = \l_my_counter_tl,
+  expected .tl_set:N = \l_my_expected_tl,
+  special  .tl_set:N = \l_my_special_tl
+}
+\NewDocumentCommand\myCoreTestMMM { mmm } {
+  \myCoreTestKV {
+    level = #1,
+    counter = #2,
+    expected = #3
+  }
+}
+\NewDocumentCommand\myCoreTestKV { m } {
+  %%% /myCoreTestKV/level: \l_my_level_tl/counter: \l_my_counter_tl/expected: \l_my_expected_tl/
+  NO~
+  \keys_set:nn { my } { #1 }
+  \XPCTIntCompare {
+    lhs = \RLTVLevelActive,
+    rhs = \l_my_level_tl
+  }% { nNn } { \RLTVLevelActive } = \l_my_level_tl
+  \cs_generate_variant:Nn \tl_if_eq:nnTF { xxTF }
+  \tl_if_eq:xxTF {\clist_item:Nn \g__my_coef_clist { \RLTVLevelActive }} {0} {
+    \XPCTIntCompare {
+      lhs_counter = \l_my_counter_tl,
+      rhs = 0
+    }
+  } {
+    \XPCTIntCompare {
+      lhs_counter = \l_my_counter_tl,
+      rhs = \l_my_expected_tl
+    }
+  }
+  COMMENT
+}
+
+\DeclareDocumentCommand\_myHelper { m } {
+  \keys_set:nn { my } {
+    counter = \clist_item:Nn \g__my_rltv_clist { \l_my_level_tl },
+  }
+  \XPCTIntCompare {
+    lhs_counter = \l_my_counter_tl,
+    rhs = 0
+  }
+  #1
+}
+
+\NewDocumentCommand\myTestOM { om } {
+  \myReset
+  \IfNoValueTF { #1 } {
+    \int_step_inline:nn { \clist_count:N \g__my_rltv_clist } {
+      \keys_set:nn { my } {
+        level = { ##1 }
+      }
+      \_myHelper { #2 }
+    }
+  } {
+    \keys_set:nn { my } {
+      level = 1,
+      special =
+    }
+    \_myHelper { #2 }
+    \int_step_inline:nnn 2 { \clist_count:N \g__my_rltv_clist } {
+      \keys_set:nn { my } {
+        level = { ##1 },
+        special = { #1 }
+      }
+      \_myHelper { #2 }
+    }
+  }
+}
+
+\DeclareDocumentCommand\mySectionA { om } {
+  \IfNoValueTF { #1 } {
+    \tl_set_eq:NN \l_tmpa_tl \c_empty_tl
+  } {
+    \tl_set:Nn \l_tmpa_tl { #1 \c_space_tl }
+  }
+  \cs:w \l_my_counter_tl \cs_end: {My~\l_my_counter_tl\c_space_tl\l_tmpa_tl(level~\RLTVLevelActive/\RLTVLevelRequired)}
+  \myCoreTestKV{ expected = #2 }
+}
+
+\DeclareDocumentCommand\_mySectionB { mmm } {
+  \section<#1>{My~\l_my_counter_tl\c_space_tl#2 (level~\RLTVLevelActive/\RLTVLevelRequired)}
+  \myCoreTestKV{ expected = #3 }
+}
+
+\DeclareDocumentCommand\mySectionB { d<>om } {
+  \IfNoValueTF { #1 } {
+    \IfNoValueTF { #2 } {
+      \tl_if_empty:NTF \l_my_special_tl {
+        \_mySectionB { \l_my_level_tl } { } { #3 }
+      } {
+        \_mySectionB { \l_my_special_tl } { } { #3 }
+      }
+    } {
+      \tl_if_empty:NTF \l_my_special_tl {
+        \_mySectionB { \l_my_level_tl } { #2 \c_space_tl } { #3 }
+      } {
+        \_mySectionB { \l_my_special_tl } { #2 \c_space_tl } { #3 }
+      }
+    }
+  } {
+    \IfNoValueTF { #2 } {
+      \_mySectionB { #1 } { } { #3 }
+    } {
+      \_mySectionB { #1 } { #2 \c_space_tl } { #3 }
+    }
+  }
+}
+
+\ExplSyntaxOff
+
+
+
+%%%%% Absolute sectioning level
+
+\myTestOM {
+  \mySectionA{1}
+  \mySectionB[as well]{2}
+}
+
+\ExplSyntaxOff
+\endinput
+
+%%%%% reverse order
+
+\myTestOM {
+  \mySectionB{1}
+  \mySectionA[as well]{2}
+}
+
+%%%%% step sectioning level
+
+\myTestOM [+] {
+  \mySectionB{1}
+  \mySectionA[as well]{2}
+}
+
+%%%%% Same sectioning level \RLTV<>
+
+\myTestOM [=] {
+  \mySectionA{1}
+  \mySectionB[as well]{2}
+}
+
+%%%%% Absolute starred sectioning level
+
+\myTestOM {
+  \mySectionA{1}
+  \mySectionB[as well]{2}
+}
+
+%%%%% reverse order
+
+\myTestOM {
+  \mySectionB{1}
+  \mySectionA[as well]{2}
+}
+
+\ExplSyntaxOff

@@ -1,0 +1,45 @@
+\ExplSyntaxOn
+\newcommand\myProj[1]{ \int_max:nn 1 { \int_min:nn 6 { #1 } } }
+\NewDocumentCommand\myGeneric{mm}{
+  \XPCTIntCompare {
+    lhs = \myProj{ \RLTVLevelRequired },
+    rhs = { #1 },
+    relation = {=}
+  }
+  \XPCTIntCompare {
+    lhs = \RLTVLevelRequired,
+    rhs = { #2 },
+    relation = {=}
+  }
+  \int_compare:nNnF { #2 } = \RLTVLevelRequired { \END }
+}
+\NewDocumentCommand\myPart{m}{
+  \myGeneric{1}{#1}
+}
+\NewDocumentCommand\mySection{m}{
+  \myGeneric{2}{#1}
+}
+\NewDocumentCommand\mySubsection{m}{
+  \myGeneric{3}{#1}
+}
+\NewDocumentCommand\mySubsubsection{m}{
+  \myGeneric{4}{#1}
+}
+\NewDocumentCommand\myParagraph{m}{
+  \myGeneric{5}{#1}
+}
+\NewDocumentCommand\mySubparagraph{m}{
+  \myGeneric{6}{#1}
+}
+\AtBeginDocument{
+  \AddToHook{file/before}{
+    \ExplSyntaxOn \TYPE{Stack: \seq_use:Nn\g__rltv_seq { / }} \ExplSyntaxOff
+    \TYPE {Parent level: \RLTVLevelParent}
+    \XPCTIntCompare {
+      lhs = \RLTVLevelParent,
+      rhs = \RLTVLevelRequired,
+      relation = {=}
+    }
+  }
+}
+\ExplSyntaxOff

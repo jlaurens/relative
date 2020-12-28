@@ -1,0 +1,112 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+!*** 0: -NoValue-
+!*** 0: -NoValue-
+!*** 2
+!*** 0
+!*** 0
+!*** 2
+!*** 2
+!*** 2
+============================================================
+TEST 1: /Expect/int/ \myProj {\RLTVLevelRequired } = 2
+============================================================
+PASSED
+============================================================
+============================================================
+TEST 2: /Expect/int/ \RLTVLevelRequired  = 2
+============================================================
+PASSED
+============================================================
+!*** 0: ~
+!*** 0: \protect \unhbox \voidb@x \protect \penalty \@M \ {}
+!*** 2
+!*** 2
+!*** 2
+Capture = ||
+Capture + ||
+Capture - ||
+Capture . ||
+Capture .. ||
+Capture n |~|
+Capture 8 ||
+Capture ../ ||
+Capture ./ ||
+Capture n/ ||
+Capture 12 ||
+!*** Capture 2
+!*** Capture 3
+!*** Capture 4
+!*** Capture 5
+!*** Capture 6
+!*** Capture 7
+! Argument of \add@accent has an extra }.
+<inserted text> 
+                \par 
+l. ...\mySection<~>
+                  {2}
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+Runaway argument?
+! Paragraph ended before \add@accent was complete.
+<to be read again> 
+                   \par 
+l. ...\mySection<~>
+                  {2}
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+!*** \par 
+!*** 2
+!*** 2
+!*** 2
+============================================================
+TEST 3: /Expect/int/ \myProj {\RLTVLevelRequired } = 2
+============================================================
+PASSED
+============================================================
+============================================================
+TEST 4: /Expect/int/ \RLTVLevelRequired  = 2
+============================================================
+PASSED
+============================================================
+!*** 0: +
+!*** 0: +
+!*** 2
+!*** 2
+!*** 2
+Capture = ||
+Capture + |+|
+Capture - ||
+Capture . ||
+Capture .. ||
+Capture n ||
+Capture 8 ||
+Capture ../ ||
+Capture ./ ||
+Capture n/ ||
+Capture 12 ||
+!*** Capture 2
+!*** Capture 3
+!*** +
+!*** 2
+!*** 3
+!*** 3
+============================================================
+TEST 5: /Expect/int/ \myProj {\RLTVLevelRequired } = 3
+============================================================
+PASSED
+============================================================
+============================================================
+TEST 6: /Expect/int/ \RLTVLevelRequired  = 3
+============================================================
+PASSED
+============================================================
+\protect \unhbox \voidb@x \protect \penalty \@M \ {}
+LaTeX3 Info: Defining command \myRLTVLevelBase with sig. '' on line ....
+**** XPCT: 0 FAILED, 6 PASSED out of 6
+[1] (base.aux)

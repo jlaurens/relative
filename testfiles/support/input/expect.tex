@@ -1,0 +1,115 @@
+% !TeX Root = ...
+
+\ExplSyntaxOn
+\tl_new:N \g__xpct_tl
+\int_new:N \g__xpct_total_int
+\int_new:N \g__xpct_failed_int
+\cs_new:Nn \__xpct_test:n {
+  \int_gincr:N \g__xpct_total_int
+  \tl_gset:Nn \g__xpct_tl { #1 }
+}
+\cs_generate_variant:Nn \__xpct_test:n { x, o }
+\cs_new:Nn \__xpct_passed:n {
+  \BEGINTEST { #1 }
+  \TYPE {PASSED}
+  \ENDTEST
+}
+\cs_new:Nn \__xpct_failed:nn {
+  \int_gincr:N \g__xpct_failed_int
+  \BEGINTEST { #1 }
+  \TYPE { ****~FAILED~at~line~\msg_line_number: :~\c_space_tl #2 }
+  \ENDTEST
+}
+\cs_generate_variant:Nn \__xpct_passed:n { o }
+\cs_generate_variant:Nn \__xpct_failed:nn { ox }
+
+\cs_new:Npn \l__xpct_tmpa_cs {}
+\cs_new:Npn \l__xpct_tmpb_cs {}
+
+\keys_define:nn { XPCT/int/compare } {
+  lhs         .tl_set:N = \l__xpct_lhs_tl,
+  lhs_name    .tl_set:N = \l__xpct_lhs_name_tl,
+  lhs_counter .tl_set:N = \l__xpct_lhs_counter_tl,
+  rhs         .tl_set:N = \l__xpct_rhs_tl,
+  rhs_name    .tl_set:N = \l__xpct_rhs_name_tl,
+  rhs_counter .tl_set:N = \l__xpct_rhs_counter_tl,
+  relation    .tl_set:N = \l__xpct_relation_tl,
+  unknown     .code:n =
+        You~tried~to~set~unknown~key~’\l_keys_key_str’~to~’#1’.
+}
+\NewDocumentCommand\XPCTIntCompareSetup { m } {
+  \keys_set:nn { XPCT/int/compare } { #1 }
+}
+
+\NewDocumentCommand\XPCTIntCompareClear { m } {
+  \keys_set:nn { XPCT/int/compare } {
+    lhs         = ,
+    lhs_name    = ,
+    lhs_counter = ,
+    rhs         = ,
+    rhs_name    = ,
+    rhs_counter = ,
+    relation    = ,
+  }
+  \XPCTIntCompareSetup { #1 }
+}
+
+\NewDocumentCommand\XPCTIntCompare { m } {
+  \group_begin:
+    \XPCTIntCompareSetup { #1 }
+    \tl_if_empty:NTF \l__xpct_lhs_counter_tl {
+      \tl_if_empty:NTF \l__xpct_lhs_name_tl {
+        \tl_if_empty:NTF \l__xpct_lhs_tl {
+          \msg_new:nnn {expect} {error/lhsmissing} { Missing~one~key~of~lhs,~lhs_name,~lhs_counter. }
+          \msg_fatal:nn {expect} {error/3}
+          \int_set:Nn \l_tmpa_int { 0 }
+          \tl_set:Nn \l_tmpa_tl { 0 }
+        } {
+          \int_set:Nn \l_tmpa_int \l__xpct_lhs_tl
+          \tl_set:No \l_tmpa_tl \l__xpct_lhs_tl
+        }
+      } {
+        \int_set:Nn \l_tmpa_int { \cs:w \l__xpct_lhs_name_tl \cs_end: }
+        \tl_set:Nx \l_tmpa_tl { \cs:w \l__xpct_lhs_name_tl \cs_end: }
+      }
+    } {
+      \int_set:Nn \l_tmpa_int { \value { \l__xpct_lhs_counter_tl } }
+      \tl_set:Nx \l_tmpa_tl { \exp_not:N \value { \l__xpct_lhs_counter_tl } }
+    }
+    \tl_if_empty:NTF \l__xpct_rhs_counter_tl {
+      \tl_if_empty:NTF \l__xpct_rhs_name_tl {
+        \tl_if_empty:NTF \l__xpct_rhs_tl {
+          \msg_new:nnn {expect} {error/rhsmissing} { Missing~one~key~of~rhs,~rhs_name,~rhs_counter. }
+          \msg_fatal:nn {expect} {error/3}
+          \int_set:Nn \l_tmpb_int { 0 }
+          \tl_set:Nn \l_tmpb_tl { 0 }
+        } {
+          \int_set:Nn \l_tmpb_int { \l__xpct_rhs_tl }
+          \tl_set:No \l_tmpb_tl \l__xpct_rhs_tl
+        }
+      } {
+        \int_set:Nn \l_tmpb_int { \cs:w \l__xpct_rhs_name_tl \cs_end: }
+        \tl_set:Nx \l_tmpb_tl { \cs:w \l__xpct_rhs_name_tl \cs_end: }
+      }
+    } {
+      \int_set:Nn \l_tmpb_int { \value { \l__xpct_rhs_counter_tl } }
+      \tl_set:Nx \l_tmpb_tl { \exp_not:N \value { \l__xpct_rhs_counter_tl } }
+    }
+    \tl_put_left:Nn \l_tmpa_tl { /Expect/int/~ }
+    \tl_put_right:Nx \l_tmpa_tl { ~\tl_use:N \l__xpct_relation_tl~ \c_space_tl \tl_use:N \l_tmpb_tl }
+    \__xpct_test:o { \l_tmpa_tl } {
+      \int_compare:nTF { \l_tmpa_int \l__xpct_relation_tl \l_tmpb_int } {
+        \__xpct_passed:o \g__xpct_tl
+      } {
+        \__xpct_failed:ox \g__xpct_tl { \int_use:N \l_tmpa_int~\c_space_tl\l__xpct_relation_tl\c_space_tl~\int_use:N \l_tmpb_int }
+      }
+    }
+  \group_end:
+}
+
+\AtEndDocument {
+  \iow_term:x {}
+  \iow_term:x { ****~XPCT:~\int_use:N \g__xpct_failed_int\c_space_tl~FAILED,~\int_eval:n { \g__xpct_total_int - \g__xpct_failed_int }\c_space_tl~PASSED~out~of~\int_use:N \g__xpct_total_int }
+  \iow_term:x {}
+}
+\ExplSyntaxOff

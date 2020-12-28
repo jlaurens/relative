@@ -1,0 +1,50 @@
+\input{regression-test.tex}
+\documentclass[twoside]{report}
+\usepackage[sf,sl,outermarks]{titlesec}
+% \chapter, \subsection...: no additional code
+\titleformat{\section}
+  {\LARGE\sffamily\slshape}
+  {\thesection}{1em}{}
+\titlespacing{\section}
+  {-6pc}{3.5ex plus .1ex minus .2ex}{1.5ex minus .1ex}
+\titleformat{\paragraph}[leftmargin]
+  {\sffamily\slshape\filright}
+  {}{}{}
+\titlespacing{\paragraph}
+  {5pc}{1.5ex minus .1 ex}{1pc}
+% 5+1=6, ie, the negative left margin in section
+\widenhead{6pc}{0pc}
+\renewpagestyle{plain}{}
+\newpagestyle{special}[\small\sffamily]{
+   \headrule
+   \sethead[\usepage][\textsl{\chaptertitle}][]
+           {}{\textsl{\chaptertitle}}{\usepage}}
+\newpagestyle{main}[\small\sffamily]{
+   \headrule
+   \sethead[\usepage][\textsl{\thechapter. \chaptertitle}][]
+           {}{\textsl{\thesection. \sectiontitle}}{\usepage}}
+\pagestyle{special}
+\usepackage{relative}
+\InputIfFileExists {support/input/expect}
+  {}
+  {\input{input/expect}}
+\ExplSyntaxOn
+  \clist_new:N \g__my_rltv_clist
+  \clist_gset:Nn \g__my_rltv_clist {
+    part,
+    chapter,
+    section,
+    subsection,
+    subsubsection,
+    paragraph,
+    subparagraph
+  }
+  \clist_new:N \g__my_coef_clist
+  \clist_set:Nn \g__my_coef_clist { 1, 1, 1, 1, 0, 0, 0 } % paragraphs and subparagraphs are not numbered.
+
+\ExplSyntaxOff
+\begin{document}
+\InputIfFileExists {support/input/contents}
+  {}
+  {\input{input/contents}}
+\end{document}

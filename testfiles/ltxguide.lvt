@@ -1,0 +1,17 @@
+\ExplSyntaxOn
+  \clist_new:N \g__my_rltv_clist
+  \clist_set:Nn \g__my_rltv_clist {
+    part,
+    section,
+    subsection,
+    subsubsection,
+    paragraph,
+    subparagraph
+  }
+  \clist_new:N \g__my_coef_clist
+  \clist_set:Nn \g__my_coef_clist { 1, 1, 1, 1, 0, 0 } % paragraphs and subparagraphs are not numbered.
+\ExplSyntaxOff
+\NewDocumentCommand{\myDocumentClass}{}{
+  \documentclass{ltxguide}
+}
+\input{input/main}

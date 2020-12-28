@@ -1,0 +1,10 @@
+\input{regression-test.tex}
+\documentclass{minimal}
+\input{input/sectioning}
+\usepackage{relative}
+\input{input/expect}
+\begin{document}
+\START
+NO OUTPUT
+\input{input/1}
+\end{document}

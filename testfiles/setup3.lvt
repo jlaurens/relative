@@ -1,0 +1,20 @@
+\input{regression-test.tex}
+\documentclass{minimal}
+\usepackage {relative}
+\RLTVSetUp {
+  names = {
+    myPart,
+    mySection,
+    mySubsection,
+    mySubsubsection,
+    myParagraph,
+    mySubparagraph
+  }
+}
+\input{input/customize}
+\input{input/expect}
+\begin{document}
+\START
+NO OUTPUT
+\input{input/3}
+\end{document}

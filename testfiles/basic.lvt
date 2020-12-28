@@ -1,0 +1,12 @@
+\documentclass{article}
+\usepackage{relative}
+\begin{document}
+\ExplSyntaxOn
+\ExplSyntaxOff
+\subsubsection{Foo (level \RLTVLevelRequired/\RLTVLevelActive)}
+\section<4>{Foo (level \RLTVLevelRequired/\RLTVLevelActive)}
+\paragraph{Foo (level \RLTVLevelRequired/\RLTVLevelActive)}
+\subparagraph{Foo (level \RLTVLevelRequired/\RLTVLevelActive)}
+
+
+\end{document}

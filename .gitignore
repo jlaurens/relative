@@ -10,7 +10,7 @@
 *.glo
 *.hd
 *.ilg
-build
-testfiles/test
 *.fdb_latexmk
 *.fls
+build
+testfiles/test

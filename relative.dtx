@@ -894,18 +894,11 @@
 % We will need a regular expression to manipulate the \meta{level descriptor}. The main purpose is to detect the possibly leading "//", "../" or "./" and the subsequent integer if any.
 %    \begin{macrocode}
 \regex_new:N \l_@@_regex
-\group_begin:
-\char_set_catcode_letter:N \=
-\char_set_catcode_letter:N \+
-\char_set_catcode_letter:N \-
-\char_set_catcode_letter:N \.
-\char_set_catcode_letter:N \~
-\char_set_catcode_letter:N \/
 \regex_gset:Nn \l_@@_regex { \A \s*
-  (?:(=)|(+)|(-)|(\.)|(\.\.)|(
-)|(?:((\.\./)|(\./)|(\~/)|//)?
-  \s* (.+?))) \s* \Z }
-\group_end:
+  (?:(\=)|(\+)|(\-)|(\.)|(\.\.)|(\~)|(?:
+    ((\.\.\/)|(\.\/)|(\~\/)|\/\/)? \s* (.+?)
+  ))
+  \s* \Z }
 %    \end{macrocode}
 % \begin{itemize}
 % \item Capture 1: the match
@@ -943,7 +936,7 @@
 \cs_new:Npn \@@_if_capture_empty:nTF #1 {
   \tl_if_empty:xTF { \seq_item:Nn \l_tmpa_seq { #1 } }
 }
-\NewDocumentCommand \_@@_base_sxn { d<> } {
+\NewDocumentCommand \@@_base_sxn_ui { d<> } {
 \iow_term:n {!***~0:~#1}
 \iow_term:x {!***~0:~#1}
 \iow_term:x {!***~\int_use:N \g_@@_base_int }
@@ -956,8 +949,8 @@
 %    \end{macrocode}
 % Standard invocation: \mylstinline|\section {blablabla}|, we branch to the base command.
 %    \begin{macrocode}
-    \int_set:Nn \g_@@_rqrd_int \g_@@_base_int
-    \int_set:Nn \g_@@_actv_int \g_@@_rqrd_int
+    \int_gset:Nn \g_@@_rqrd_int \g_@@_base_int
+    \int_gset:Nn \g_@@_actv_int \g_@@_rqrd_int
   } {
     \bool_set_true:N \l_tmpa_bool
     \regex_extract_once:NnNTF \l_@@_regex { #1 } \l_tmpa_seq {
@@ -1019,7 +1012,7 @@
 % This is a leading "~/".
 %    \begin{macrocode}
         \int_add:Nn \l_tmpa_int \g_@@_base_int
-\iow_term:n {!***~n/:~\int_use:N \l_tmpa_int}
+\iow_term:x {!***~\char_generate:nn {`\~} {12}/:~\int_use:N \l_tmpa_int}
       }
     } {
 %    \end{macrocode}
@@ -1085,7 +1078,7 @@
 \iow_term:x {!***~ERROR}
       \bool_set_false:N \l_tmpa_bool
       \msg_warning:nnn { relative } { Bad-section-<>-argument } { #1 }
-      \int_set:Nn \l_tmpa_int { \g_@@_rqrd_int }
+      \int_set:Nn \l_tmpa_int \g_@@_rqrd_int
     }
     \int_gset:Nn \g_@@_rqrd_int \l_tmpa_int
     \int_compare:nNnTF \l_tmpa_int > \c_@@_sxn_max_int {
@@ -1099,7 +1092,7 @@
       \bool_if:NT \l_tmpa_bool {
         \msg_warning:nnnx { relative } { Bad-level-value } { #1 } { \int_use:N \l_tmpa_int }
       }
-      \int_gset:Nn \g_@@_actv_int { \c_@@_sxn_max_int }
+      \int_gset:Nn \g_@@_actv_int \c_@@_sxn_max_int
     } {
       \int_compare:nNnTF { \l_tmpa_int } < 1 {
 %    \end{macrocode}
@@ -1109,7 +1102,7 @@
         \bool_if:NT \l_tmpa_bool {
           \msg_warning:nnnx { relative } { Bad-level-value } { #1 } { \int_use:N \l_tmpa_int }
         }
-        \int_gset:Nn \g_@@_actv_int { 1 }
+        \int_gset:Nn \g_@@_actv_int 1
       } {
 %    \end{macrocode}
 % Normal flow.
@@ -1125,22 +1118,14 @@
   \seq_item:Nn \c_@@_sxn_seq \g_@@_actv_int
 }
 \cs_new:Npn \@@_base_sxn {
-\myfake
   \group_begin:
-\iow_term:x {!***~<catcodes }
-\char_show_value_catcode:n ^^3d
-\char_show_value_catcode:n ^^2b
-\char_show_value_catcode:n ^^2d
-\char_show_value_catcode:n ^^7e
-  \char_set_catcode_letter:N \=
-  \char_set_catcode_letter:N \+
-  \char_set_catcode_letter:N \-
-  \char_set_catcode_letter:N \.
-  \char_set_catcode_letter:N \~
-  \char_set_catcode_letter:N \/
-\char_show_value_catcode:n ^^7e
-\iow_term:x {!***~/> }
-  \_@@_base_sxn
+  \char_set_catcode_other:N \=
+  \char_set_catcode_other:N \+
+  \char_set_catcode_other:N \-
+  \char_set_catcode_other:N \.
+  \char_set_catcode_other:N \~
+  \char_set_catcode_other:N \/
+  \@@_base_sxn_ui
 }
 %    \end{macrocode}
 %

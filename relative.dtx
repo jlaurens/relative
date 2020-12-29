@@ -218,8 +218,7 @@
 % \hline
 % Command & Sectioning & reference \\
 % \hline
-% \mylstinline|\section<|\meta{positive integer}\mylstinline|>| & \multirow{2}{*}{absolute} & \multirow{2}{*}{\ref{sect:absolute}} \\
-% \mylstinline|\section<//|\meta{positive integer}\mylstinline|>| & & \\
+% \mylstinline|\section<|\meta{positive integer}\mylstinline|>| & absolute & \ref{sect:absolute} \\
 % \hline
 % \mylstinline|\section<=>| & \multirow{4}{*}{relative to the last} & \multirow{4}{*}{\ref{sect:last}} \\
 % \mylstinline|\section<+>| & & \\
@@ -227,12 +226,12 @@
 % \mylstinline|\section<|\meta{negative integer}\mylstinline|>| & & \\
 % \hline
 % \mylstinline|\section<..>| & \multirow{4}{*}{\shortstack[l]{relative to the parent\\or the container}} & \multirow{4}{*}{\ref{sect:parent}} \\
-% \mylstinline|\section<../|\meta{integer}\mylstinline|>| & & \\
+% \mylstinline|\section<..|\meta{integer}\mylstinline|>| & & \\
 % \mylstinline|\section<.>| & &  \\
-% \mylstinline|\section<./|\meta{integer}\mylstinline|>| & & \\
+% \mylstinline|\section<.|\meta{integer}\mylstinline|>| & & \\
 % \hline
 % \mylstinline|\section<~>| & \multirow{2}{*}{relative to the base} & \multirow{2}{*}{\ref{sect:base}} \\
-% \mylstinline|\section<~/|\meta{integer}\mylstinline|>| & & \\
+% \mylstinline|\section<~|\meta{integer}\mylstinline|>| & & \\
 % \hline
 % \end{tabular}
 % \end{center}
@@ -434,8 +433,8 @@
 %\end{itemize}
 % If we import the same file multiple times, these rules apply for each \mylstinline|\input| occurrence separately, such that the parent section level of "foo.tex" may change during typesetting.
 %
-% If the \meta{level descriptor} is a "../" followed by an \meta{integer}, this integer is added to the parent section level to obtain the absolute section level to switch to.
-% If the \meta{level descriptor} is a "./" followed by an \meta{integer}, one more unit is added.
+% If the \meta{level descriptor} is a ``".."'' followed by an \meta{integer}, this integer is added to the parent section level to obtain the absolute section level to switch to.
+% If the \meta{level descriptor} is a ``"."'' followed by an \meta{integer}, one more unit is added.
 % For any integers $\mathit{parent}$ and $n$, following commands are equivalent
 % \begin{center}
 % \begin{tabular}{c|l|l}
@@ -444,11 +443,11 @@
 % \hline
 % $\mathit{parent}$ & \mylstinline|\section<..>| & \mylstinline|\section<|$\mathit{parent}$\mylstinline|>|\\
 % \hline
-% $\mathit{parent}$ & \mylstinline|\section<../|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{parent}+n$\mylstinline|>|\\
+% $\mathit{parent}$ & \mylstinline|\section<..|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{parent}+n$\mylstinline|>|\\
 % \hline
 % $\mathit{parent}$ & \mylstinline|\section<.>| & \mylstinline|\section<|$\mathit{parent}+1$\mylstinline|>|\\
 % \hline
-% $\mathit{parent}$ & \mylstinline|\section<./|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{parent}+n+1$\mylstinline|>|\\
+% $\mathit{parent}$ & \mylstinline|\section<.|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{parent}+n+1$\mylstinline|>|\\
 % \hline
 % \end{tabular}
 % \end{center}
@@ -457,16 +456,13 @@
 % Some remarks:
 % \begin{itemize}
 % \item
-% both \mylstinline|\section<..>|, \mylstinline|\section<../0>| and \mylstinline|\section<../-0>|
+% both \mylstinline|\section<..>|, \mylstinline|\section<..0>| and \mylstinline|\section<..-0>|
 % correspond to the parent level section;
 % \item
 % negative integers are allowed, they correspond to a big step up in the sectioning hierarchy;
 % \item
 % in the root file and for positive $n$,
-% both commands \mylstinline|\section<|$n$\mylstinline|>|, \mylstinline|\section<../|$n$\mylstinline|>| and
-% \mylstinline|\section<//|$n$\mylstinline|>| are equivalent simply because the parent section level is 0 there;
-% \item
-% the notation refers to "./" and "../" used for relative URLs or relative paths.
+% both commands \mylstinline|\section<|$n$\mylstinline|>| and \mylstinline|\section<..|$n$\mylstinline|>| are equivalent simply because the parent section level is 0 there;
 % \end{itemize}
 %
 %
@@ -486,16 +482,16 @@
 % When first input on line $5$, the last sectioning command performed is \mylstinline|\section <1>| such that the parent section level of "foo.tex" is $1$. This file would read together with its absolute equivalent
 % ^^A4567890123456789012345678901234567890123456789012345678901234567890
 % \begin{LaTeXdemo}[code only]
-%   \section <../1> {Relative level 1}   \section {Relative level 1}
-%   \section <../2> {Relative level 2}   \subsection {Relative level 2}
-%   \section < ./2> {Relative level 3}   \subsubsection {Relative level 3}
+%   \section <..1> {Relative level 1}   \section {Relative level 1}
+%   \section <..2> {Relative level 2}   \subsection {Relative level 2}
+%   \section < .2> {Relative level 3}   \subsubsection {Relative level 3}
 % \end{LaTeXdemo}
 % When further input on line $7$, the last sectioning command performed is now \mylstinline|\section <2>| such that the parent section level of "foo.tex" is now $2$. This file would read together with its absolute equivalent
 % ^^A4567890123456789012345678901234567890123456789012345678901234567890
 % \begin{LaTeXdemo}[code only]
-%   \section <../1> {Relative level 1}   \subsection {Relative level 1}
-%   \section <../2> {Relative level 2}   \subsubsection {Relative level 2}
-%   \section < ./2> {Relative level 3}   \paragraph {Relative level 3}
+%   \section <..1> {Relative level 1}   \subsection {Relative level 1}
+%   \section <..2> {Relative level 2}   \subsubsection {Relative level 2}
+%   \section < .2> {Relative level 3}   \paragraph {Relative level 3}
 % \end{LaTeXdemo}
 % Notice that the very same file has been interpreted differently with respect to sectioning.
 %
@@ -512,12 +508,12 @@
 % \hline
 % $\mathit{base}$ & \mylstinline|\section<~>| & \mylstinline|\section<|$\mathit{base}$\mylstinline|>|\\
 % \hline
-% $\mathit{base}$ & \mylstinline|\section<~/|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{base}+n$\mylstinline|>|\\
+% $\mathit{base}$ & \mylstinline|\section<~|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{base}+n$\mylstinline|>|\\
 % \hline
 % \end{tabular}
 % \end{center}
 %
-% The \myIndex{base level} need not be a constant during typesetting.
+% The \myIndex{base level} need not be constant during typesetting.
 %
 % \begin{function}{\RLTVLevelSetBase}
 % \begin{syntax}
@@ -532,7 +528,7 @@
 % \cs{RLTVLevelSetBaseOfFile} \marg{base level} \marg{file name}
 % \end{syntax}
 % Sets the \textbf{base level} to the given value for the given file only.
-% For example, after a \mylstinline|\RLTVLevelSetBaseOfFile{4}{foo.tex}|, at any subsequent \mylstinline|\input{foo.tex}| the \textbf{base level} becomes $4$ and switches back to its previous value once the \mylstinline|\input| is complete.
+% For example, after a \mylstinline|\RLTVLevelSetBaseOfFile{4}{foo.tex}|, at any subsequent \mylstinline|\input{foo.tex}| the \textbf{base level} becomes $4$ and switches back to its previous value once the \mylstinline|\input| is complete. Notice that the file extension should not be omitted if any.
 % \end{function}
 %
 % This is interesting if the \textbf{base level} must change without editing the file.
@@ -542,7 +538,7 @@
 % If you try to use a section level bigger than available, a warning is issued in the terminal and the log file, then the deepest available section command is used, in general \mylstinline|\subparagraph|.
 %
 % \section {Problems and limitations}
-% Any issue should be reported at \url{}
+% Any issue should be reported \url{https://github.com/jlaurens/relative/issues}
 % \subsection {Compatibility with other packages}
 % \pkg{relative} has been sucessfully tested with \pkg{titlesec} and \pkg{secsty} at release time. 
 % However there is no guaranty of result, even partial, for future times and other packages.
@@ -919,8 +915,8 @@
 %    \begin{macrocode}
 \regex_new:N \l_@@_regex
 \regex_gset:Nn \l_@@_regex { \A \s*
-  (?:(\=)|(\+)|(\-)|(\.)|(\.\.)|(\~)|(?:
-    ((\.\.\/)|(\.\/)|(\~\/)|\/\/)? \s* (.+?)
+  (?:(\=)|(\+)|(\-)|(?:
+    ((\.\.)|(\.)|\~)? \s* (.*?)
   ))
   \s* \Z }
 %    \end{macrocode}
@@ -929,14 +925,10 @@
 % \item Capture 2: single "="
 % \item Capture 3: single "+"
 % \item Capture 4: single "-"
-% \item Capture 5: single "."
-% \item Capture 6: single ".."
-% \item Capture 7: single "~"
-% \item Capture 8: leading "../", "./", "~/" or "//"
-% \item Capture 9: leading "../"
-% \item Capture 10: leading "./"
-% \item Capture 11: leading "~/"
-% \item Capture 12: trailing number
+% \item Capture 5: leading "..", "." or "~"
+% \item Capture 6: leading ".."
+% \item Capture 7: leading "."
+% \item Capture 8: trailing number
 % \end{itemize}
 % \end{variable}
 %
@@ -981,119 +973,69 @@
 \iow_term:x {Capture~=~~~| \seq_item:Nn \l_tmpa_seq 2 |}
 \iow_term:x {Capture~+~~~| \seq_item:Nn \l_tmpa_seq 3 |}
 \iow_term:x {Capture~-~~~| \seq_item:Nn \l_tmpa_seq 4 |}
-\iow_term:x {Capture~.~~~| \seq_item:Nn \l_tmpa_seq 5 |}
-\iow_term:x {Capture~..~~| \seq_item:Nn \l_tmpa_seq 6 |}
-\iow_term:x {Capture~n~~~| \seq_item:Nn \l_tmpa_seq 7 |}
-\iow_term:x {Capture~8~~~| \seq_item:Nn \l_tmpa_seq 8 |}
-\iow_term:x {Capture~../~| \seq_item:Nn \l_tmpa_seq 9 |}
-\iow_term:x {Capture~./~~| \seq_item:Nn \l_tmpa_seq {10} |}
-\iow_term:x {Capture~n/~~| \seq_item:Nn \l_tmpa_seq {11} |}
-\iow_term:x {Capture~12~~| \seq_item:Nn \l_tmpa_seq {12} |}
+\iow_term:x {Capture~5~~~| \seq_item:Nn \l_tmpa_seq 5 |}
+\iow_term:x {Capture~..~| \seq_item:Nn \l_tmpa_seq 6 |}
+\iow_term:x {Capture~.~~| \seq_item:Nn \l_tmpa_seq 7 |}
+\iow_term:x {Capture~8~~| \seq_item:Nn \l_tmpa_seq 8 |}
 \iow_term:x {!***~Capture~2}
       \@@_if_capture_empty:nTF 2 {
 \iow_term:x {!***~Capture~3}
         \@@_if_capture_empty:nTF 3 {
 \iow_term:x {!***~Capture~4}
           \@@_if_capture_empty:nTF 4 {
-\iow_term:x {!***~Capture~5}
-            \@@_if_capture_empty:nTF 5 {
-\iow_term:x {!***~Capture~6}
-              \@@_if_capture_empty:nTF 6 {
-\iow_term:x {!***~Capture~7}
-                \@@_if_capture_empty:nTF 7 {
 \iow_term:x {!***~Capture~8}
-\@@_if_capture_empty:nTF { 12 } {
-\iow_term:x {!***~MISSING~NUMBER}
-  \bool_set_false:N \l_tmpa_bool
-  \msg_warning:nnn { relative } { Bad-section-<>-argument } { #1 }
-  \int_set:Nn \l_tmpa_int \g_@@_rqrd_int
-} {
-\iow_term:x {!***~NUMBER:~\int_use:N \l_tmpa_int }
-  \int_set:Nn \l_tmpa_int { \seq_item:Nn \l_tmpa_seq { 12 } }
-}
-\@@_if_capture_empty:nTF 8 {
-\iow_term:x {!***~N~=~\int_use:N \l_tmpa_int}
-%    \end{macrocode}
-% Only a number.
-%    \begin{macrocode}
-  \int_compare:nNnT \l_tmpa_int < 0 {
-    \int_add:Nn \l_tmpa_int \g_@@_rqrd_int
-\iow_term:x {!***~N~=~\int_use:N \l_tmpa_int}
-  }
-} {
-  \iow_term:x {!***~Capture~9}
-  \@@_if_capture_empty:nTF 9 {
-\iow_term:x {!***~Capture~10}
-    \@@_if_capture_empty:nTF { 10 } {
-\iow_term:x {!***~Capture~11}
-      \@@_if_capture_empty:nTF { 11 } {
-%    \end{macrocode}
-% This is a leading "//".
-%    \begin{macrocode}
-\iow_term:x {!***~//:~\int_use:N \l_tmpa_int}
-      } {
-%    \end{macrocode}
-% This is a leading "~/".
-%    \begin{macrocode}
-        \int_add:Nn \l_tmpa_int \g_@@_base_int
-\iow_term:x {!***~\char_generate:nn {`\~} {12}/:~\int_use:N \l_tmpa_int}
-      }
-    } {
-%    \end{macrocode}
-% This is a leading "./".
-%    \begin{macrocode}
-      \int_add:Nn \l_tmpa_int { \g_@@_prnt_int + 1 }
-\iow_term:x { *x**~./:~\int_use:N \l_tmpa_int }
-    }
-  } {
-%    \end{macrocode}
-% This is a leading "../".
-%    \begin{macrocode}
-    \int_add:Nn \l_tmpa_int \g_@@_prnt_int
-\iow_term:x {!***~../:~\int_use:N \l_tmpa_int}
-  }
-}
-                } {
-%    \end{macrocode}
-% This is a single "~".
-%    \begin{macrocode}
-\iow_term:x {!***~n}
-                  \int_set:Nn \l_tmpa_int \g_@@_base_int
-                }
+            \@@_if_capture_empty:nTF { 8 } {
+              \int_zero:N \l_tmpa_int
+            } {
+              \int_set:Nn \l_tmpa_int { \seq_item:Nn \l_tmpa_seq 8 }
+            }
+\iow_term:x {!***~Capture~5}
+            \@@_if_capture_empty:nTF { 5 } {
+              \int_compare:nNnTF \l_tmpa_int < 0 {
+                \int_add:Nn \l_tmpa_int { \g_@@_rqrd_int }
               } {
-%    \end{macrocode}
-% This is a single "..".
-%    \begin{macrocode}
-\iow_term:x {!***~..}
-                \int_set:Nn \l_tmpa_int \g_@@_prnt_int
+                \int_compare:nNnF \l_tmpa_int > 0 {
+                  \bool_set_false:N \l_tmpa_bool
+                  \msg_error:nnn { relative } { Bad-section-<>-argument } { #1 }
+                  \int_set:Nn \l_tmpa_int { \g_@@_rqrd_int }
+                }
               }
             } {
-%    \end{macrocode}
-% This is a single ".".
-%    \begin{macrocode}
-\iow_term:x {!***~.}
-              \int_set:Nn \l_tmpa_int { \g_@@_prnt_int + 1 }
+\iow_term:x {!***~Capture~6}
+              \@@_if_capture_empty:nTF { 6 } {
+\iow_term:x {!***~Capture~7}
+                \@@_if_capture_empty:nTF { 7 } {
+                  \int_add:Nn \l_tmpa_int { \g_@@_base_int }
+\iow_term:x {!***~\char_generate:nn {`\~} {12}:~\int_use:N \l_tmpa_int}
+                } {
+                  \int_add:Nn \l_tmpa_int { \g_@@_prnt_int + 1 }
+\iow_term:x {!***~.:~\int_use:N \l_tmpa_int}
+                }
+              } {
+                \int_add:Nn \l_tmpa_int { \g_@@_prnt_int }
+\iow_term:x {!***~..:~\int_use:N \l_tmpa_int}
+              }
             }
           } {
 %    \end{macrocode}
 % This is a single "-".
 %    \begin{macrocode}
-\iow_term:x {!***~-}
             \int_set:Nn \l_tmpa_int { \g_@@_rqrd_int - 1 }
+\iow_term:x {!***~-:~\int_use:N \l_tmpa_int}
           }
         } {
 %    \end{macrocode}
 % This is a single "+".
 %    \begin{macrocode}
-\iow_term:x {!***~+}
           \int_set:Nn \l_tmpa_int { \g_@@_rqrd_int + 1 }
+\iow_term:x {!***~+:~\int_use:N \l_tmpa_int}
         }
       } {
 %    \end{macrocode}
 % This is a single "=".
 %    \begin{macrocode}
-\iow_term:x {!***~=}
         \int_set:Nn \l_tmpa_int \g_@@_rqrd_int
+\iow_term:x {!***~=:~\int_use:N \l_tmpa_int}
       }
     } {
 %    \end{macrocode}
@@ -1243,7 +1185,6 @@
   Choose~an~upper~level,~
   for~example~change~some~\subsubsection~into~\subsection.
 }
-%    \end{macrocode}
 %
 %    \end{macrocode}
 % \subsubsection { Mad base level }

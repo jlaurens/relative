@@ -1,11 +1,11 @@
 #!/usr/bin/env texlua
 
-local function execute_cmd(cmd) {
+local function execute_cmd(cmd)
   local pfile = assert(io.popen(cmd, 'r'))
   local stdout = pfile:read('*a')
   pfile:close()
   return stdout
-}
+end
 
 local function insert_unik(list, item)
   for _, v in pairs(list) do

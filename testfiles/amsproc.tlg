@@ -33,34 +33,6 @@ TEST 5: /Expect/int/ \value {part} = 1
 ============================================================
 PASSED
 ============================================================
-!*** 0: \l_my_level_tl 
-!*** 0: 1
-!*** 2
-!*** 1
-!*** 1
-Capture = ||
-Capture + ||
-Capture - ||
-Capture . ||
-Capture .. ||
-Capture n ||
-Capture 8 ||
-Capture ../ ||
-Capture ./ ||
-Capture n/ ||
-Capture 12 |\l_my_level_tl |
-!*** Capture 2
-!*** Capture 3
-!*** Capture 4
-!*** Capture 5
-!*** Capture 6
-!*** Capture 7
-!*** Capture 8
-!*** NUMBER: 0
-!*** N = 1
-!*** 2
-!*** 1
-!*** 1
 ============================================================
 TEST 6: /Expect/int/ \RLTVLevelActive  = 1
 ============================================================
@@ -76,14 +48,6 @@ TEST 8: /Expect/int/ \value {section} = 0
 ============================================================
 PASSED
 ============================================================
-!*** 0: -NoValue-
-!*** 0: -NoValue-
-!*** 2
-!*** 1
-!*** 1
-!*** 2
-!*** 2
-!*** 2
 ============================================================
 TEST 9: /Expect/int/ \RLTVLevelActive  = 2
 ============================================================
@@ -94,34 +58,6 @@ TEST 10: /Expect/int/ \value {section} = 1
 ============================================================
 PASSED
 ============================================================
-!*** 0: \l_my_level_tl 
-!*** 0: 2
-!*** 2
-!*** 2
-!*** 2
-Capture = ||
-Capture + ||
-Capture - ||
-Capture . ||
-Capture .. ||
-Capture n ||
-Capture 8 ||
-Capture ../ ||
-Capture ./ ||
-Capture n/ ||
-Capture 12 |\l_my_level_tl |
-!*** Capture 2
-!*** Capture 3
-!*** Capture 4
-!*** Capture 5
-!*** Capture 6
-!*** Capture 7
-!*** Capture 8
-!*** NUMBER: 0
-!*** N = 2
-!*** 2
-!*** 2
-!*** 2
 ============================================================
 TEST 11: /Expect/int/ \RLTVLevelActive  = 2
 ============================================================
@@ -147,34 +83,6 @@ TEST 15: /Expect/int/ \value {subsection} = 1
 ============================================================
 PASSED
 ============================================================
-!*** 0: \l_my_level_tl 
-!*** 0: 3
-!*** 2
-!*** 3
-!*** 3
-Capture = ||
-Capture + ||
-Capture - ||
-Capture . ||
-Capture .. ||
-Capture n ||
-Capture 8 ||
-Capture ../ ||
-Capture ./ ||
-Capture n/ ||
-Capture 12 |\l_my_level_tl |
-!*** Capture 2
-!*** Capture 3
-!*** Capture 4
-!*** Capture 5
-!*** Capture 6
-!*** Capture 7
-!*** Capture 8
-!*** NUMBER: 0
-!*** N = 3
-!*** 2
-!*** 3
-!*** 3
 ============================================================
 TEST 16: /Expect/int/ \RLTVLevelActive  = 3
 ============================================================
@@ -200,34 +108,6 @@ TEST 20: /Expect/int/ \value {subsubsection} = 1
 ============================================================
 PASSED
 ============================================================
-!*** 0: \l_my_level_tl 
-!*** 0: 4
-!*** 2
-!*** 4
-!*** 4
-Capture = ||
-Capture + ||
-Capture - ||
-Capture . ||
-Capture .. ||
-Capture n ||
-Capture 8 ||
-Capture ../ ||
-Capture ./ ||
-Capture n/ ||
-Capture 12 |\l_my_level_tl |
-!*** Capture 2
-!*** Capture 3
-!*** Capture 4
-!*** Capture 5
-!*** Capture 6
-!*** Capture 7
-!*** Capture 8
-!*** NUMBER: 0
-!*** N = 4
-!*** 2
-!*** 4
-!*** 4
 ============================================================
 TEST 21: /Expect/int/ \RLTVLevelActive  = 4
 ============================================================
@@ -253,34 +133,6 @@ TEST 25: /Expect/int/ \value {paragraph} = 0
 ============================================================
 PASSED
 ============================================================
-!*** 0: \l_my_level_tl 
-!*** 0: 5
-!*** 2
-!*** 5
-!*** 5
-Capture = ||
-Capture + ||
-Capture - ||
-Capture . ||
-Capture .. ||
-Capture n ||
-Capture 8 ||
-Capture ../ ||
-Capture ./ ||
-Capture n/ ||
-Capture 12 |\l_my_level_tl |
-!*** Capture 2
-!*** Capture 3
-!*** Capture 4
-!*** Capture 5
-!*** Capture 6
-!*** Capture 7
-!*** Capture 8
-!*** NUMBER: 0
-!*** N = 5
-!*** 2
-!*** 5
-!*** 5
 ============================================================
 TEST 26: /Expect/int/ \RLTVLevelActive  = 5
 ============================================================
@@ -306,34 +158,6 @@ TEST 30: /Expect/int/ \value {subparagraph} = 0
 ============================================================
 PASSED
 ============================================================
-!*** 0: \l_my_level_tl 
-!*** 0: 6
-!*** 2
-!*** 6
-!*** 6
-Capture = ||
-Capture + ||
-Capture - ||
-Capture . ||
-Capture .. ||
-Capture n ||
-Capture 8 ||
-Capture ../ ||
-Capture ./ ||
-Capture n/ ||
-Capture 12 |\l_my_level_tl |
-!*** Capture 2
-!*** Capture 3
-!*** Capture 4
-!*** Capture 5
-!*** Capture 6
-!*** Capture 7
-!*** Capture 8
-!*** NUMBER: 0
-!*** N = 6
-!*** 2
-!*** 6
-!*** 6
 ============================================================
 TEST 31: /Expect/int/ \RLTVLevelActive  = 6
 ============================================================
@@ -347,4 +171,3 @@ PASSED
 )
 **** XPCT: 0 FAILED, 32 PASSED out of 32
 [1] (amsproc.aux)
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.

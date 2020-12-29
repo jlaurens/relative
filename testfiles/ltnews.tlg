@@ -172,9 +172,5 @@ PASSED
 **** XPCT: 0 FAILED, 32 PASSED out of 32
 [1
 ] (ltnews.aux)
-Package rerunfilecheck Warning: File `ltnews.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-Package rerunfilecheck Info: Checksums for `ltnews.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  103A456B97EE1F012FFAB7E3A418D11A;573.
+Package rerunfilecheck Info: File `ltnews.out' has not changed.
+(rerunfilecheck)             Checksum: 103A456B97EE1F012FFAB7E3A418D11A;573.

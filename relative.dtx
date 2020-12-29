@@ -225,13 +225,9 @@
 % \mylstinline|\section<->| & & \\
 % \mylstinline|\section<|\meta{negative integer}\mylstinline|>| & & \\
 % \hline
-% \mylstinline|\section<..>| & \multirow{4}{*}{\shortstack[l]{relative to the parent\\or the container}} & \multirow{4}{*}{\ref{sect:parent}} \\
-% \mylstinline|\section<..|\meta{integer}\mylstinline|>| & & \\
-% \mylstinline|\section<.>| & &  \\
-% \mylstinline|\section<.|\meta{integer}\mylstinline|>| & & \\
+% \mylstinline|\section<.|\meta{integer}\mylstinline|>| & relative to  the parent & \ref{sect:parent} \\
 % \hline
-% \mylstinline|\section<~>| & \multirow{2}{*}{relative to the base} & \multirow{2}{*}{\ref{sect:base}} \\
-% \mylstinline|\section<~|\meta{integer}\mylstinline|>| & & \\
+% \mylstinline|\section<~|\meta{integer}\mylstinline|>| & relative to the base & \ref{sect:base} \\
 % \hline
 % \end{tabular}
 % \end{center}
@@ -311,13 +307,12 @@
 %
 % We detail the syntax in \mylstinline|\section<|\meta{level descriptor}\mylstinline|>|.
 %
-% \subsection {Relative to the top level}
+% \subsection {Relative to the top}
 % \label{sect:absolute}
 % If the \meta{level descriptor} is a positive integer, it is exactly the section level expected\footnote{Like $1$, $2$, $3$ for "h1", "h2", "h3" in "html"} such that ``relative to the top level'' really means ``absolute''.
 % \begin{function}{\section}
 % \begin{syntax}
 % \cs{section} "<"\meta{positive integer}">" \oarg{option}\ \marg{title}
-% \cs{section} "<//"\meta{positive integer}">" \oarg{option}\ \marg{title}
 % \end{syntax}
 % \end{function}
 % For example in a document of class "article", next commands are equivalent by line
@@ -376,11 +371,6 @@
 % \end{tabular}
 % \end{center}
 % Notice the shift on the last levels due to the supplemental \mylstinline|\chapter| command.
-% Both syntax are equivalent.
-% The alternate syntax with a prepending "//" means that the numbering is relative to the root document, the notation refers to the "//" used to denote the root part of URLs.
-% Notice also that \mylstinline|\section<//>{...}| is not an accepted syntax, that would correspond to the root document parent level which is always $0$.
-%
-% Next we see a numbering relative to the parent, used when a file is input.
 %
 % \subsection {Relative to the last}
 % \label{sect:last}
@@ -416,53 +406,45 @@
 % \hline
 % \end{tabular}
 % \end{center}
-% Notice that \mylstinline|\section<->| and \mylstinline|\section<-1>| happen to be synonyms whereas \mylstinline|\section<+>| and \mylstinline|\section<+1>| are completely different. The latter refers to the \textbf{top level} whoereas the former refers to the \textbf{last level}.
+% Notice that commands \mylstinline|\section<->| and \mylstinline|\section<-1>| happen to be synonyms whereas \mylstinline|\section<+>| and \mylstinline|\section<+1>| are completely different. The latter refers to the \textbf{top level} whoereas the former refers to the \textbf{last level}.
 %
 % \subsection {Relative to the parent}
 % \label{sect:parent}
 % While being processed, each file has a \myIndex{parent level}.
 % \begin{itemize}
 % \item
-% The root document being typeset, in general the one that declares the \mylstinline|\documentclass|, has no ``parent''. Its \myIndex{parent level} is therefore the \myIndex{top level} or $0$.
+% The root document being typeset, in general the with \mylstinline|\documentclass|, has no parent hence its \myIndex{parent level} is $0$.
 % \item
-% For each input file "foo.tex", the \myIndex{parent level} is exactly the value of the \myIndex{last level} just before \mylstinline|\input{foo}| is executed:
+% For each input file "foo.tex", the \myIndex{parent level} is exactly  the value of the \myIndex{last level} just before \mylstinline|\input{foo}| is executed: this is
 % \begin{itemize}
-% \item this is the level of the last sectioning command performed if any
-% \item or the \myIndex{top level} $0$ otherwise.
+% \item the level of the last sectioning command performed if any
+% \item the \myIndex{top level} $0$ otherwise.
 %\end{itemize}
 %\end{itemize}
 % If we import the same file multiple times, these rules apply for each \mylstinline|\input| occurrence separately, such that the parent section level of "foo.tex" may change during typesetting.
 %
-% If the \meta{level descriptor} is a ``".."'' followed by an \meta{integer}, this integer is added to the parent section level to obtain the absolute section level to switch to.
-% If the \meta{level descriptor} is a ``"."'' followed by an \meta{integer}, one more unit is added.
+% If the \meta{level descriptor} is a single ``"."'' followed by an \meta{integer}, this integer is added to the parent section level to obtain the absolute section level to switch to.
 % For any integers $\mathit{parent}$ and $n$, following commands are equivalent
 % \begin{center}
 % \begin{tabular}{c|l|l}
 % \hline
 % Parent level & Relative & Absolute \\
 % \hline
-% $\mathit{parent}$ & \mylstinline|\section<..>| & \mylstinline|\section<|$\mathit{parent}$\mylstinline|>|\\
-% \hline
-% $\mathit{parent}$ & \mylstinline|\section<..|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{parent}+n$\mylstinline|>|\\
-% \hline
-% $\mathit{parent}$ & \mylstinline|\section<.>| & \mylstinline|\section<|$\mathit{parent}+1$\mylstinline|>|\\
-% \hline
-% $\mathit{parent}$ & \mylstinline|\section<.|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{parent}+n+1$\mylstinline|>|\\
+% $\mathit{parent}$ & \mylstinline|\section<.|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{parent}+n$\mylstinline|>|\\
 % \hline
 % \end{tabular}
 % \end{center}
-% Of course, this becomes interesting when you do not know the value of $parent$ in advance.
+% Of course, this becomes interesting when you do not know in advance  $parent$.
 %
 % Some remarks:
 % \begin{itemize}
 % \item
-% both \mylstinline|\section<..>|, \mylstinline|\section<..0>| and \mylstinline|\section<..-0>|
-% correspond to the parent level section;
+% \mylstinline|\section<.1>| and \mylstinline|\section<+>| are always equivalent at the top of a file;
 % \item
 % negative integers are allowed, they correspond to a big step up in the sectioning hierarchy;
 % \item
-% in the root file and for positive $n$,
-% both commands \mylstinline|\section<|$n$\mylstinline|>| and \mylstinline|\section<..|$n$\mylstinline|>| are equivalent simply because the parent section level is 0 there;
+% both \mylstinline|\section<.0>| and \mylstinline|\section<.-0>|
+% correspond to the parent level section.
 % \end{itemize}
 %
 %
@@ -470,56 +452,57 @@
 % The standard commands equivalent are on the right.
 % ^^A4567890123456789012345678901234567890123456789012345678901234567890
 % \begin{LaTeXdemo}[code only]
-%   \documentclass{article}
-%   \usepackage{relative}
-%   \begin{document}
-%   \section <1> {Absolute level 1}      \part {Absolute level 1}
-%   \input {foo}
-%   \section <2> {Absolute level 2}      \section {Absolute level 2}
-%   \input {foo}
-%   \end{document}
+%  \documentclass{article}
+%  \usepackage{relative}
+%  \begin{document}
+%  \section <1> {Absolute level 1}       \part    {Absolute level 1}
+%  \input {foo}
+%  \section <2> {Absolute level 2}       \section {Absolute level 2}
+%  \input {foo}
+%  \end{document}
 % \end{LaTeXdemo}
 % When first input on line $5$, the last sectioning command performed is \mylstinline|\section <1>| such that the parent section level of "foo.tex" is $1$. This file would read together with its absolute equivalent
 % ^^A4567890123456789012345678901234567890123456789012345678901234567890
 % \begin{LaTeXdemo}[code only]
-%   \section <..1> {Relative level 1}   \section {Relative level 1}
-%   \section <..2> {Relative level 2}   \subsection {Relative level 2}
-%   \section < .2> {Relative level 3}   \subsubsection {Relative level 3}
+%  \section <.1> {Relative level 1}      \section       {Relative level 1}
+%  \section <.2> {Relative level 2}      \subsection    {Relative level 2}
+%  \section <.3> {Relative level 3}      \subsubsection {Relative level 3}
 % \end{LaTeXdemo}
-% When further input on line $7$, the last sectioning command performed is now \mylstinline|\section <2>| such that the parent section level of "foo.tex" is now $2$. This file would read together with its absolute equivalent
+% When input on line $7$, the last sectioning command performed is now \mylstinline|\section <2>| such that the parent section level of "foo.tex" is now $2$. This file would read together with its absolute equivalent
 % ^^A4567890123456789012345678901234567890123456789012345678901234567890
 % \begin{LaTeXdemo}[code only]
-%   \section <..1> {Relative level 1}   \subsection {Relative level 1}
-%   \section <..2> {Relative level 2}   \subsubsection {Relative level 2}
-%   \section < .2> {Relative level 3}   \paragraph {Relative level 3}
+%  \section <.1> {Relative level 1}      \subsection    {Relative level 1}
+%  \section <.2> {Relative level 2}      \subsubsection {Relative level 2}
+%  \section <.3> {Relative level 3}      \paragraph     {Relative level 3}
 % \end{LaTeXdemo}
-% Notice that the very same file has been interpreted differently with respect to sectioning.
+% Notice how the very same file has been interpreted differently with respect to sectioning.
 %
 %
 % \subsection {Relative to the base}
 % \label{sect:base}
 % The \myIndex{base level} is the level of the standard \mylstinline|\section| command which is for example $2$ in an "article" and $3$ in a "book".
-% If the \meta{level descriptor} is a "~/" followed by an \meta{integer}, this integer is added to the \myIndex{base level} to obtain the absolute section level to switch to.
+% If the \meta{level descriptor} is a tilde character ``"~"'' followed by an \meta{integer}, this integer is added to the \myIndex{base level} minus one to obtain the absolute section level to switch to.
 % For any integers $\mathit{base}$ and $n$, the following commands are equivalent
 % \begin{center}
 % \begin{tabular}{c|l|l}
 % \hline
 % Base level & Relative & Absolute \\
 % \hline
-% $\mathit{base}$ & \mylstinline|\section<~>| & \mylstinline|\section<|$\mathit{base}$\mylstinline|>|\\
-% \hline
-% $\mathit{base}$ & \mylstinline|\section<~|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{base}+n$\mylstinline|>|\\
+% $\mathit{base}$ & \mylstinline|\section<~|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{base}+n-1$\mylstinline|>|\\
 % \hline
 % \end{tabular}
 % \end{center}
 %
-% The \myIndex{base level} need not be constant during typesetting.
+% In a standard \LaTeX{} document class, one may use \mylstinline|\section<~1>|, \mylstinline|\section<~2>| down to  \mylstinline|\section<~5>|
+% instead of \mylstinline|\section|, \mylstinline|\subsection| ...
+% \mylstinline|\subparagraph|.
 %
+% The \myIndex{base level} need not be constant during typesetting.
 % \begin{function}{\RLTVLevelSetBase}
 % \begin{syntax}
 %  \cs{RLTVLevelSetBase} \marg{base level}
 % \end{syntax}
-% Sets the \textbf{base level} to the given value, which can be either an integer or a name. This is a local assignment
+% Sets the \textbf{base level} to the given value, which can be either an integer or a known section comand name. This is a local assignment
 % in the sense that it does not change the \textbf{base level} in the parent file where an eventual \mylstinline|input| has been executed.
 % \end{function}
 %
@@ -528,10 +511,14 @@
 % \cs{RLTVLevelSetBaseOfFile} \marg{base level} \marg{file name}
 % \end{syntax}
 % Sets the \textbf{base level} to the given value for the given file only.
-% For example, after a \mylstinline|\RLTVLevelSetBaseOfFile{4}{foo.tex}|, at any subsequent \mylstinline|\input{foo.tex}| the \textbf{base level} becomes $4$ and switches back to its previous value once the \mylstinline|\input| is complete. Notice that the file extension should not be omitted if any.
+% For example, after a \mylstinline|\RLTVLevelSetBaseOfFile{4}{foo.tex}|, at any subsequent \mylstinline|\input{foo.tex}| the \textbf{base level} becomes $4$ and will switch back to its previous value once the \mylstinline|\input| is complete.
 % \end{function}
 %
 % This is interesting if the \textbf{base level} must change without editing the file.
+%
+% Notice that \meta{file name} used in \mylstinline|\RLTVLevelSetBaseOfFile|
+% and the corresponding \mylstinline|\input| must be exactly the same.
+% For example, one cannot use interchangeably \mylstinline|foo.tex|, \mylstinline|./foo.tex| and \mylstinline|bar/../foo.tex|. Also, the file extension should not be omitted if any. 
 %
 % \subsection {Unavailable section levels}
 % If you try to use a non positive section level, a warning is issued in the terminal and the log file then the topmost section command is used, in general \mylstinline|\part|.
@@ -542,6 +529,8 @@
 % \subsection {Compatibility with other packages}
 % \pkg{relative} has been sucessfully tested with \pkg{titlesec} and \pkg{secsty} at release time. 
 % However there is no guaranty of result, even partial, for future times and other packages.
+% \subsection {Incompatibility with other packages}
+% \pkg{relative} has not been tested with \pkg{import}.
 % \section { Non standard sectioning commands }
 % \label{sect:Non standard sectioning commands}
 % 
@@ -552,7 +541,7 @@
 % \cs{RLTVSetUp} "{ names = { mypart, mychapter, mysection, ... } }"
 % \end{syntax}
 % \end{function}
-% You may also want to specify what is the level correponding to the nude
+% You may also want to specify what is the level correponding to the raw
 % \mylstinline|\section{...}| calls. For that you will use for example
 % \begin{function}{\RLTVSetUp}
 % \begin{syntax}
@@ -638,7 +627,7 @@
 }
 %    \end{macrocode}
 %
-% \subsubsection { Integers }
+% \subsubsection {Integers}
 % \begin{variable}{\g_@@_actv_int}
 %  Private global storage for the active sectioning depth. Initialized to 0 because a document starts out of any section. Value is 1 at the part level, 2 for the next one and so on. It never extend beyond the admissible limits.
 %    \begin{macrocode}
@@ -656,19 +645,17 @@
 \int_new:N \g_@@_prnt_int
 %    \end{macrocode}
 %  Private global storage for the parent section level of the current file.
-% Starts at 0 because the root file has no parent.
+% Starts at 0.
 %\end{variable}
 % In ordered to override this setting, one can use the "begindocument" hook together with a rule.
 % This is set at the beginning of any file and does not change until the end,
 % such that one always knows what is the top level sectioning depth.
 %    \begin{macrocode}
 \AddToHook { @@ / init } {
-  \int_gset:Nn \g_@@_prnt_int { 0 }
+  \int_gzero:N \g_@@_prnt_int
 }
 %    \end{macrocode}
-% In ordered to override this setting, one can use the "begindocument" hook together with a rule.
-% This is set at the beginning of any file and does not change until the end,
-% such that one always knows what is the top level sectioning depth.
+% \subsubsection {Base}
 %\begin{variable}{\g_@@_base_int}
 %    \begin{macrocode}
 \int_new:N \g_@@_base_int
@@ -690,6 +677,9 @@
       \clist_map_break:
     }
   }
+%    \end{macrocode}
+% If the argument is not a section name, it must be a section level.
+%    \begin{macrocode}
   \bool_if:NT \l_tmpa_bool {
     \int_set:Nn \l_tmpa_int { #1 }
     \int_compare:nNnTF \l_tmpa_int > 0 {
@@ -704,16 +694,36 @@
   }
   \group_end:
 }
-\cs_new:Nn \@@_tmpa:nn {}
-\NewDocumentCommand\RLTVLevelSetBaseOfFile { mm } {
+%    \end{macrocode}
+% In the next command, the second argument is a path that we must split
+% to handle the folder when provided.
+%    \begin{macrocode}
+\cs_new:Npn \@@_tmpa:nnn {}
+\regex_const:Nn \g_@@_path_regex { \A (?:(.*)\/)? (.*) \Z }
+\cs_generate_variant:Nn \tl_if_empty:nTF { x }
+\NewDocumentCommand\RLTVLevelSetBaseOfFile { m m } {
   \group_begin:
-  \cs_set:Nn \@@_tmpa:nn {
-    \AddToHook { file/before/##2 } {
-      \RLTVLevelSetBase { ##1 }
+  \regex_extract_once:NnNT \g_@@_path_regex { #2 } \l_tmpa_seq {
+    \tl_set:Nn \l_tmpa_tl { \seq_item:Nn \l_tmpa_seq 1 }
+    \tl_set:Nn \l_tmpb_tl { \seq_item:Nn \l_tmpa_seq 2 }
+    \tl_if_empty:xTF { \l_tmpa_tl } {
+      \cs_set:Nn \@@_tmpa:nnn {
+        \AddToHook { file/before/##3 } {
+          \RLTVLevelSetBase { ##1 }
+        }
+      }
+    } {
+      \cs_set:Nn \@@_tmpa:nnn {
+        \AddToHook { file/before/##3 } {
+          \str_if_eq:nnT {
+            \RLTVLevelSetBase { ##1 }
+          }
+        }
+      }
     }
+    \cs_generate_variant:Nn \@@_tmpa:nnn { xxx }
+    \@@_tmpa:xxx { #1 } { \l_tmpa_tl } { \l_tmpb_tl }
   }
-  \cs_generate_variant:Nn \@@_tmpa:nn { xx }
-  \@@_tmpa:xx { #1 } { #2 }
   \group_end:
 }
 %    \end{macrocode}
@@ -733,7 +743,7 @@
   \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_base_int }
   \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_prnt_int }
   \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_rqrd_int }
-  \int_gset:Nn \g_@@_prnt_int \g_@@_rqrd_int
+  \int_gset:Nn \g_@@_prnt_int { \g_@@_rqrd_int }
 }
 %    \end{macrocode}
 % Retrieve the last pushed state. 
@@ -746,7 +756,7 @@
 %    \end{macrocode}
 % When trying to pop out from a void sequence, some default values are used. The level is set to 0 ,
 %    \begin{macrocode}
-    \int_gset:Nn \g_@@_rqrd_int 0
+    \int_gzero:N \g_@@_rqrd_int
   }
   \seq_gpop:NNTF \g_@@_seq \l_tmpa_tl {
     \int_gset:Nn \g_@@_prnt_int \l_tmpa_tl
@@ -754,7 +764,7 @@
 %    \end{macrocode}
 % the parent level as well,
 %    \begin{macrocode}
-    \int_gset:Nn \g_@@_prnt_int 0
+    \int_gzero:N \g_@@_prnt_int
   }
   \seq_gpop:NNTF \g_@@_seq \l_tmpa_tl {
     \int_gset:Nn \g_@@_base_int \l_tmpa_tl
@@ -818,91 +828,88 @@
 % We use an auxiliary list to somehow record the work done so far.
 %    \begin{macrocode}
   \group_begin:
-    \int_zero:N \l_tmpa_int
-    \clist_clear:N \l_tmpa_clist
+  \int_zero:N \l_tmpa_int
+  \clist_clear:N \l_tmpa_clist
 %    \end{macrocode}
 % Helper function to \mylstinline|renewcommand|. That would be replaced by a selective expansion mechanism.
 %    \begin{macrocode}
-    \cs_new:Nn \@@_patch:nn {
-      \cs_gset:cpn { #1 } {
-        \int_gset:Nn \g_@@_rqrd_int { #2 }
-        \int_gset:Nn \g_@@_actv_int { #2 }
-        \seq_item:Nn \c_@@_sxn_seq { #2 }
-      }
+  \cs_new:Nn \@@_patch:nn {
+    \cs_gset:cpn { #1 } {
+      \int_gset:Nn \g_@@_rqrd_int { #2 }
+      \int_gset:Nn \g_@@_actv_int { #2 }
+      \seq_item:Nn \c_@@_sxn_seq { #2 }
     }
-    \cs_generate_variant:Nn \@@_patch:nn { xx }
+  }
+  \cs_generate_variant:Nn \@@_patch:nn { xx }
 %    \end{macrocode}
 % Map helper function.
 %    \begin{macrocode}
-    \cs_new:Npn \@@_tmpa #1 {
+  \cs_new:Npn \@@_tmpa #1 {
 %    \end{macrocode}
 % Expand the argument, there should be no whitespace.
 %    \begin{macrocode}
-      \tl_set:Nx \l_tmpa_tl { #1 }
-      \cs_if_exist:cT { #1 } {
+    \tl_set:Nx \l_tmpa_tl { #1 }
+    \cs_if_exist:cT { #1 } {
 %    \end{macrocode}
 % Only consider existing commands. Save to the auxiliary list and increment the counter.
 %    \begin{macrocode}
-        \clist_put_right:No \l_tmpa_clist \l_tmpa_tl
-        \int_incr:N \l_tmpa_int
+      \clist_put_right:NV \l_tmpa_clist \l_tmpa_tl
+      \int_incr:N \l_tmpa_int
 %    \end{macrocode}
 % We push the content of the section macro to the right of \cs{g_@@_sxn_seq}. Pushing to the left would reverse the order. We first copy to a variable to get the contents.
 %    \begin{macrocode}
-        \tl_set_eq:Nc \l_tmpb_tl { \l_tmpa_tl }
-        \seq_gput_right:NV \c_@@_sxn_seq \l_tmpb_tl
+      \tl_set_eq:Nc \l_tmpb_tl { \l_tmpa_tl }
+      \seq_gput_right:NV \c_@@_sxn_seq \l_tmpb_tl
 %    \end{macrocode}
 % Finally we redefine the sectioning command at the \LaTeX\ level using the "\renewcommand" helper function above.
 %    \begin{macrocode}
-        \@@_patch:xx { \l_tmpa_tl } { \int_use:N \l_tmpa_int }
-      }
+      \@@_patch:xx { \l_tmpa_tl } { \int_use:N \l_tmpa_int }
     }
-    \clist_map_function:NN \c_@@_clist \@@_tmpa
-    \clist_if_empty:NT \l_tmpa_clist {
+  }
+  \clist_map_function:NN \c_@@_clist \@@_tmpa
+  \clist_if_empty:NT \l_tmpa_clist {
 %    \end{macrocode}
 % If we did not find any section to patch, we restart with the default list
 %    \begin{macrocode}
-      \clist_set:Nn \l_tmpb_clist {
-        part,
-        chapter,
-        section,
-        subsection,
-        subsubsection,
-        paragraph,
-        subparagraph,
-        subsubparagraph
-      }
-      \clist_map_function:NN \l_tmpb_clist \@@_tmpa
+    \clist_set:Nn \l_tmpb_clist {
+      part,
+      chapter,
+      section,
+      subsection,
+      subsubsection,
+      paragraph,
+      subparagraph,
+      subsubparagraph
     }
-    \clist_gset_eq:NN \c_@@_clist \l_tmpa_clist
+    \clist_map_function:NN \l_tmpb_clist \@@_tmpa
+  }
+  \clist_gset_eq:NN \c_@@_clist \l_tmpa_clist
 %    \end{macrocode}
 % Cache the number of saved macros:
 %    \begin{macrocode}
-    \int_gset:Nn \c_@@_sxn_max_int { \seq_count:N \c_@@_sxn_seq }
+  \int_gset:Nn \c_@@_sxn_max_int { \seq_count:N \c_@@_sxn_seq }
 %    \end{macrocode}
 % Now we finalize the base level:
 %    \begin{macrocode}
-    \tl_set:Nx \l_tmpa_tl { \@@_base }
-    \tl_if_empty:NT \l_tmpa_tl {
-      \tl_set:Nx \l_tmpa_tl { section }
+  \tl_set:Nx \l_tmpa_tl { \@@_base }
+  \tl_if_empty:NT \l_tmpa_tl {
+    \tl_set:Nx \l_tmpa_tl { section }
+  }
+  \cs_undefine:N \@@_base
+  \int_zero:N \l_tmpa_int
+  \clist_map_inline:Nn \l_tmpa_clist {
+    \int_incr:N \l_tmpa_int
+  	 \tl_if_eq:NnT \l_tmpa_tl { #1 } {
+      \int_gset:Nn \g_@@_base_int \l_tmpa_int
+      \clist_map_break:
     }
-    \cs_undefine:N \@@_base
-    \int_zero:N \l_tmpa_int
-    \clist_map_inline:Nn \l_tmpa_clist {
-      \int_incr:N \l_tmpa_int
-    	 \tl_if_eq:NnT \l_tmpa_tl { #1 } {
-        \int_gset:Nn \g_@@_base_int \l_tmpa_int
-        \clist_map_break:
-      }
-    }
+  }
 %    \end{macrocode}
 % If the base was not found, we take 1 to specify the first item of the "clist".
 %    \begin{macrocode}
-    \int_compare:nNnT \g_@@_base_int = 0 {
-      \int_gset:Nn \g_@@_base_int 1
-    }
-%    \end{macrocode}
-% We define what is the real command for the base section
-%    \begin{macrocode}
+  \int_compare:nNnT \g_@@_base_int = 0 {
+    \int_gset:Nn \g_@@_base_int 1
+  }
   \group_end:
 }
 %    \end{macrocode}
@@ -910,13 +917,12 @@
 % \subsection {Adding a \texttt{<...>} optional argument to \cs{section}}
 %
 % This is the core of the package.
-% \begin{variable}{\l_@@_regex}
+% \begin{variable}{\c_@@_arg_regex}
 % We will need a regular expression to manipulate the \meta{level descriptor}. The main purpose is to detect the possibly leading "//", "../" or "./" and the subsequent integer if any.
 %    \begin{macrocode}
-\regex_new:N \l_@@_regex
-\regex_gset:Nn \l_@@_regex { \A \s*
+\regex_const:Nn \c_@@_arg_regex { \A \s*
   (?:(\=)|(\+)|(\-)|(?:
-    ((\.\.)|(\.)|\~)? \s* (.*?)
+    ((\.)|\~)? \s* (.*?)
   ))
   \s* \Z }
 %    \end{macrocode}
@@ -925,10 +931,9 @@
 % \item Capture 2: single "="
 % \item Capture 3: single "+"
 % \item Capture 4: single "-"
-% \item Capture 5: leading "..", "." or "~"
-% \item Capture 6: leading ".."
-% \item Capture 7: leading "."
-% \item Capture 8: trailing number
+% \item Capture 5: leading "." or "~"
+% \item Capture 6: leading "."
+% \item Capture 7: trailing number
 % \end{itemize}
 % \end{variable}
 %
@@ -946,8 +951,6 @@
 \AddToHook { @@ / init } {
   \cs_gset:cpn { \clist_item:Nn \c_@@_clist { \g_@@_base_int } } { \@@_base_sxn }
 }
-\cs_generate_variant:Nn \tl_if_empty:nTF { x }
-\cs_generate_variant:Nn \tl_if_empty:nF { x }
 \cs_generate_variant:Nn \msg_warning:nnnn { nnnx }
 \cs_new:Npn \@@_if_capture_empty:nTF #1 {
   \tl_if_empty:xTF { \seq_item:Nn \l_tmpa_seq { #1 } }
@@ -964,14 +967,14 @@
     \int_gset:Nn \g_@@_actv_int \g_@@_rqrd_int
   } {
     \bool_set_true:N \l_tmpa_bool
-    \regex_extract_once:NnNTF \l_@@_regex { #1 } \l_tmpa_seq {
+    \regex_extract_once:NnNTF \c_@@_arg_regex { #1 } \l_tmpa_seq {
       \@@_if_capture_empty:nTF 2 {
         \@@_if_capture_empty:nTF 3 {
           \@@_if_capture_empty:nTF 4 {
-            \@@_if_capture_empty:nTF { 8 } {
+            \@@_if_capture_empty:nTF { 7 } {
               \int_zero:N \l_tmpa_int
             } {
-              \int_set:Nn \l_tmpa_int { \seq_item:Nn \l_tmpa_seq 8 }
+              \int_set:Nn \l_tmpa_int { \seq_item:Nn \l_tmpa_seq 7 }
             }
             \@@_if_capture_empty:nTF { 5 } {
               \int_compare:nNnTF \l_tmpa_int < 0 {
@@ -985,30 +988,32 @@
               }
             } {
               \@@_if_capture_empty:nTF { 6 } {
-                \@@_if_capture_empty:nTF { 7 } {
-                  \int_add:Nn \l_tmpa_int { \g_@@_base_int }
-                } {
-                  \int_add:Nn \l_tmpa_int { \g_@@_prnt_int + 1 }
-                }
+%    \end{macrocode}
+% This is a leading ``"~"''.
+%    \begin{macrocode}
+                \int_add:Nn \l_tmpa_int { \g_@@_base_int }
               } {
-                \int_add:Nn \l_tmpa_int { \g_@@_prnt_int }
+%    \end{macrocode}
+% This is a `leading  `"."''.
+%    \begin{macrocode}
+                \int_add:Nn \l_tmpa_int { \g_@@_prnt_int + 1 }
               }
             }
           } {
 %    \end{macrocode}
-% This is a single "-".
+% This is a single ``"-"''.
 %    \begin{macrocode}
             \int_set:Nn \l_tmpa_int { \g_@@_rqrd_int - 1 }
           }
         } {
 %    \end{macrocode}
-% This is a single "+".
+% This is a single ``"+"''.
 %    \begin{macrocode}
           \int_set:Nn \l_tmpa_int { \g_@@_rqrd_int + 1 }
         }
       } {
 %    \end{macrocode}
-% This is a single "=".
+% This is a single ``"="''.
 %    \begin{macrocode}
         \int_set:Nn \l_tmpa_int \g_@@_rqrd_int
       }
@@ -1029,7 +1034,8 @@
 % which is the tail of the saved macros sequence.
 %    \begin{macrocode}
       \bool_if:NT \l_tmpa_bool {
-        \msg_warning:nnnx { relative } { Bad-level-value } { #1 } { \int_use:N \l_tmpa_int }
+        \msg_warning:nnnx { relative } { Bad-level-value }
+          { #1 } { \int_use:N \l_tmpa_int }
       }
       \int_gset:Nn \g_@@_actv_int \c_@@_sxn_max_int
     } {
@@ -1038,7 +1044,8 @@
 % It is not deep enough and we can only branch to the topmost sectioning macro.
 %    \begin{macrocode}
         \bool_if:NT \l_tmpa_bool {
-          \msg_warning:nnnx { relative } { Bad-level-value } { #1 } { \int_use:N \l_tmpa_int }
+          \msg_warning:nnnx { relative } { Bad-level-value }
+            { #1 } { \int_use:N \l_tmpa_int }
         }
         \int_gset:Nn \g_@@_actv_int 1
       } {
@@ -1155,7 +1162,7 @@
 }
 %
 %    \end{macrocode}
-% \subsubsection { Mad base level }
+% \subsubsection { Bad base level }
 % Used when \meta{level descriptor} is too large as an integer.
 %    \begin{macrocode}
 \msg_new:nnnn { relative } { Bad-base-value } {

@@ -76,14 +76,69 @@ local function clean_source()
   remove('relative-code')
 end
 
-local function test_save (what)
+local setupByName = {
+  ltnews = {
+    config = 'build2',
+    extra_save_engines = { 'luatex', 'xetex' }
+  },
+  proc = {
+    config = 'build2',
+    extra_save_engines = { 'luatex', 'xetex' }
+  },
+  amsproc = {
+    config = 'build2'
+  },
+}
+
+local function test_one (action, what)
   local function build(basename)
-    local cmd = string.format("l3build save '%s'", basename)
-    print('Execute `' .. cmd .. '`...')
-    return execute_cmd(cmd)
+    local setup = setupByName[basename]
+    local list
+    if setup then
+      print('Custom setup')
+      local cmd = string.format("l3build %s -c '%s' '%s'", action, setup['config'], basename)
+      print('Execute `' .. cmd .. '`...')
+      list = execute_cmd(cmd)
+      if action == 'save' then
+        print(list)
+        local esv = setup['extra_save_engines']
+        if esv then
+          for _, engine in pairs(esv) do
+            cmd = string.format("l3build %s -c '%s' -e '%s' '%s'", action, setup['config'], engine, basename)
+            print('Execute `' .. cmd .. '`...')
+            print(execute_cmd(cmd))
+          end
+        end
+      elseif string.match(list, "failed") then
+        print(list)
+      end
+    else
+      local cmd = string.format("l3build %s '%s'", action, basename)
+      print('Execute `' .. cmd .. '`...')
+      list = execute_cmd(cmd)
+      if action == 'check' then
+        if string.match(list, "failed") then
+          print(list)
+        end
+      else
+        print(list)
+      end
+    end
   end
+  local m = string.match(what, ".-[^\\/]-%.?([^%.\\/]*)%.tlv$")
+  if m then
+    return build(m)
+  else
+    m = string.match(what, ".-[^\\/]-%.?([^%.\\/]*)$")
+    if m then
+      return build(m)
+    end
+  end
+end
+
+local function test (action, what)
   local list
-  if what == 'all' then
+  if what == 'all' or not what then
     list = execute_cmd("find testfiles -type f -name '*.lvt' -print0")
   elseif what then
     list = what
@@ -91,28 +146,24 @@ local function test_save (what)
     print('Problem ', arg[3])
     os.exit()
   end
-  stdout = {}
   for filename in string.gmatch(list, '[^%z]+') do
-    local m = string.match(filename, ".-[^\\/]-%.?([^%.\\/]*)(%.lvt)$")
+    local m = string.match(filename, ".-[^\\/]-%.?([^%.\\/]*)%.lvt$")
     if m then
-      print(filename, m)
-      stdout[m] = build(m)
+      test_one(action, m)
     else
       m = string.match(filename, ".-[^\\/]-%.?([^%.\\/]*)$")
-      print(filename, m[1])
       if m then
-        stdout[m] = build(m)
+        test_one(action, m)
+      else
+        print('Problem')
       end
     end
-  end
-  for k, v in pairs(stdout) do
-    print(k, v)
   end
 end
 
 local function test_tlg (what, how)
   local list
-  if what == 'all' then
+  if what == 'all' or not what then
     list = execute_cmd("find testfiles -name '*.tlg' -type f -exec grep '%s' '{}' \\; -print0")
   elseif what then
     list = execute_cmd("find testfiles -name '%s.tlg' -type f -exec grep '%s' '{}' \\; -print0")
@@ -136,7 +187,11 @@ local function build_doc (what)
 end
 
 local pwd = os.getenv('PWD')
-if arg[1] == 'clean' then
+if arg[1] == 'help' then
+  print([[
+
+  ]])
+elseif arg[1] == 'clean' then
   if arg[2] == 'source' or arg[2] == 'all' or not arg[2] then
     clean_source()
     os.exit()
@@ -147,21 +202,23 @@ if arg[1] == 'clean' then
     os.exit()
   end
 elseif arg[1] == 'test' then
-  if arg[2] == 'save' then
-    test_save(arg[3])
-  elseif arg[2] == 'tlg' then
+  if arg[2] == 'tlg' then
     test_tlg(arg[3], '^! ')
     test_tlg(arg[3], '^.*XPCT:.*FAILED.*PASSED.*out.*of')
+  else
+    test(arg[2], arg[3])
   end
 elseif arg[1] == 'build' then
   if arg[2] == 'doc' then
-    build_doc('relative-doc')
+    execute_cmd('l3build doc relative-doc')
   elseif arg[2] == 'code' then
-    build_code('relative-code')
+    execute_cmd('l3build doc relative-code')
   elseif arg[2] == 'all' or not arg[2] then
     execute_cmd('l3build doc')
   else
     build_code('relative.dtx')
   end
+else
+  print('Nothing to do')
 end
 print('DONE')

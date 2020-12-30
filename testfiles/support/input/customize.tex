@@ -46,7 +46,7 @@
 }
 \AtBeginDocument{
   \AddToHook{file/before}{
-    \ExplSyntaxOn \TYPE{Stack: \seq_use:Nn\g__rltv_seq { / }} \ExplSyntaxOff
+    \TYPE{Stack: \seq_use:Nn\g__rltv_seq { / }}
     \TYPE {Parent level: \RLTVLevelParent}
     \XPCTIntCompare {
       lhs = \RLTVLevelParent,

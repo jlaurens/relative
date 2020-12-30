@@ -29,7 +29,7 @@
   }
   \cs_set:Npx \myRLTVLevelBaseExpected { \RLTVLevelBase }
 \iow_term:x {****~base~level:~\myRLTVLevelBaseSaved}
-  \input{input/base}
+  \input{input/base.tex}
   \XPCTIntCompare{
     lhs = \RLTVLevelBase,
     rhs = \myRLTVLevelBaseSaved,
@@ -54,7 +54,7 @@
   }
   \cs_set:Npx \myRLTVLevelBaseExpected { \RLTVLevelBase }
 \iow_term:x {****~\myRLTVLevelBaseSaved}
-  \input{input/base}
+  \input{input/base.tex}
   \XPCTIntCompare{
     lhs = \RLTVLevelBase,
     rhs = \myRLTVLevelBaseSaved,
@@ -79,7 +79,7 @@
   }
   \cs_set:Npx \myRLTVLevelBaseExpected { #1 }
 \iow_term:x {****~base~expected:~\myRLTVLevelBaseExpected}
-  \input{input/base}
+  \input{input/base.tex}
   \XPCTIntCompare{
     lhs = \RLTVLevelBase,
     rhs = \myRLTVLevelBaseSaved,

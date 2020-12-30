@@ -704,8 +704,8 @@
 \NewDocumentCommand\RLTVLevelSetBaseOfFile { m m } {
   \group_begin:
   \regex_extract_once:NnNT \g_@@_path_regex { #2 } \l_tmpa_seq {
-    \tl_set:Nn \l_tmpa_tl { \seq_item:Nn \l_tmpa_seq 1 }
-    \tl_set:Nn \l_tmpb_tl { \seq_item:Nn \l_tmpa_seq 2 }
+    \tl_set:Nn \l_tmpa_tl { \seq_item:Nn \l_tmpa_seq 2 }
+    \tl_set:Nn \l_tmpb_tl { \seq_item:Nn \l_tmpa_seq 3 }
     \tl_if_empty:xTF { \l_tmpa_tl } {
       \cs_set:Nn \@@_tmpa:nnn {
         \AddToHook { file/before/##3 } {
@@ -715,8 +715,9 @@
     } {
       \cs_set:Nn \@@_tmpa:nnn {
         \AddToHook { file/before/##3 } {
-          \str_if_eq:nnT {
+          \str_if_eq:VnTF \CurrentFilePath { ##2 } {
             \RLTVLevelSetBase { ##1 }
+          } {
           }
         }
       }
@@ -922,7 +923,7 @@
 %    \begin{macrocode}
 \regex_const:Nn \c_@@_arg_regex { \A \s*
   (?:(\=)|(\+)|(\-)|(?:
-    ((\.)|\~)? \s* (.*?)
+    ((\.)|\~)? \s* (.+?)
   ))
   \s* \Z }
 %    \end{macrocode}
@@ -971,32 +972,23 @@
       \@@_if_capture_empty:nTF 2 {
         \@@_if_capture_empty:nTF 3 {
           \@@_if_capture_empty:nTF 4 {
-            \@@_if_capture_empty:nTF { 7 } {
-              \int_zero:N \l_tmpa_int
-            } {
-              \int_set:Nn \l_tmpa_int { \seq_item:Nn \l_tmpa_seq 7 }
-            }
+\iow_term:x {**** /\seq_item:Nn \l_tmpa_seq 7/ }
+            \int_set:Nn \l_tmpa_int { \seq_item:Nn \l_tmpa_seq 7 }
             \@@_if_capture_empty:nTF { 5 } {
-              \int_compare:nNnTF \l_tmpa_int < 0 {
+              \int_compare:nNnT \l_tmpa_int < 0 {
                 \int_add:Nn \l_tmpa_int { \g_@@_rqrd_int }
-              } {
-                \int_compare:nNnF \l_tmpa_int > 0 {
-                  \bool_set_false:N \l_tmpa_bool
-                  \msg_error:nnn { relative } { Bad-section-<>-argument } { #1 }
-                  \int_set:Nn \l_tmpa_int { \g_@@_rqrd_int }
-                }
               }
             } {
               \@@_if_capture_empty:nTF { 6 } {
 %    \end{macrocode}
 % This is a leading ``"~"''.
 %    \begin{macrocode}
-                \int_add:Nn \l_tmpa_int { \g_@@_base_int }
+                \int_add:Nn \l_tmpa_int { \g_@@_base_int - 1 }
               } {
 %    \end{macrocode}
 % This is a `leading  `"."''.
 %    \begin{macrocode}
-                \int_add:Nn \l_tmpa_int { \g_@@_prnt_int + 1 }
+                \int_add:Nn \l_tmpa_int { \g_@@_prnt_int }
               }
             }
           } {

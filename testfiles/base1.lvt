@@ -1,0 +1,46 @@
+\input{regression-test.tex}
+\documentclass{minimal}
+\usepackage {relative}
+\RLTVSetUp {
+  names = {
+    myPart,
+    mySection,
+    mySubsection,
+    mySubsubsection,
+    myParagraph,
+    mySubparagraph
+  },
+  base = mySection
+}
+\input{input/customize}
+\input{input/expect}
+\begin{document}
+\START
+\ExplSyntaxOn
+\cs_set:Npn \myTest #1 {
+  \cs_set:Npx \myRLTVLevelBaseSaved { \RLTVLevelBase }
+  \RLTVLevelSetBaseOfFile { #1 } { input/lib/base1.tex } % do not forget the extension
+  \XPCTIntCompare{
+    lhs = \RLTVLevelBase,
+    rhs = \myRLTVLevelBaseSaved,
+    relation = {=}
+  }
+  \cs_set:Npx \myRLTVLevelBaseExpected { \RLTVLevelBase }
+  \input{input/base1.tex}
+  \cs_set:Npx \myRLTVLevelBaseExpected { #1 }
+\iow_term:x {****~base~expected:~\myRLTVLevelBaseExpected}
+  \input{input/lib/base1.tex}
+  \XPCTIntCompare{
+    lhs = \RLTVLevelBase,
+    rhs = \myRLTVLevelBaseSaved,
+    relation = {=}
+  }
+}
+\ExplSyntaxOff
+\myTest{1}
+\myTest{2}
+\myTest{3}
+\myTest{4}
+\myTest{5}
+\myTest{6}
+\end{document}

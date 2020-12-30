@@ -520,6 +520,8 @@
 % and the corresponding \mylstinline|\input| must be exactly the same.
 % For example, one cannot use interchangeably \mylstinline|foo.tex|, \mylstinline|./foo.tex| and \mylstinline|bar/../foo.tex|. Also, the file extension should not be omitted if any. 
 %
+% An information message is available in the terminal and the log file before the file is input.
+%
 % \subsection {Unavailable section levels}
 % If you try to use a non positive section level, a warning is issued in the terminal and the log file then the topmost section command is used, in general \mylstinline|\part|.
 % If you try to use a section level bigger than available, a warning is issued in the terminal and the log file, then the deepest available section command is used, in general \mylstinline|\subparagraph|.
@@ -699,7 +701,7 @@
 % to handle the folder when provided.
 %    \begin{macrocode}
 \cs_new:Npn \@@_tmpa:nnn {}
-\regex_const:Nn \g_@@_path_regex { \A (?:(.*)\/)? (.*) \Z }
+\regex_const:Nn \g_@@_path_regex { \A \s* (?:(.*)\/)? (.*?) \s* \Z }
 \cs_generate_variant:Nn \tl_if_empty:nTF { x }
 \NewDocumentCommand\RLTVLevelSetBaseOfFile { m m } {
   \group_begin:
@@ -710,20 +712,47 @@
       \cs_set:Nn \@@_tmpa:nnn {
         \AddToHook { file/before/##3 } {
           \RLTVLevelSetBase { ##1 }
+          \msg_term:nnx { relative } { BaseOfFileInfo } { ##1 }
         }
       }
     } {
       \cs_set:Nn \@@_tmpa:nnn {
         \AddToHook { file/before/##3 } {
-          \str_if_eq:VnTF \CurrentFilePath { ##2 } {
+          \str_if_eq:VnT \CurrentFilePath { ##2 } {
             \RLTVLevelSetBase { ##1 }
-          } {
+            \msg_term:nnx { relative } { BaseOfFileInfo } { ##1 }
           }
         }
       }
     }
     \cs_generate_variant:Nn \@@_tmpa:nnn { xxx }
     \@@_tmpa:xxx { #1 } { \l_tmpa_tl } { \l_tmpb_tl }
+    \msg_term:nnxx { relative } { SetBaseOfFile } { #1 } { \l_tmpa_tl/\l_tmpb_tl }
+  }
+  \group_end:
+}
+\NewDocumentCommand\RLTVLevelUnsetBaseOfFile { m } {
+  \group_begin:
+  \regex_extract_once:NnNT \g_@@_path_regex { #1 } \l_tmpa_seq {
+    \tl_set:Nn \l_tmpa_tl { \seq_item:Nn \l_tmpa_seq 2 }
+    \tl_set:Nn \l_tmpb_tl { \seq_item:Nn \l_tmpa_seq 3 }
+    \tl_if_empty:xTF { \l_tmpa_tl } {
+      \cs_set:Nn \@@_tmpa:nnn {
+        \RemoveFromHook { file/before/##3 }
+      }
+    } {
+      \cs_set:Nn \@@_tmpa:nnn {
+        \AddToHook { file/before/##3 } {
+          \str_if_eq:VnT \CurrentFilePath { ##2 } {
+            \RLTVLevelSetBase { ##1 }
+            \msg_term:nnx { relative } { BaseOfFileInfo } { ##1 }
+          }
+        }
+      }
+    }
+    \cs_generate_variant:Nn \@@_tmpa:nnn { xxx }
+    \@@_tmpa:xxx { #1 } { \l_tmpa_tl } { \l_tmpb_tl }
+    \msg_term:nnxx { relative } { SetBaseOfFile } { #1 } { \l_tmpa_tl/\l_tmpb_tl }
   }
   \group_end:
 }
@@ -972,7 +1001,6 @@
       \@@_if_capture_empty:nTF 2 {
         \@@_if_capture_empty:nTF 3 {
           \@@_if_capture_empty:nTF 4 {
-\iow_term:x {**** /\seq_item:Nn \l_tmpa_seq 7/ }
             \int_set:Nn \l_tmpa_int { \seq_item:Nn \l_tmpa_seq 7 }
             \@@_if_capture_empty:nTF { 5 } {
               \int_compare:nNnT \l_tmpa_int < 0 {
@@ -1154,13 +1182,25 @@
 }
 %
 %    \end{macrocode}
-% \subsubsection { Bad base level }
+% \subsubsection { Base }
 % Used when \meta{level descriptor} is too large as an integer.
 %    \begin{macrocode}
 \msg_new:nnnn { relative } { Bad-base-value } {
   Unexpected~base~level~#1~\msg_line_context:.
 } {
   Either~the~provided~name~is~unknown~or~the~provided~value~is~out~of~bounds.
+}
+%    \end{macrocode}
+% Debugging information for the end user.
+%    \begin{macrocode}
+\msg_new:nnn { relative } { SetBaseOfFile } {
+  Registered~base~level~#1~for~#2~\msg_line_context:.
+}
+%    \end{macrocode}
+% Debugging information for the end user.
+%    \begin{macrocode}
+\msg_new:nnn { relative } { BaseOfFileInfo } {
+  Base~level~set~to~#1.
 }
 %    \end{macrocode}
 %

@@ -1,0 +1,46 @@
+\input{regression-test.tex}
+\documentclass{article}
+\usepackage {relative}
+\input{input/expect}
+\begin{document}
+\START
+\newcommand\myRLTVLevelBaseSaved{\RLTVLevelBase}%
+\newcommand\myRLTVLevelBaseExpected{\RLTVLevelBase}%
+\ExplSyntaxOn
+\cs_set:Npn \myTitle #1 {
+  \clist_item:Nn \c__rltv_clist {#1}:~level~\int_eval:n { #1 }
+}
+\ExplSyntaxOff
+\input{input/base2.tex}%
+\renewcommand\myRLTVLevelBaseExpected{3}%
+\RLTVLevelSetBaseOfFile {3} {base2.tex}%
+\input{input/base2.tex}%
+\XPCTIntCompare{
+  lhs = \RLTVLevelBase,
+  rhs = \myRLTVLevelBaseSaved,
+  relation = {=}
+}%
+\renewcommand\myRLTVLevelBaseExpected{4}%
+\RLTVLevelSetBaseOfFile {4} {input/base2.tex}%
+\input{input/base2.tex}%
+\XPCTIntCompare{
+  lhs = \RLTVLevelBase,
+  rhs = \myRLTVLevelBaseSaved,
+  relation = {=}
+}
+\renewcommand\myRLTVLevelBaseExpected{5}%
+\RLTVLevelSetBaseOfFile {5} {input/lib/base2.tex}%
+\input{input/lib/base2.tex}%
+\XPCTIntCompare{
+  lhs = \RLTVLevelBase,
+  rhs = \myRLTVLevelBaseSaved,
+  relation = {=}
+}%
+\renewcommand\myRLTVLevelBaseExpected{4}%
+\input{input/base2.tex}%
+\XPCTIntCompare{
+  lhs = \RLTVLevelBase,
+  rhs = \myRLTVLevelBaseSaved,
+  relation = {=}
+}
+\end{document}

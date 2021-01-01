@@ -182,18 +182,18 @@
 % \begin{documentation}
 %
 % \begin{abstract}
-% This lightweight package allows to use
-% \mylstinline|\section<1>|, 
-% \mylstinline|\section<2>|,
-% \mylstinline|\section<3>|...
-% instead of
+% This package allows to replace
 % \mylstinline|\part|,
 % \mylstinline|\section|,
 % \mylstinline|\subsection|...
+% by
+% \mylstinline|\section<1>|, 
+% \mylstinline|\section<2>|,
+% \mylstinline|\section<3>|...
 % Moreover, in input files,
-% \mylstinline|\section<./1>|,
-% \mylstinline|\section<./2>|,
-% \mylstinline|\section<./3>|...
+% \mylstinline|\section<.1>|,
+% \mylstinline|\section<.2>|,
+% \mylstinline|\section<.3>|...
 % will automatically issue the correct sectioning level
 % just depending on where the \mylstinline|\input| occurs.
 % \end{abstract}
@@ -227,7 +227,7 @@
 % \hline
 % \mylstinline|\section<.|\meta{integer}\mylstinline|>| & relative to  the parent & \ref{sect:parent} \\
 % \hline
-% \mylstinline|\section<~|\meta{integer}\mylstinline|>| & relative to the base & \ref{sect:base} \\
+% \mylstinline|\section</|\meta{integer}\mylstinline|>| & relative to the base & \ref{sect:base} \\
 % \hline
 % \end{tabular}
 % \end{center}
@@ -481,14 +481,14 @@
 % \subsection {Relative to the base}
 % \label{sect:base}
 % The \myIndex{base level} is the level of the standard \mylstinline|\section| command which is for example $2$ in an "article" and $3$ in a "book".
-% If the \meta{level descriptor} is a tilde character ``"~"'' followed by an \meta{integer}, this integer is added to the \myIndex{base level} minus one to obtain the absolute section level to switch to.
+% If the \meta{level descriptor} is a ``"/"'' followed by an \meta{integer}, this integer is added to the \myIndex{base level} minus one to obtain the absolute section level to switch to.
 % For any integers $\mathit{base}$ and $n$, the following commands are equivalent
 % \begin{center}
 % \begin{tabular}{c|l|l}
 % \hline
 % Base level & Relative & Absolute \\
 % \hline
-% $\mathit{base}$ & \mylstinline|\section<~|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{base}+n-1$\mylstinline|>|\\
+% $\mathit{base}$ & \mylstinline|\section</|$n$\mylstinline|>| & \mylstinline|\section<|$\mathit{base}+n-1$\mylstinline|>|\\
 % \hline
 % \end{tabular}
 % \end{center}
@@ -520,7 +520,7 @@
 % and the corresponding \mylstinline|\input| must be exactly the same.
 % For example, one cannot use interchangeably \mylstinline|foo.tex|, \mylstinline|./foo.tex| and \mylstinline|bar/../foo.tex|. Also, the file extension should not be omitted if any. 
 %
-% An information message is available in the terminal and the log file before the file is input.
+% In order to keep track of changes, an information message is available in the terminal and the log file before the file is input.
 %
 % \subsection {Unavailable section levels}
 % If you try to use a non positive section level, a warning is issued in the terminal and the log file then the topmost section command is used, in general \mylstinline|\part|.
@@ -700,59 +700,36 @@
 % In the next command, the second argument is a path that we must split
 % to handle the folder when provided.
 %    \begin{macrocode}
-\cs_new:Npn \@@_tmpa:nnn {}
-\regex_const:Nn \g_@@_path_regex { \A \s* (?:(.*)\/)? (.*?) \s* \Z }
+\regex_const:Nn \c_@@_path_regex { \A \s* (?:(.*)\/)? (.*?) \s* \Z }
 \cs_generate_variant:Nn \tl_if_empty:nTF { x }
 \NewDocumentCommand\RLTVLevelSetBaseOfFile { m m } {
   \group_begin:
-  \regex_extract_once:NnNT \g_@@_path_regex { #2 } \l_tmpa_seq {
-    \tl_set:Nn \l_tmpa_tl { \seq_item:Nn \l_tmpa_seq 2 }
-    \tl_set:Nn \l_tmpb_tl { \seq_item:Nn \l_tmpa_seq 3 }
-    \tl_if_empty:xTF { \l_tmpa_tl } {
-      \cs_set:Nn \@@_tmpa:nnn {
-        \AddToHook { file/before/##3 } {
+  \regex_set:Nn \l_tmpa_regex { \A \s* (?:(.*)\/)? (.*?) \s* \Z }
+  \regex_extract_once:NnNTF \l_tmpa_regex { #2 } \l_tmpa_seq {
+    \cs_set:Nn \@@_tmpa:nnn {
+      \AddToHook { file/before/##3 } [ @@/file/before/#2 ] {
+        \str_if_eq:VnT \CurrentFilePath { ##2 } {
           \RLTVLevelSetBase { ##1 }
           \msg_term:nnx { relative } { BaseOfFileInfo } { ##1 }
         }
       }
-    } {
-      \cs_set:Nn \@@_tmpa:nnn {
-        \AddToHook { file/before/##3 } {
-          \str_if_eq:VnT \CurrentFilePath { ##2 } {
-            \RLTVLevelSetBase { ##1 }
-            \msg_term:nnx { relative } { BaseOfFileInfo } { ##1 }
-          }
-        }
-      }
     }
     \cs_generate_variant:Nn \@@_tmpa:nnn { xxx }
-    \@@_tmpa:xxx { #1 } { \l_tmpa_tl } { \l_tmpb_tl }
-    \msg_term:nnxx { relative } { SetBaseOfFile } { #1 } { \l_tmpa_tl/\l_tmpb_tl }
+    \@@_tmpa:xxx { #1 } { \seq_item:Nn \l_tmpa_seq 2 } { \seq_item:Nn \l_tmpa_seq 3 }
+    \msg_term:nnxx  { relative } { SetBaseOfFileInfo } { #1 } { #2 }
+  } {
+    \msg_error:nnx { relative } { BaseLevelError } { #2 }
   }
   \group_end:
 }
 \NewDocumentCommand\RLTVLevelUnsetBaseOfFile { m } {
   \group_begin:
-  \regex_extract_once:NnNT \g_@@_path_regex { #1 } \l_tmpa_seq {
-    \tl_set:Nn \l_tmpa_tl { \seq_item:Nn \l_tmpa_seq 2 }
-    \tl_set:Nn \l_tmpb_tl { \seq_item:Nn \l_tmpa_seq 3 }
-    \tl_if_empty:xTF { \l_tmpa_tl } {
-      \cs_set:Nn \@@_tmpa:nnn {
-        \RemoveFromHook { file/before/##3 }
-      }
-    } {
-      \cs_set:Nn \@@_tmpa:nnn {
-        \AddToHook { file/before/##3 } {
-          \str_if_eq:VnT \CurrentFilePath { ##2 } {
-            \RLTVLevelSetBase { ##1 }
-            \msg_term:nnx { relative } { BaseOfFileInfo } { ##1 }
-          }
-        }
-      }
-    }
-    \cs_generate_variant:Nn \@@_tmpa:nnn { xxx }
-    \@@_tmpa:xxx { #1 } { \l_tmpa_tl } { \l_tmpb_tl }
-    \msg_term:nnxx { relative } { SetBaseOfFile } { #1 } { \l_tmpa_tl/\l_tmpb_tl }
+  \regex_set:Nn \l_tmpa_regex { \A \s* (?:.*\/)? (.*?) \s* \Z }
+  \regex_extract_once:NnNTF \l_tmpa_regex { #1 } \l_tmpa_seq {
+    \RemoveFromHook { file/before/\seq_item:Nn \l_tmpa_seq 2 } [ @@/file/before/#1 ]
+    \msg_term:nnx  { relative } { UnsetBaseOfFileInfo } { #1 }
+  } {
+    \msg_error:nnx { relative } { BaseLevelError } { #1 }
   }
   \group_end:
 }
@@ -874,7 +851,7 @@
 %    \end{macrocode}
 % Map helper function.
 %    \begin{macrocode}
-  \cs_new:Npn \@@_tmpa #1 {
+  \cs_set:Npn \@@_tmpa #1 {
 %    \end{macrocode}
 % Expand the argument, there should be no whitespace.
 %    \begin{macrocode}
@@ -952,7 +929,7 @@
 %    \begin{macrocode}
 \regex_const:Nn \c_@@_arg_regex { \A \s*
   (?:(\=)|(\+)|(\-)|(?:
-    ((\.)|\~)? \s* (.+?)
+    ((\.)|\/)? \s* (.+?)
   ))
   \s* \Z }
 %    \end{macrocode}
@@ -961,7 +938,7 @@
 % \item Capture 2: single "="
 % \item Capture 3: single "+"
 % \item Capture 4: single "-"
-% \item Capture 5: leading "." or "~"
+% \item Capture 5: leading "." or "/"
 % \item Capture 6: leading "."
 % \item Capture 7: trailing number
 % \end{itemize}
@@ -1009,7 +986,7 @@
             } {
               \@@_if_capture_empty:nTF { 6 } {
 %    \end{macrocode}
-% This is a leading ``"~"''.
+% This is a leading ``"/"''.
 %    \begin{macrocode}
                 \int_add:Nn \l_tmpa_int { \g_@@_base_int - 1 }
               } {
@@ -1085,7 +1062,6 @@
   \char_set_catcode_other:N \+
   \char_set_catcode_other:N \-
   \char_set_catcode_other:N \.
-  \char_set_catcode_other:N \~
   \char_set_catcode_other:N \/
   \@@_base_sxn_ui
 }
@@ -1193,14 +1169,26 @@
 %    \end{macrocode}
 % Debugging information for the end user.
 %    \begin{macrocode}
-\msg_new:nnn { relative } { SetBaseOfFile } {
+\msg_new:nnn { relative } { SetBaseOfFileInfo } {
   Registered~base~level~#1~for~#2~\msg_line_context:.
 }
 %    \end{macrocode}
 % Debugging information for the end user.
 %    \begin{macrocode}
 \msg_new:nnn { relative } { BaseOfFileInfo } {
-  Base~level~set~to~#1.
+  Base~level~set~to~#1~\msg_line_context:.
+}
+%    \end{macrocode}
+% Debugging information for the end user.
+%    \begin{macrocode}
+\msg_new:nnn { relative } { UnsetBaseOfFileInfo } {
+  Unset~base~level~of~#1~\msg_line_context:.
+}
+%    \end{macrocode}
+% Debugging information for the end user.
+%    \begin{macrocode}
+\msg_new:nnn { relative } { BaseLevelError } {
+  Base~level~error~#1~\msg_line_context:.
 }
 %    \end{macrocode}
 %

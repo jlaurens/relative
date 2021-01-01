@@ -1,0 +1,49 @@
+\input{regression-test.tex}
+\documentclass{article}
+\usepackage {relative}
+\input{input/expect}
+\begin{document}
+\START
+\ExplSyntaxOn
+\cs_set:Npn \myTitle #1 {
+  \clist_item:Nn \c__rltv_clist {#1}:~level~\int_eval:n { #1 }
+}
+\ExplSyntaxOff
+\newcommand\myRLTVLevelBaseSaved{\RLTVLevelBase}%
+\newcommand\myRLTVLevelBaseExpected{\RLTVLevelBase}%
+\input{input/base3.tex}%
+\input{input/lib/base3.tex}%
+\input{input/base3bis.tex}%
+%
+\RLTVLevelSetBaseOfFile {3} {input/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{3}%
+\input{input/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\input{input/lib/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\input{input/base3bis.tex}%
+%
+\RLTVLevelSetBaseOfFile {4} {input/lib/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{3}%
+\input{input/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{4}%
+\input{input/lib/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\input{input/base3bis.tex}%
+%
+\RLTVLevelUnsetBaseOfFile {input/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\input{input/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{4}%
+\input{input/lib/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\input{input/base3bis.tex}%
+%
+\RLTVLevelUnsetBaseOfFile {input/lib/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\input{input/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\input{input/lib/base3.tex}%
+\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\input{input/base3bis.tex}%
+\end{document}

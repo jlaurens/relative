@@ -201,7 +201,8 @@
 % \section{Summary}
 %
 % This package simply extends the \mylstinline|section| command to accept a supplemental optional \meta{level descriptor} between "<" and ">",
-% just after the command. The sectioning level is an integer starting from $1$ for the top sectioning and inscreased by $1$ at each subsection level used to uniquely identify a sectionning command.
+% just after the command. The sectioning level is an integer used to uniquely identify a sectionning command.
+% It starts at $1$ for the top sectioning and is inscreased by $1$ at each subsection level.
 % \begin{function}{\section}
 % \begin{syntax}
 % \cs{section} "<" \meta{level descriptor} ">" \oarg{option} \marg{title}
@@ -241,9 +242,10 @@
 % \begin{LaTeXdemo}[code only]
 %   \usepackage{relative}
 % \end{LaTeXdemo}
+% No key value options are given while loading the package.
 % \begin{function}{\RLTVSetUp}
 % \begin{syntax}
-% "\RLTVSetUp" \marg{key-value pairs}
+% \cs{RLTVSetUp} \marg{key-value pairs}
 % \end{syntax}
 % \end{function}
 
@@ -296,12 +298,10 @@
 % the \myIndex{base level} or \myIndex{home level} is the level of the standard \mylstinline|\section| command.
 % \end{itemize}
 %
-%	An example of relative sectioning would be to choose one more or less than one of these reference levels.
-%
-% The \cs{section} command must be managed on its own because it is the only command that can appear inside two different kinds of sections, either in a \cs{part} or in a \cs{chapter}.
+% The \cs{section} command must be managed on its own because it is the only command that can appear inside two different kinds of sections, either in a \mylstinline|\part| or in a \mylstinline|\chapter|.
 % 
 % \subsection {Other packages}
-% \pkg{coseoul} and \pkg{modular} both address the problem with a different approach and syntax. In \pkg{relative} we do not introduce new commands for sectioning nor importing. We also chose an approach reference level which is more complete. Moreover, we do not rely on predefined sectioning commands.
+% \pkg{coseoul} and \pkg{modular} both address the problem of relative sectioning with a different approach and syntax. In \pkg{relative} we do not introduce new commands for sectioning nor importing. We also chose an approach based on reference level which is more complete. Moreover, we do not rely on predefined sectioning commands.
 %
 % \section { The section \meta{level descriptor} }
 %
@@ -406,16 +406,16 @@
 % \hline
 % \end{tabular}
 % \end{center}
-% Notice that commands \mylstinline|\section<->| and \mylstinline|\section<-1>| happen to be synonyms whereas \mylstinline|\section<+>| and \mylstinline|\section<+1>| are completely different. The latter refers to the \textbf{top level} whoereas the former refers to the \textbf{last level}.
+% Notice that commands \mylstinline|\section<->| and \mylstinline|\section<-1>| happen to be synonyms whereas \mylstinline|\section<+>| and \mylstinline|\section<+1>| are completely different. The latter refers to the \textbf{top level} whereas the former refers to the \textbf{last level}.
 %
 % \subsection {Relative to the parent}
 % \label{sect:parent}
 % While being processed, each file has a \myIndex{parent level}.
 % \begin{itemize}
 % \item
-% The root document being typeset, in general the with \mylstinline|\documentclass|, has no parent hence its \myIndex{parent level} is $0$.
+% The root document being typeset, in general the one with \mylstinline|\documentclass|, has no parent hence its \myIndex{parent level} is $0$.
 % \item
-% For each input file "foo.tex", the \myIndex{parent level} is exactly  the value of the \myIndex{last level} just before \mylstinline|\input{foo}| is executed: this is
+% For each input file "foo.tex", the \myIndex{parent level} is exactly  the value of the \myIndex{last level} just before \mylstinline|\input{foo.tex}| is executed: this is
 % \begin{itemize}
 % \item the level of the last sectioning command performed if any
 % \item the \myIndex{top level} $0$ otherwise.
@@ -517,7 +517,8 @@
 % This is interesting if the \textbf{base level} must change without editing the file.
 %
 % Notice that \meta{file name} used in \mylstinline|\RLTVSetBaseOfFile|
-% and the corresponding \mylstinline|\input| must be exactly the same.
+% and the corresponding \mylstinline|\input| must be exactly the same
+% including a directory path if any.
 % For example, one cannot use interchangeably \mylstinline|foo.tex|, \mylstinline|./foo.tex| and \mylstinline|bar/../foo.tex|. Also, the file extension should not be omitted if any. 
 %
 % In order to keep track of changes, an information message is available in the terminal and the log file before the file is input.
@@ -536,7 +537,7 @@
 % \pkg{relative} has been sucessfully tested with \pkg{titlesec} and \pkg{secsty} at release time. 
 % However there is no guaranty of result, even partial, for future times and other packages.
 % \subsection {Incompatibility with other packages}
-% \pkg{relative} has not been tested with \pkg{import}.
+% \pkg{relative} has not been tested with package \pkg{import}.
 % \section { Non standard sectioning commands }
 % \label{sect:Non standard sectioning commands}
 % 

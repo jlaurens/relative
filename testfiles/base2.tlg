@@ -1,70 +1,962 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
 (input/base2.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 ============================================================
-TEST 1: /Expect/int/ \RLTVLevelBase  = 2
+TEST 1: /Expect/int/ \RLTVBase  = 
 ============================================================
-PASSED
+**** FAILED at line 7:  2 = 0
 ============================================================
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
 )
-Registered base level 3 for /base2.tex on line ....
-Base level set to 3.
+! Undefined control sequence.
+l. ...\RLTVLevelSetBaseOfFile
+                             {3} {base2.tex}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 (input/base2.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 ============================================================
-TEST 2: /Expect/int/ \RLTVLevelBase  = 3
+TEST 2: /Expect/int/ \RLTVBase  = 
 ============================================================
-PASSED
+**** FAILED at line 7:  2 = 0
 ============================================================
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
 )
+! Undefined control sequence.
+\l__xpct_lhs_tl ->\RLTVLevelBase 
+l. ...}
+      %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+      %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\myRLTVLevelBaseSaved ->\RLTVLevelBase 
+l. ...}
+      %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+      %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\myRLTVLevelBaseSaved ->\RLTVLevelBase 
+l. ...}
+      %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 ============================================================
-TEST 3: /Expect/int/ \RLTVLevelBase  = 2
+TEST 3: /Expect/int/ \RLTVLevelBase  = 
 ============================================================
 PASSED
 ============================================================
-Registered base level 4 for input/base2.tex on line ....
-Base level set to 3.
-Base level set to 4.
+! Undefined control sequence.
+l. ...\RLTVLevelSetBaseOfFile
+                             {4} {input/base2.tex}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 (input/base2.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 ============================================================
-TEST 4: /Expect/int/ \RLTVLevelBase  = 4
+TEST 4: /Expect/int/ \RLTVBase  = 
 ============================================================
-PASSED
+**** FAILED at line 7:  2 = 0
 ============================================================
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
 )
+! Undefined control sequence.
+\l__xpct_lhs_tl ->\RLTVLevelBase 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\myRLTVLevelBaseSaved ->\RLTVLevelBase 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\myRLTVLevelBaseSaved ->\RLTVLevelBase 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 ============================================================
-TEST 5: /Expect/int/ \RLTVLevelBase  = 2
+TEST 5: /Expect/int/ \RLTVLevelBase  = 
 ============================================================
 PASSED
 ============================================================
-Registered base level 5 for input/lib/base2.tex on line ....
-Base level set to 3.
-Base level set to 5.
+! Undefined control sequence.
+l. ...\RLTVLevelSetBaseOfFile
+                             {5} {input/lib/base2.tex}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 (input/lib/base2.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 ============================================================
-TEST 6: /Expect/int/ \RLTVLevelBase  = 5
+TEST 6: /Expect/int/ \RLTVBase  = 
 ============================================================
-PASSED
+**** FAILED at line 7:  2 = 0
 ============================================================
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
 )
+! Undefined control sequence.
+\l__xpct_lhs_tl ->\RLTVLevelBase 
+l. ...}
+      %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+      %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\myRLTVLevelBaseSaved ->\RLTVLevelBase 
+l. ...}
+      %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+      %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\myRLTVLevelBaseSaved ->\RLTVLevelBase 
+l. ...}
+      %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 ============================================================
-TEST 7: /Expect/int/ \RLTVLevelBase  = 2
+TEST 7: /Expect/int/ \RLTVLevelBase  = 
 ============================================================
 PASSED
 ============================================================
-Base level set to 3.
-Base level set to 4.
 (input/base2.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 ============================================================
-TEST 8: /Expect/int/ \RLTVLevelBase  = 4
+TEST 8: /Expect/int/ \RLTVBase  = 
 ============================================================
-PASSED
+**** FAILED at line 7:  2 = 0
 ============================================================
 [1
-])
+]
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  \myRLTVBaseExpected 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../1>{\myTitle{         \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+<argument>  2 - 1 + \myRLTVBaseExpected 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ....../2>{\myTitle{ 2 - 1 + \myRLTVBaseExpected}}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+)
+! Undefined control sequence.
+\l__xpct_lhs_tl ->\RLTVLevelBase 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\myRLTVLevelBaseSaved ->\RLTVLevelBase 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\myRLTVLevelBaseSaved ->\RLTVLevelBase 
+l. ...}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 ============================================================
-TEST 9: /Expect/int/ \RLTVLevelBase  = 2
+TEST 9: /Expect/int/ \RLTVLevelBase  = 
 ============================================================
 PASSED
 ============================================================
-**** XPCT: 0 FAILED, 9 PASSED out of 9
+**** XPCT: 5 FAILED, 4 PASSED out of 9
 [2] (base2.aux)

@@ -3,12 +3,12 @@
 \START
 
 \XPCTIntCompare {
-  lhs = \RLTVLevelActive,
+  lhs = \RLTVActive,
   rhs = 0,
   relation = {=}
 }
 \XPCTIntCompare {
-  lhs = \RLTVLevelRequired,
+  lhs = \RLTVLast,
   rhs = 0,
   relation = {=}
 }
@@ -62,11 +62,11 @@
   NO~
   \keys_set:nn { my } { #1 }
   \XPCTIntCompare {
-    lhs = \RLTVLevelActive,
+    lhs = \RLTVActive,
     rhs = \l_my_level_tl
-  }% { nNn } { \RLTVLevelActive } = \l_my_level_tl
+  }% { nNn } { \RLTVActive } = \l_my_level_tl
   \cs_generate_variant:Nn \tl_if_eq:nnTF { xxTF }
-  \tl_if_eq:xxTF {\clist_item:Nn \g__my_coef_clist { \RLTVLevelActive }} {0} {
+  \tl_if_eq:xxTF {\clist_item:Nn \g__my_coef_clist { \RLTVActive }} {0} {
     \XPCTIntCompare {
       lhs_counter = \l_my_counter_tl,
       rhs = 0
@@ -122,12 +122,12 @@
   } {
     \tl_set:Nn \l_tmpa_tl { #1 \c_space_tl }
   }
-  \cs:w \l_my_counter_tl \cs_end: {My~\l_my_counter_tl\c_space_tl\l_tmpa_tl(level~\RLTVLevelActive/\RLTVLevelRequired)}
+  \cs:w \l_my_counter_tl \cs_end: {My~\l_my_counter_tl\c_space_tl\l_tmpa_tl(level~\RLTVActive/\RLTVLast)}
   \myCoreTestKV{ expected = #2 }
 }
 
 \DeclareDocumentCommand\_mySectionB { mmm } {
-  \section<#1>{My~\l_my_counter_tl\c_space_tl#2 (level~\RLTVLevelActive/\RLTVLevelRequired)}
+  \section<#1>{My~\l_my_counter_tl\c_space_tl#2 (level~\RLTVActive/\RLTVLast)}
   \myCoreTestKV{ expected = #3 }
 }
 

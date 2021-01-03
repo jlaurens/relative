@@ -1,0 +1,522 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+(input/base3.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 1: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+) (input/lib/base3.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 2: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+) (input/base3bis.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 3: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+)
+! Undefined control sequence.
+l. ...\RLTVLevelSetBaseOfFile
+                             {3} {input/base3.tex}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+(input/base3.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 4: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+) (input/lib/base3.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 5: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+) (input/base3bis.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 6: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+)
+! Undefined control sequence.
+l. ...\RLTVLevelSetBaseOfFile
+                             {4} {input/lib/base3.tex}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+(input/base3.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 7: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+) (input/lib/base3.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 8: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+) (input/base3bis.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 9: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+)
+! Undefined control sequence.
+l. ...\RLTVLevelUnsetBaseOfFile
+                               {input/base3.tex}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+(input/base3.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 10: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+) (input/lib/base3.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 11: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+) (input/base3bis.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 12: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+)
+! Undefined control sequence.
+l. ...\RLTVLevelUnsetBaseOfFile
+                               {input/lib/base3.tex}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+(input/base3.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 13: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+) (input/lib/base3.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 14: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+) (input/base3bis.tex
+! Undefined control sequence.
+\l__xpct_rhs_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+! Missing number, treated as zero.
+<to be read again> 
+                   \__int_eval_end: 
+l. ...}
+     %
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+! Undefined control sequence.
+\l_tmpb_tl ->\myRLTVBaseExpected 
+l. ...}
+     %
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+============================================================
+TEST 15: /Expect/int/ \RLTVBase  = 
+============================================================
+**** FAILED at line 7:  2 = 0
+============================================================
+)
+**** XPCT: 15 FAILED, 0 PASSED out of 15
+[1
+] (base3.aux)

@@ -37,6 +37,7 @@
 \usepackage{makeidx}
 \usepackage{multirow}
 \usepackage{makecell}
+\input{pkginfo.tex}
 %\usepackage{sourcecodepro}
 \makeindex
 \begin{document}
@@ -162,8 +163,6 @@
 % \GetFileInfo{relative.dtx}
 % \title{^^A
 %   \pkg{relative} -- Sections by level or relative^^A
-%   \thanks{This file describes \fileversion,
-%     last revised \filedate.}^^A
 % }
 %
 % \author{^^A
@@ -175,7 +174,8 @@
 %   }^^A
 % }
 %
-% \date{Released \filedate}
+% \date{Release \RLTVYEAR.\RLTVMINOR,
+%     build \RLTVBUILD}
 %
 % \maketitle
 %
@@ -201,7 +201,7 @@
 % \section{Summary}
 %
 % This package simply extends the \mylstinline|section| command to accept a supplemental optional \meta{level descriptor} between "<" and ">",
-% just after the command. The sectioning level is an integer starting from $1$ for the top sectioning and inscreased by $1$ at each subsection level.
+% just after the command. The sectioning level is an integer starting from $1$ for the top sectioning and inscreased by $1$ at each subsection level used to uniquely identify a sectionning command.
 % \begin{function}{\section}
 % \begin{syntax}
 % \cs{section} "<" \meta{level descriptor} ">" \oarg{option} \marg{title}
@@ -235,7 +235,7 @@
 % When no "<"\meta{level descriptor}">" is given at all,
 % this is just the unextended \mylstinline|\section| command syntax which corresponds to the standard behaviour.
 %
-% \section{Loading the package}
+% \section{Loading and initializing the package}
 %
 % The package should be loaded in the usual \LaTeXe{} way.
 % \begin{LaTeXdemo}[code only]
@@ -247,7 +247,7 @@
 % \end{syntax}
 % \end{function}
 
-% Some key--value options can be provided to \mylstinline|\RLTVSetUp|\SpecialUsageIndex{\RLTVSetUp} in order to setup the package.
+% Supplemental key--value options can be provided to \mylstinline|\RLTVSetUp|\SpecialUsageIndex{\RLTVSetUp} in order to setup the package.
 % They may be useful when the sectioning command names are not standard,
 % see section \ref{sect:Non standard sectioning commands} below.
 %
@@ -272,8 +272,8 @@
 % it is often a good idea to split parts and sections into different files. 
 % But it is quite difficult to know in advance if we are writing a
 % paragraph in a subsection, or a subparagraph in a paragraph.
-% And if we ever change our mind, we have to change accordingly the sectioning commands in cascade which may rapidly become a pain.
-% The same holds if we want to turn for example a "report" into an "article", or the other way round. One class knows about \mylstinline|\chapter| but not the other and the section commands may need some shifting.
+% And if we ever change our minds, we have to change accordingly the sectioning commands in cascade which may rapidly become a pain.
+% The same holds if we want to turn for example a "report" into an "article", or the other way round. One class knows about \mylstinline|\chapter| but not the other one and the section commands may need some shifting.
 %
 % Of course,
 % this kind of problems might be addressed by a very smart text editor,
@@ -298,14 +298,14 @@
 %
 %	An example of relative sectioning would be to choose one more or less than one of these reference levels.
 %
-% The \cs{section} command must be managed on its own because it is the only command that can appear inside two kinds of sections, either in a \cs{part} or in a \cs{chapter}.
+% The \cs{section} command must be managed on its own because it is the only command that can appear inside two different kinds of sections, either in a \cs{part} or in a \cs{chapter}.
 % 
 % \subsection {Other packages}
 % \pkg{coseoul} and \pkg{modular} both address the problem with a different approach and syntax. In \pkg{relative} we do not introduce new commands for sectioning nor importing. We also chose an approach reference level which is more complete. Moreover, we do not rely on predefined sectioning commands.
 %
 % \section { The section \meta{level descriptor} }
 %
-% We detail the syntax in \mylstinline|\section<|\meta{level descriptor}\mylstinline|>|.
+% We detail the complete syntax of \mylstinline|\section<|\meta{level descriptor}\mylstinline|>|.
 %
 % \subsection {Relative to the top}
 % \label{sect:absolute}
@@ -434,7 +434,7 @@
 % \hline
 % \end{tabular}
 % \end{center}
-% Of course, this becomes interesting when you do not know in advance  $parent$.
+% Of course, this becomes interesting when you do not know in advance  $parent$, particularly when it is only known at typeset time.
 %
 % Some remarks:
 % \begin{itemize}
@@ -449,7 +449,7 @@
 %
 %
 % To illustrate how things works, here is an example of some main file that includes twice a very simple file "foo.tex" shown below.
-% The standard commands equivalent are on the right.
+% The standard commands equivalent are displayed on the right.
 % ^^A4567890123456789012345678901234567890123456789012345678901234567890
 % \begin{LaTeXdemo}[code only]
 %  \documentclass{article}
@@ -493,30 +493,30 @@
 % \end{tabular}
 % \end{center}
 %
-% In a standard \LaTeX{} document class, one may use \mylstinline|\section<~1>|, \mylstinline|\section<~2>| down to  \mylstinline|\section<~5>|
+% In a standard \LaTeX{} document class, one may use \mylstinline|\section</1>|, \mylstinline|\section</2>| down to  \mylstinline|\section</5>|
 % instead of \mylstinline|\section|, \mylstinline|\subsection| ...
 % \mylstinline|\subparagraph|.
 %
 % The \myIndex{base level} need not be constant during typesetting.
-% \begin{function}{\RLTVLevelSetBase}
+% \begin{function}{\RLTVSetBase}
 % \begin{syntax}
-%  \cs{RLTVLevelSetBase} \marg{base level}
+%  \cs{RLTVSetBase} \marg{base level}
 % \end{syntax}
 % Sets the \textbf{base level} to the given value, which can be either an integer or a known section comand name. This is a local assignment
 % in the sense that it does not change the \textbf{base level} in the parent file where an eventual \mylstinline|input| has been executed.
 % \end{function}
 %
-% \begin{function}{\RLTVLevelSetBaseOfFile}
+% \begin{function}{\RLTVSetBaseOfFile}
 % \begin{syntax}
-% \cs{RLTVLevelSetBaseOfFile} \marg{base level} \marg{file name}
+% \cs{RLTVSetBaseOfFile} \marg{base level} \marg{file name}
 % \end{syntax}
 % Sets the \textbf{base level} to the given value for the given file only.
-% For example, after a \mylstinline|\RLTVLevelSetBaseOfFile{4}{foo.tex}|, at any subsequent \mylstinline|\input{foo.tex}| the \textbf{base level} becomes $4$ and will switch back to its previous value once the \mylstinline|\input| is complete.
+% For example, after a \mylstinline|\RLTVSetBaseOfFile{4}{foo.tex}|, at any subsequent \mylstinline|\input{foo.tex}| the \textbf{base level} becomes $4$ and will switch back to its previous value once the \mylstinline|\input| is complete.
 % \end{function}
 %
 % This is interesting if the \textbf{base level} must change without editing the file.
 %
-% Notice that \meta{file name} used in \mylstinline|\RLTVLevelSetBaseOfFile|
+% Notice that \meta{file name} used in \mylstinline|\RLTVSetBaseOfFile|
 % and the corresponding \mylstinline|\input| must be exactly the same.
 % For example, one cannot use interchangeably \mylstinline|foo.tex|, \mylstinline|./foo.tex| and \mylstinline|bar/../foo.tex|. Also, the file extension should not be omitted if any. 
 %
@@ -528,6 +528,10 @@
 %
 % \section {Problems and limitations}
 % Any issue should be reported \url{https://github.com/jlaurens/relative/issues}
+% \subsection {General remarks}
+% This package is patching some already existing commands.
+% This is not a safe and strong technique but it is common practice until we can use the \LaTeX3 hook paradigm.
+%
 % \subsection {Compatibility with other packages}
 % \pkg{relative} has been sucessfully tested with \pkg{titlesec} and \pkg{secsty} at release time. 
 % However there is no guaranty of result, even partial, for future times and other packages.
@@ -558,10 +562,6 @@
 %
 % \begin{implementation}
 % \section{\pkg{relative} implementation}
-%
-% \subsection {General remarks}
-% This package is patching some already existing commands.
-% This is not a safe and strong technique but it is common practice until we can use the \LaTeX2 hook paradigm.
 %
 % Start the \pkg{DocStrip} guards.
 %    \begin{macrocode}
@@ -605,6 +605,24 @@
 %</pkg>
 %    \end{macrocode}
 %
+% \subsection {Versioning}
+% The package version is either a year and a minor ``number'' or a build number.
+% \begin{function}{\RLTVYEAR}
+% \begin{syntax}
+% \cs{RLTVYEAR}
+% \end{syntax}
+% \end{function}
+% \begin{function}{\RLTVMINOR}
+% \begin{syntax}
+% \cs{RLTVMINOR}
+% \end{syntax}
+% \end{function}
+% \begin{function}{\RLTVBUILD}
+% \begin{syntax}
+% \cs{RLTVBUILD}
+% \end{syntax}
+% \end{function}
+%
 % \subsection {Declaring and initializing variables}
 % \subsubsection { Hooks }
 % A one shot hook used to initialize the package variables at the beginning of the document.
@@ -630,16 +648,16 @@
 %    \end{macrocode}
 %
 % \subsubsection {Integers}
-% \begin{variable}{\g_@@_actv_int}
-%  Private global storage for the active sectioning depth. Initialized to 0 because a document starts out of any section. Value is 1 at the part level, 2 for the next one and so on. It never extend beyond the admissible limits.
+% \begin{variable}{\g_@@_last_int}
+%  Private global storage for the last sectioning depth. Initialized to 0 because a document starts out of any section, this is why \mylstinline|\section<=>| cannot be the fist sectioning instruction. Value is 1 at the part level, 2 for the next one and so on. It may extend beyond the admissible limits, this is why there is also an active level. The former is for the required section level whereas the latter is for the real section level in use.
 %    \begin{macrocode}
-\int_new:N \g_@@_actv_int
+\int_new:N \g_@@_last_int
 %    \end{macrocode}
 % \end{variable}
-% \begin{variable}{\g_@@_rqrd_int}
-%  Private global storage for the required sectioning depth. Initialized to 0 because a document starts out of any section. Value is 1 at the part level, 2 for the next one and so on. It may extend beyond the admissible limits on user request.
+% \begin{variable}{\g_@@_actv_int}
+%  Private global storage for the active sectioning level. Initialized to 0 because a document starts out of any section. Value is 1 at the part level, 2 for the next one and so on. It never extend beyond the admissible limits.
 %    \begin{macrocode}
-\int_new:N \g_@@_rqrd_int
+\int_new:N \g_@@_actv_int
 %    \end{macrocode}
 % \end{variable}
 %\begin{variable}{\g_@@_prnt_int}
@@ -659,15 +677,15 @@
 %    \end{macrocode}
 % \subsubsection {Base}
 %\begin{variable}{\g_@@_base_int}
+% Private global storage for the base section level of the current file.
 %    \begin{macrocode}
 \int_new:N \g_@@_base_int
 %    \end{macrocode}
-% Private global storage for the base section level of the current file.
 % Starts at 2 for article.cls and 3 for book.cls, for example.
-% Possibly set by \cs{RLTVSetUp} and \cs{RLTVLevelSetBase}.
+% Possibly set by \cs{RLTVSetUp}, \cs{RLTVSetBase} and asynchronously by \cs{RLTVSetBaseOfFile}.
 % \end{variable}
 %    \begin{macrocode}
-\NewDocumentCommand\RLTVLevelSetBase { m } {
+\NewDocumentCommand\RLTVSetBase { m } {
   \group_begin:
   \bool_set_true:N \l_tmpa_bool
   \int_zero:N \l_tmpa_int
@@ -702,14 +720,14 @@
 %    \begin{macrocode}
 \regex_const:Nn \c_@@_path_regex { \A \s* (?:(.*)\/)? (.*?) \s* \Z }
 \cs_generate_variant:Nn \tl_if_empty:nTF { x }
-\NewDocumentCommand\RLTVLevelSetBaseOfFile { m m } {
+\NewDocumentCommand\RLTVSetBaseOfFile { m m } {
   \group_begin:
   \regex_set:Nn \l_tmpa_regex { \A \s* (?:(.*)\/)? (.*?) \s* \Z }
   \regex_extract_once:NnNTF \l_tmpa_regex { #2 } \l_tmpa_seq {
     \cs_set:Nn \@@_tmpa:nnn {
       \AddToHook { file/before/##3 } [ @@/file/before/#2 ] {
         \str_if_eq:VnT \CurrentFilePath { ##2 } {
-          \RLTVLevelSetBase { ##1 }
+          \RLTVSetBase { ##1 }
           \msg_term:nnx { relative } { BaseOfFileInfo } { ##1 }
         }
       }
@@ -722,7 +740,7 @@
   }
   \group_end:
 }
-\NewDocumentCommand\RLTVLevelUnsetBaseOfFile { m } {
+\NewDocumentCommand\RLTVUnsetBaseOfFile { m } {
   \group_begin:
   \regex_set:Nn \l_tmpa_regex { \A \s* (?:.*\/)? (.*?) \s* \Z }
   \regex_extract_once:NnNTF \l_tmpa_regex { #1 } \l_tmpa_seq {
@@ -737,7 +755,7 @@
 %
 % \subsubsection { Levels stack }
 % \begin{variable}{\g_@@_seq}
-%  Private global stack, to properly record the state, \emph{id est} the actual value of both \cs{g_@@_base_int}, \cs{g_@@_prnt_int} and \cs{g_@@_rqrd_int}, before \mylstinline|\input| and recover it afterwards.
+%  Private global stack, to properly record the state, \emph{id est} the actual value of both \cs{g_@@_base_int}, \cs{g_@@_prnt_int} and \cs{g_@@_last_int}, before \mylstinline|\input| and recover it afterwards.
 %    \begin{macrocode}
 \seq_new:N \g_@@_seq
 %    \end{macrocode}
@@ -749,8 +767,8 @@
 \AddToHook { @@ / push } {
   \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_base_int }
   \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_prnt_int }
-  \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_rqrd_int }
-  \int_gset:Nn \g_@@_prnt_int { \g_@@_rqrd_int }
+  \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_last_int }
+  \int_gset:Nn \g_@@_prnt_int { \g_@@_last_int }
 }
 %    \end{macrocode}
 % Retrieve the last pushed state. 
@@ -758,12 +776,12 @@
 \AddToHook { @@ / pop } {
   \group_begin:
   \seq_gpop:NNTF \g_@@_seq \l_tmpa_tl {
-    \int_gset:Nn \g_@@_rqrd_int \l_tmpa_tl
+    \int_gset:Nn \g_@@_last_int \l_tmpa_tl
   } {
 %    \end{macrocode}
 % When trying to pop out from a void sequence, some default values are used. The level is set to 0 ,
 %    \begin{macrocode}
-    \int_gzero:N \g_@@_rqrd_int
+    \int_gzero:N \g_@@_last_int
   }
   \seq_gpop:NNTF \g_@@_seq \l_tmpa_tl {
     \int_gset:Nn \g_@@_prnt_int \l_tmpa_tl
@@ -842,7 +860,7 @@
 %    \begin{macrocode}
   \cs_new:Nn \@@_patch:nn {
     \cs_gset:cpn { #1 } {
-      \int_gset:Nn \g_@@_rqrd_int { #2 }
+      \int_gset:Nn \g_@@_last_int { #2 }
       \int_gset:Nn \g_@@_actv_int { #2 }
       \seq_item:Nn \c_@@_sxn_seq { #2 }
     }
@@ -933,65 +951,88 @@
   ))
   \s* \Z }
 %    \end{macrocode}
+% We use capture groups to separate the different cases.
 % \begin{itemize}
 % \item Capture 1: the match
-% \item Capture 2: single "="
-% \item Capture 3: single "+"
-% \item Capture 4: single "-"
-% \item Capture 5: leading "." or "/"
-% \item Capture 6: leading "."
-% \item Capture 7: trailing number
+% \item Capture 2: a single ``"="''
+% \item Capture 3: a single ``"+"''
+% \item Capture 4: a single ``"-"''
+% \item Capture 5: the leading ``"."'' or ``"/"''
+% \item Capture 6: the leading ``"."''
+% \item Capture 7: the trailing number
 % \end{itemize}
 % \end{variable}
 %
-% We also generate some variant to accept "tl" variable instead of explicit token lists.
+% We also generate some variant to accept "tl" variables instead of explicit token lists
 %    \begin{macrocode}
 \cs_generate_variant:Nn \regex_extract_once:NnNTF { NVNTF }
 %    \end{macrocode}
+% and define a convenient shortcut to branch according to capture groups emptyness.
+%    \begin{macrocode}
+\cs_new:Npn \@@_if_capture_empty:nTF #1 {
+  \tl_if_empty:xTF { \seq_item:Nn \l_tmpa_seq { #1 } }
+}
+%    \end{macrocode}
+% We define what will finally be the patched \mylstinline|section| or command with the custom base name.
 % \begin{function}{\@@_base_sxn}
 % \begin{syntax}
 % \cs{@@_base_sxn} < \meta{level descriptor} >
 % \end{syntax}
-% This command will finally become the patched \mylstinline|section|.
 % \end{function}
 %    \begin{macrocode}
 \AddToHook { @@ / init } {
   \cs_gset:cpn { \clist_item:Nn \c_@@_clist { \g_@@_base_int } } { \@@_base_sxn }
 }
 \cs_generate_variant:Nn \msg_warning:nnnn { nnnx }
-\cs_new:Npn \@@_if_capture_empty:nTF #1 {
-  \tl_if_empty:xTF { \seq_item:Nn \l_tmpa_seq { #1 } }
+%    \end{macrocode}
+% Active characters may cause problems, so we locally force the characters used to be of category code other then we call the next command.
+%    \begin{macrocode}
+\cs_new:Npn \@@_base_sxn {
+  \group_begin:
+  \char_set_catcode_other:N \=
+  \char_set_catcode_other:N \+
+  \char_set_catcode_other:N \-
+  \char_set_catcode_other:N \.
+  \char_set_catcode_other:N \/
+  \@@_base_sxn_ui
 }
 \NewDocumentCommand \@@_base_sxn_ui { d<> } {
-%    \end{macrocode}
-% We set \mylstinline|\l_tmpa_int| to the absolute level, then test for consistancy and finally apply the sectioning command.
-%    \begin{macrocode}
   \IfNoValueTF { #1 } {
 %    \end{macrocode}
 % Standard invocation: \mylstinline|\section {blablabla}|, we branch to the base command.
 %    \begin{macrocode}
-    \int_gset:Nn \g_@@_rqrd_int \g_@@_base_int
-    \int_gset:Nn \g_@@_actv_int \g_@@_rqrd_int
+    \int_gset:Nn \g_@@_last_int \g_@@_base_int
+    \int_gset:Nn \g_@@_actv_int \g_@@_last_int
   } {
+%    \end{macrocode}
+% Custom invocation.
+% We use a boolean to avoid displaying different error messages with the same cause, then match against the regular expression to separate the different cases.
+%    \begin{macrocode}
     \bool_set_true:N \l_tmpa_bool
     \regex_extract_once:NnNTF \c_@@_arg_regex { #1 } \l_tmpa_seq {
       \@@_if_capture_empty:nTF 2 {
         \@@_if_capture_empty:nTF 3 {
           \@@_if_capture_empty:nTF 4 {
+%    \end{macrocode}
+% We set \mylstinline|\l_tmpa_int| to the trailing integer to which we will add corrections.
+%    \begin{macrocode}
             \int_set:Nn \l_tmpa_int { \seq_item:Nn \l_tmpa_seq 7 }
             \@@_if_capture_empty:nTF { 5 } {
+%    \end{macrocode}
+% Only a number was provided, if it is negative is is relative to the last level, if positive it is absolute, if $0$ it is an error.
+%    \begin{macrocode}
               \int_compare:nNnT \l_tmpa_int < 0 {
-                \int_add:Nn \l_tmpa_int { \g_@@_rqrd_int }
+                \int_add:Nn \l_tmpa_int { \g_@@_last_int }
               }
             } {
               \@@_if_capture_empty:nTF { 6 } {
 %    \end{macrocode}
-% This is a leading ``"/"''.
+% There is a leading ``"/"''.
 %    \begin{macrocode}
                 \int_add:Nn \l_tmpa_int { \g_@@_base_int - 1 }
               } {
 %    \end{macrocode}
-% This is a `leading  `"."''.
+% Ther is a leading  ``"."''.
 %    \begin{macrocode}
                 \int_add:Nn \l_tmpa_int { \g_@@_prnt_int }
               }
@@ -1000,29 +1041,29 @@
 %    \end{macrocode}
 % This is a single ``"-"''.
 %    \begin{macrocode}
-            \int_set:Nn \l_tmpa_int { \g_@@_rqrd_int - 1 }
+            \int_set:Nn \l_tmpa_int { \g_@@_last_int - 1 }
           }
         } {
 %    \end{macrocode}
 % This is a single ``"+"''.
 %    \begin{macrocode}
-          \int_set:Nn \l_tmpa_int { \g_@@_rqrd_int + 1 }
+          \int_set:Nn \l_tmpa_int { \g_@@_last_int + 1 }
         }
       } {
 %    \end{macrocode}
 % This is a single ``"="''.
 %    \begin{macrocode}
-        \int_set:Nn \l_tmpa_int \g_@@_rqrd_int
+        \int_set:Nn \l_tmpa_int \g_@@_last_int
       }
     } {
 %    \end{macrocode}
-% Otherwise this is an error, however we branch to the same level.
+% Otherwise this is an error, nevertheless we keep the same level.
 %    \begin{macrocode}
       \bool_set_false:N \l_tmpa_bool
       \msg_warning:nnn { relative } { Bad-section-<>-argument } { #1 }
-      \int_set:Nn \l_tmpa_int \g_@@_rqrd_int
+      \int_set:Nn \l_tmpa_int \g_@@_last_int
     }
-    \int_gset:Nn \g_@@_rqrd_int \l_tmpa_int
+    \int_gset:Nn \g_@@_last_int \l_tmpa_int
     \int_compare:nNnTF \l_tmpa_int > \c_@@_sxn_max_int {
 %    \end{macrocode}
 % If the level is too deep, we send a warning,
@@ -1056,71 +1097,92 @@
   \group_end:
   \seq_item:Nn \c_@@_sxn_seq \g_@@_actv_int
 }
-\cs_new:Npn \@@_base_sxn {
-  \group_begin:
-  \char_set_catcode_other:N \=
-  \char_set_catcode_other:N \+
-  \char_set_catcode_other:N \-
-  \char_set_catcode_other:N \.
-  \char_set_catcode_other:N \/
-  \@@_base_sxn_ui
-}
 %    \end{macrocode}
 %
 % \subsection {Initialize the stack}
 %
-% The stack is initialized at the beginning of the document after all the global variable are setup.
+% The stack is initialized at the beginning of the document after all the global variables are properly setup.
 %
 %    \begin{macrocode}
 \AddToHook { @@ / init } {
   \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_base_int }
   \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_prnt_int }
-  \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_rqrd_int }
+  \seq_gpush:Nx \g_@@_seq { \int_use:N \g_@@_last_int }
 }
 %    \end{macrocode}
 %
 % \subsection {High level macros}
 %
-%  These macros are here for the debugging purposes. They are very sensitive and should absolutely not be used in production code.
+%  These macros are here \emph{for debugging purposes only}. They are very sensitive and should absolutely not be used in production code.
+% \begin{function}{\RLTVBase}
+% \begin{syntax}
+% \cs{RLTVBase}
+% \end{syntax}
+% \end{function}
 %    \begin{macrocode}
-\NewExpandableDocumentCommand\RLTVLevelBase {} {
+\NewExpandableDocumentCommand\RLTVBase {} {
   \int_use:N \g_@@_base_int
 }
-\NewExpandableDocumentCommand\RLTVLevelActive {} {
+%    \end{macrocode}
+% \begin{function}{\RLTVActive}
+% \begin{syntax}
+% \cs{RLTVActive}
+% \end{syntax}
+% \end{function}
+%    \begin{macrocode}
+\NewExpandableDocumentCommand\RLTVActive {} {
   \int_use:N \g_@@_actv_int
 }
-\NewExpandableDocumentCommand\RLTVLevelRequired {} {
-  \int_use:N \g_@@_rqrd_int
+%    \end{macrocode}
+% \begin{function}{\RLTVLast}
+% \begin{syntax}
+% \cs{RLTVLast}
+% \end{syntax}
+% \end{function}
+%    \begin{macrocode}
+\NewExpandableDocumentCommand\RLTVLast {} {
+  \int_use:N \g_@@_last_int
 }
-\NewExpandableDocumentCommand\RLTVLevelParent {} {
+%    \end{macrocode}
+% \begin{function}{\RLTVParent}
+% \begin{syntax}
+% \cs{RLTVParent}
+% \end{syntax}
+% \end{function}
+%    \begin{macrocode}
+\NewExpandableDocumentCommand\RLTVParent {} {
   \int_use:N \g_@@_prnt_int
 }
-\NewExpandableDocumentCommand \IfRLTVLevelActiveTF {mmmm} {
-  \int_compare:nNnTF \g_@@_actv_int #1 { #2 } { #3 } { #4 }
+%    \end{macrocode}
+% In next test functions, the first argument is one of "<", "=" or ">", and the second one is a number.
+% \begin{function}{\RLTVIfActiveCompareTF}
+% \begin{syntax}
+% \cs{RLTVIfActiveCompareTF}
+% \end{syntax}
+% \end{function}
+%    \begin{macrocode}
+\NewExpandableDocumentCommand \RLTVIfActiveCompareTF {mm} {
+  \int_compare:nNnTF \g_@@_actv_int #1 { #2 }
 }
-\NewExpandableDocumentCommand \IfRLTVLevelActiveT {mmm} {
-  \int_compare:nNnT \g_@@_actv_int #1 { #2 } { #3 }
+%    \end{macrocode}
+% \begin{function}{\RLTVIfLastCompareTF}
+% \begin{syntax}
+% \cs{RLTVIfLastCompareTF}
+% \end{syntax}
+% \end{function}
+%    \begin{macrocode}
+\NewExpandableDocumentCommand \RLTVIfLastCompareTF {mm} {
+  \int_compare:nNnTF \g_@@_last_int #1 { #2 }
 }
-\NewExpandableDocumentCommand \IfRLTVLevelActiveF {mmm} {
-  \int_compare:nNnF \g_@@_actv_int #1 { #2 } { #3 }
-}
-\NewExpandableDocumentCommand \IfRLTVLevelRequiredTF {mmmm} {
-  \int_compare:nNnTF \g_@@_rqrd_int #1 { #2 } { #3 } { #4 }
-}
-\NewExpandableDocumentCommand \IfRLTVLevelRequiredT {mmm} {
-  \int_compare:nNnT \g_@@_rqrd_int #1 { #2 } { #3 }
-}
-\NewExpandableDocumentCommand \IfRLTVLevelRequiredF {mmm} {
-  \int_compare:nNnF \g_@@_rqrd_int #1 { #2 } { #3 }
-}
-\NewExpandableDocumentCommand \IfRLTVLevelParentTF {mmmm} {
-  \int_compare:nNnTF \g_@@_prnt_int #1 { #2 } { #3 } { #4 }
-}
-\NewExpandableDocumentCommand \IfRLTVLevelParentT {mmm} {
-  \int_compare:nNnT \g_@@_prnt_int #1 { #2 } { #3 }
-}
-\NewExpandableDocumentCommand \IfRLTVLevelParentF {mmm} {
-  \int_compare:nNnF \g_@@_prnt_int #1 { #2 } { #3 }
+%    \end{macrocode}
+% \begin{function}{\RLTVIfParentCompareTF}
+% \begin{syntax}
+% \cs{RLTVIfParentCompareTF}
+% \end{syntax}
+% \end{function}
+%    \begin{macrocode}
+\NewExpandableDocumentCommand \RLTVIfParentCompareTF {mm} {
+  \int_compare:nNnTF \g_@@_prnt_int #1 { #2 }
 }
 %    \end{macrocode}
 %
@@ -1156,7 +1218,6 @@
   Choose~an~upper~level,~
   for~example~change~some~\subsubsection~into~\subsection.
 }
-%
 %    \end{macrocode}
 % \subsubsection { Base }
 % Used when \meta{level descriptor} is too large as an integer.

@@ -2,29 +2,29 @@
 % 
 \ExplSyntaxOn
 \NewDocumentCommand\myGeneric{mm}{
-\iow_term:x {****~parent:~\RLTVLevelParent}
-\iow_term:x {****~base:~\RLTVLevelBase}
-\iow_term:x {****~active:~\RLTVLevelActive}
-\iow_term:x {****~required:~\RLTVLevelRequired}
+\iow_term:x {****~parent:~\RLTVParent}
+\iow_term:x {****~base:~\RLTVBase}
+\iow_term:x {****~active:~\RLTVActive}
+\iow_term:x {****~required:~\RLTVLast}
 \iow_term:x {****~\#1:~#1}
 \iow_term:x {****~\#2:~#2}
 
   \XPCTIntCompare {
-    lhs = \RLTVLevelActive,
+    lhs = \RLTVActive,
     rhs = { #1 },
     relation = {=}
   }
   \XPCTIntCompare {
-    lhs = { \int_max:nn 1 { \int_min:nn 6 { \RLTVLevelRequired } } },
+    lhs = { \int_max:nn 1 { \int_min:nn 6 { \RLTVLast } } },
     rhs = { #1 },
     relation = {=}
   }
   \XPCTIntCompare {
-    lhs = \RLTVLevelRequired,
+    lhs = \RLTVLast,
     rhs = { #2 },
     relation = {=}
   }
-  \int_compare:nNnF { #2 } = \RLTVLevelRequired { \END }
+  \int_compare:nNnF { #2 } = \RLTVLast { \END }
 }
 \NewDocumentCommand\myPart{}{
   \myGeneric{1}
@@ -47,10 +47,10 @@
 \AtBeginDocument{
   \AddToHook{file/before}{
     \TYPE{Stack: \seq_use:Nn\g__rltv_seq { / }}
-    \TYPE {Parent level: \RLTVLevelParent}
+    \TYPE {Parent level: \RLTVParent}
     \XPCTIntCompare {
-      lhs = \RLTVLevelParent,
-      rhs = \RLTVLevelRequired,
+      lhs = \RLTVParent,
+      rhs = \RLTVLast,
       relation = {=}
     }
   }

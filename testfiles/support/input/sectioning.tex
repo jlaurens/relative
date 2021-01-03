@@ -2,16 +2,16 @@
 \newcommand\myProj[1]{ \int_max:nn 1 { \int_min:nn 6 { #1 } } }
 \NewDocumentCommand\myGeneric{mm}{
   \XPCTIntCompare {
-    lhs = \myProj{ \RLTVLevelRequired },
+    lhs = \myProj{ \RLTVLast },
     rhs = { #1 },
     relation = {=}
   }
   \XPCTIntCompare {
-    lhs = \RLTVLevelRequired,
+    lhs = \RLTVLast,
     rhs = { #2 },
     relation = {=}
   }
-  \int_compare:nNnF { #2 } = \RLTVLevelRequired { \END }
+  \int_compare:nNnF { #2 } = \RLTVLast { \END }
 }
 \NewDocumentCommand\part{m}{
   \myGeneric{1}{#1}
@@ -34,10 +34,10 @@
 \AtBeginDocument{
   \AddToHook{file/before}{
     \ExplSyntaxOn \TYPE{Stack: \seq_use:Nn\g__rltv_seq { / }} \ExplSyntaxOff
-    \TYPE {Parent level: \RLTVLevelParent}
+    \TYPE {Parent level: \RLTVParent}
     \XPCTIntCompare {
-      lhs = \RLTVLevelParent,
-      rhs = \RLTVLevelRequired,
+      lhs = \RLTVParent,
+      rhs = \RLTVLast,
       relation = {=}
     }
   }

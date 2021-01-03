@@ -3,7 +3,7 @@ Don't change this file in any respect.
 Stack:0/0/2/0/0/2
 Parentlevel:0
 ============================================================
-TEST 1: /Expect/int/ \RLTVLevelParent  = 0
+TEST 1: /Expect/int/ \RLTVParent  = 0
 ============================================================
 PASSED
 ============================================================
@@ -12,18 +12,18 @@ PASSED
 <to be read again> 
                    .
 l. ...\section<.>
-               {1 + \RLTVLevelParent}
+               {1 + \RLTVParent}
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
 Package relative Warning: Unsupported level 0 from <.> on line ....
 ============================================================
-TEST 2: /Expect/int/ \myProj {\RLTVLevelRequired } = 1
+TEST 2: /Expect/int/ \myProj {\RLTVLast } = 1
 ============================================================
 PASSED
 ============================================================
 ============================================================
-TEST 3: /Expect/int/ \RLTVLevelRequired  = 1 + 0
+TEST 3: /Expect/int/ \RLTVLast  = 1 + 0
 ============================================================
 **** FAILED at line 3:  0 = 1
 ============================================================

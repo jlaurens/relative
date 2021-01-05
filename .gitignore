@@ -15,5 +15,6 @@
 build
 testfiles/test
 uploadconfig.lua
-pkginfo.tex
-relative.synctex(busy)
+pkginfo.sty
+*.synctex(busy)
+*.zip

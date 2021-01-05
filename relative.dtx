@@ -299,7 +299,7 @@
 % \end{itemize}
 %
 % The \cs{section} command must be managed on its own because it is the only command that can appear inside two different kinds of sections, either in a \mylstinline|\part| or in a \mylstinline|\chapter|.
-% 
+%
 % \subsection {Other packages}
 % \pkg{coseoul} and \pkg{modular} both address the problem of relative sectioning with a different approach and syntax. In \pkg{relative} we do not introduce new commands for sectioning nor importing. We also chose an approach based on reference level which is more complete. Moreover, we do not rely on predefined sectioning commands.
 %
@@ -410,20 +410,7 @@
 %
 % \subsection {Relative to the parent}
 % \label{sect:parent}
-% While being processed, each file has a \myIndex{parent level}.
-% \begin{itemize}
-% \item
-% The root document being typeset, in general the one with \mylstinline|\documentclass|, has no parent hence its \myIndex{parent level} is $0$.
-% \item
-% For each input file "foo.tex", the \myIndex{parent level} is exactly  the value of the \myIndex{last level} just before \mylstinline|\input{foo.tex}| is executed: this is
-% \begin{itemize}
-% \item the level of the last sectioning command performed if any
-% \item the \myIndex{top level} $0$ otherwise.
-%\end{itemize}
-%\end{itemize}
-% If we import the same file multiple times, these rules apply for each \mylstinline|\input| occurrence separately, such that the parent section level of "foo.tex" may change during typesetting.
-%
-% If the \meta{level descriptor} is a single ``"."'' followed by an \meta{integer}, this integer is added to the parent section level to obtain the absolute section level to switch to.
+% If the \meta{level descriptor} is a single ``"."'' followed by an \meta{integer}, this integer is added to the \myIndex{parent level} defined below to obtain the absolute section level to switch to.
 % For any integers $\mathit{parent}$ and $n$, following commands are equivalent
 % \begin{center}
 % \begin{tabular}{c|l|l}
@@ -435,20 +422,7 @@
 % \end{tabular}
 % \end{center}
 % Of course, this becomes interesting when you do not know in advance  $parent$, particularly when it is only known at typeset time.
-%
-% Some remarks:
-% \begin{itemize}
-% \item
-% \mylstinline|\section<.1>| and \mylstinline|\section<+>| are always equivalent at the top of a file;
-% \item
-% negative integers are allowed, they correspond to a big step up in the sectioning hierarchy;
-% \item
-% both \mylstinline|\section<.0>| and \mylstinline|\section<.-0>|
-% correspond to the parent level section.
-% \end{itemize}
-%
-%
-% To illustrate how things works, here is an example of some main file that includes twice a very simple file "foo.tex" shown below.
+% To illustrate how things work, here is an example of some main file that includes twice a very simple file "foo.tex" shown below.
 % The standard commands equivalent are displayed on the right.
 % ^^A4567890123456789012345678901234567890123456789012345678901234567890
 % \begin{LaTeXdemo}[code only]
@@ -476,6 +450,32 @@
 %  \section <.3> {Relative level 3}      \paragraph     {Relative level 3}
 % \end{LaTeXdemo}
 % Notice how the very same file has been interpreted differently with respect to sectioning.
+%
+%
+% While being processed, each file has a \myIndex{parent level}.
+% \begin{itemize}
+% \item
+% The root document being typeset, in general the one with \mylstinline|\documentclass|, has no ``parent'' hence its \myIndex{parent level} is $0$.
+% \item
+% For each input file "foo.tex", the \myIndex{parent level} is exactly  the value of the \myIndex{last level} just before \mylstinline|\input{foo.tex}| is executed: this is
+% \begin{itemize}
+% \item the level of the last sectioning command performed if any
+% \item the \myIndex{top level} $0$ otherwise.
+%\end{itemize}
+%\end{itemize}
+% If we import the same file multiple times, these rules apply for each \mylstinline|\input| occurrence separately, such that the parent section level of "foo.tex" may change during typesetting.
+%
+% Some remarks:
+% \begin{itemize}
+% \item
+% \mylstinline|\section<.1>| and \mylstinline|\section<+>| are always equivalent at the top of a file;
+% \item
+% negative integers are allowed, they correspond to a big step up in the sectioning hierarchy;
+% \item
+% both \mylstinline|\section<.0>| and \mylstinline|\section<.-0>|
+% correspond to the parent level section.
+% \end{itemize}
+%
 %
 %
 % \subsection {Relative to the base}
@@ -607,7 +607,7 @@
 %    \end{macrocode}
 %
 % \subsection {Versioning}
-% The package version is either a year and a minor ``number'' or a build number.
+% The package version is either a year and a ``minor'' number or a build number.
 % \begin{function}{\RLTVYEAR}
 % \begin{syntax}
 % \cs{RLTVYEAR}

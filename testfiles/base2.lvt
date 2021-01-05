@@ -4,43 +4,43 @@
 \input{input/expect}
 \begin{document}
 \START
-\newcommand\myRLTVLevelBaseSaved{\RLTVLevelBase}%
-\newcommand\myRLTVLevelBaseExpected{\RLTVLevelBase}%
+\newcommand\myRLTVBaseSaved{\RLTVBase}%
+\newcommand\myRLTVBaseExpected{\RLTVBase}%
 \ExplSyntaxOn
 \cs_set:Npn \myTitle #1 {
   \clist_item:Nn \c__rltv_clist {#1}:~level~\int_eval:n { #1 }
 }
 \ExplSyntaxOff
 \input{input/base2.tex}%
-\renewcommand\myRLTVLevelBaseExpected{3}%
-\RLTVLevelSetBaseOfFile {3} {base2.tex}%
+\renewcommand\myRLTVBaseExpected{3}%
+\RLTVSetBaseOfFile {3} {base2.tex}%
 \input{input/base2.tex}%
 \XPCTIntCompare{
-  lhs = \RLTVLevelBase,
-  rhs = \myRLTVLevelBaseSaved,
+  lhs = \RLTVBase,
+  rhs = \myRLTVBaseSaved,
   relation = {=}
 }%
-\renewcommand\myRLTVLevelBaseExpected{4}%
-\RLTVLevelSetBaseOfFile {4} {input/base2.tex}%
+\renewcommand\myRLTVBaseExpected{4}%
+\RLTVSetBaseOfFile {4} {input/base2.tex}%
 \input{input/base2.tex}%
 \XPCTIntCompare{
-  lhs = \RLTVLevelBase,
-  rhs = \myRLTVLevelBaseSaved,
+  lhs = \RLTVBase,
+  rhs = \myRLTVBaseSaved,
   relation = {=}
 }
-\renewcommand\myRLTVLevelBaseExpected{5}%
-\RLTVLevelSetBaseOfFile {5} {input/lib/base2.tex}%
+\renewcommand\myRLTVBaseExpected{5}%
+\RLTVSetBaseOfFile {5} {input/lib/base2.tex}%
 \input{input/lib/base2.tex}%
 \XPCTIntCompare{
-  lhs = \RLTVLevelBase,
-  rhs = \myRLTVLevelBaseSaved,
+  lhs = \RLTVBase,
+  rhs = \myRLTVBaseSaved,
   relation = {=}
 }%
-\renewcommand\myRLTVLevelBaseExpected{4}%
+\renewcommand\myRLTVBaseExpected{4}%
 \input{input/base2.tex}%
 \XPCTIntCompare{
-  lhs = \RLTVLevelBase,
-  rhs = \myRLTVLevelBaseSaved,
+  lhs = \RLTVBase,
+  rhs = \myRLTVBaseSaved,
   relation = {=}
 }
 \end{document}

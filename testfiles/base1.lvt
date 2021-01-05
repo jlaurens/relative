@@ -18,21 +18,21 @@
 \START
 \ExplSyntaxOn
 \cs_set:Npn \myTest #1 {
-  \cs_set:Npx \myRLTVLevelBaseSaved { \RLTVLevelBase }
-  \RLTVLevelSetBaseOfFile { #1 } { input/lib/base1.tex } % do not forget the extension
+  \cs_set:Npx \myRLTVBaseSaved { \RLTVBase }
+  \RLTVSetBaseOfFile { #1 } { input/lib/base1.tex } % do not forget the extension
   \XPCTIntCompare{
-    lhs = \RLTVLevelBase,
-    rhs = \myRLTVLevelBaseSaved,
+    lhs = \RLTVBase,
+    rhs = \myRLTVBaseSaved,
     relation = {=}
   }
-  \cs_set:Npx \myRLTVLevelBaseExpected { \RLTVLevelBase }
+  \cs_set:Npx \myRLTVBaseExpected { \RLTVBase }
   \input{input/base1.tex}
-  \cs_set:Npx \myRLTVLevelBaseExpected { #1 }
-\iow_term:x {****~base~expected:~\myRLTVLevelBaseExpected}
+  \cs_set:Npx \myRLTVBaseExpected { #1 }
+\iow_term:x {****~base~expected:~\myRLTVBaseExpected}
   \input{input/lib/base1.tex}
   \XPCTIntCompare{
-    lhs = \RLTVLevelBase,
-    rhs = \myRLTVLevelBaseSaved,
+    lhs = \RLTVBase,
+    rhs = \myRLTVBaseSaved,
     relation = {=}
   }
 }

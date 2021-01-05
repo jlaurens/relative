@@ -21,23 +21,21 @@ All the following commands are preformed from the directory containing `build.lu
 Clean the testfiles folder
 --------------------------
 ```
-rm -f testfiles/*.aux
-rm -f testfiles/*.log
-rm -f testfiles/*.out
-rm -f testfiles/*.pdf
-rm -f testfiles/*.gz
+texlua util.lua clean
+texlua util.lua clean source
+texlua util.lua clean test
 ```
 
 Save the .tlg
 -------------
 ```
-texlua util.lua test save all
+texlua util.lua test save
 ```
 
 Test the .tlg for the test failures
 -----------------------------------
 ```
-texlua util.lua test tlg all
+texlua util.lua test tlg
 ```
 
 Check

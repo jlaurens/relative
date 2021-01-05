@@ -17,22 +17,22 @@
 \begin{document}
 \START
 \ExplSyntaxOn
-\cs_new:Npn \myRLTVLevelBaseSaved {2}
-\cs_new:Npn \myRLTVLevelBaseExpected {2}
+\cs_new:Npn \myRLTVBaseSaved {2}
+\cs_new:Npn \myRLTVBaseExpected {2}
 \cs_new:Npn \myTest #1 {
-  \cs_set:Npx \myRLTVLevelBaseSaved { #1 }
-  \RLTVLevelSetBase { #1 }
+  \cs_set:Npx \myRLTVBaseSaved { #1 }
+  \RLTVSetBase { #1 }
   \XPCTIntCompare{
-    lhs = \RLTVLevelBase,
-    rhs = \myRLTVLevelBaseSaved,
+    lhs = \RLTVBase,
+    rhs = \myRLTVBaseSaved,
     relation = {=}
   }
-  \cs_set:Npx \myRLTVLevelBaseExpected { \RLTVLevelBase }
-\iow_term:x {****~base~level:~\myRLTVLevelBaseSaved}
+  \cs_set:Npx \myRLTVBaseExpected { \RLTVBase }
+\iow_term:x {****~base~level:~\myRLTVBaseSaved}
   \input{input/base.tex}
   \XPCTIntCompare{
-    lhs = \RLTVLevelBase,
-    rhs = \myRLTVLevelBaseSaved,
+    lhs = \RLTVBase,
+    rhs = \myRLTVBaseSaved,
     relation = {=}
   }
 }
@@ -45,19 +45,19 @@
 \myTest{6}
 \ExplSyntaxOn
 \cs_set:Npn \myTest #1 #2 {
-  \cs_set:Npx \myRLTVLevelBaseSaved { #2 }
-  \RLTVLevelSetBase { #1 }
+  \cs_set:Npx \myRLTVBaseSaved { #2 }
+  \RLTVSetBase { #1 }
   \XPCTIntCompare{
-    lhs = \RLTVLevelBase,
-    rhs = \myRLTVLevelBaseSaved,
+    lhs = \RLTVBase,
+    rhs = \myRLTVBaseSaved,
     relation = {=}
   }
-  \cs_set:Npx \myRLTVLevelBaseExpected { \RLTVLevelBase }
-\iow_term:x {****~\myRLTVLevelBaseSaved}
+  \cs_set:Npx \myRLTVBaseExpected { \RLTVBase }
+\iow_term:x {****~\myRLTVBaseSaved}
   \input{input/base.tex}
   \XPCTIntCompare{
-    lhs = \RLTVLevelBase,
-    rhs = \myRLTVLevelBaseSaved,
+    lhs = \RLTVBase,
+    rhs = \myRLTVBaseSaved,
     relation = {=}
   }
 }
@@ -70,19 +70,19 @@
 \myTest{mySubparagraph}{6}
 \ExplSyntaxOn
 \cs_set:Npn \myTest #1 {
-  \cs_set:Npx \myRLTVLevelBaseSaved { \RLTVLevelBase }
-  \RLTVLevelSetBaseOfFile { #1 } { base.tex } % do not forget the extension
+  \cs_set:Npx \myRLTVBaseSaved { \RLTVBase }
+  \RLTVSetBaseOfFile { #1 } { base.tex } % do not forget the extension
   \XPCTIntCompare{
-    lhs = \RLTVLevelBase,
-    rhs = \myRLTVLevelBaseSaved,
+    lhs = \RLTVBase,
+    rhs = \myRLTVBaseSaved,
     relation = {=}
   }
-  \cs_set:Npx \myRLTVLevelBaseExpected { #1 }
-\iow_term:x {****~base~expected:~\myRLTVLevelBaseExpected}
+  \cs_set:Npx \myRLTVBaseExpected { #1 }
+\iow_term:x {****~base~expected:~\myRLTVBaseExpected}
   \input{input/base.tex}
   \XPCTIntCompare{
-    lhs = \RLTVLevelBase,
-    rhs = \myRLTVLevelBaseSaved,
+    lhs = \RLTVBase,
+    rhs = \myRLTVBaseSaved,
     relation = {=}
   }
 }

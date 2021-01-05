@@ -16,3 +16,4 @@ build
 testfiles/test
 uploadconfig.lua
 pkginfo.tex
+relative.synctex(busy)

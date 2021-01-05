@@ -182,15 +182,15 @@
 % \begin{documentation}
 %
 % \begin{abstract}
-% With this package
+% With \pkg{relative}, the sectioning commands
 % \mylstinline|\part|,
 % \mylstinline|\section|,
 % \mylstinline|\subsection|...
-% is replaced by
+% may be replaced by
 % \mylstinline|\section<1>|, 
 % \mylstinline|\section<2>|,
 % \mylstinline|\section<3>|...
-% Moreover, in input files,
+% Moreover, in input files,\\
 % \mylstinline|\section<.1>|,
 % \mylstinline|\section<.2>|,
 % \mylstinline|\section<.3>|...
@@ -201,8 +201,8 @@
 % \section{Summary}
 %
 % This package simply extends the \mylstinline|section| command to accept a supplemental optional \meta{level descriptor} between "<" and ">",
-% just after the command. The sectioning level is an integer used to uniquely identify a sectionning command.
-% It starts at $1$ for the top sectioning and is inscreased by $1$ at each subsection level.
+% just after the command. The sectioning level is an integer used to uniquely identify a sectioning command.
+% It starts at $1$ for the top sectioning and is increased by $1$ at each subsection level.
 % \begin{function}{\section}
 % \begin{syntax}
 % \cs{section} "<" \meta{level descriptor} ">" \oarg{option} \marg{title}
@@ -234,7 +234,7 @@
 % \end{center}
 %
 % When no "<"\meta{level descriptor}">" is given at all,
-% this is just the unextended \mylstinline|\section| command syntax which corresponds to the standard behaviour.
+% this is just the unextended \mylstinline|\section| command syntax which corresponds to the standard behavior.
 %
 % \section{Loading and initializing the package}
 %
@@ -502,7 +502,7 @@
 % \begin{syntax}
 %  \cs{RLTVSetBase} \marg{base level}
 % \end{syntax}
-% Sets the \textbf{base level} to the given value, which can be either an integer or a known section comand name. This is a local assignment
+% Sets the \textbf{base level} to the given value, which can be either an integer or a known section command name. This is a local assignment
 % in the sense that it does not change the \textbf{base level} in the parent file where an eventual \mylstinline|input| has been executed.
 % \end{function}
 %
@@ -534,7 +534,7 @@
 % This is not a safe and strong technique but it is common practice until we can use the \LaTeX3 hook paradigm.
 %
 % \subsection {Compatibility with other packages}
-% \pkg{relative} has been sucessfully tested with \pkg{titlesec} and \pkg{secsty} at release time. 
+% \pkg{relative} has been successfully tested with \pkg{titlesec} and \pkg{secsty} at release time. 
 % However there is no guaranty of result, even partial, for future times and other packages.
 % \subsection {Incompatibility with other packages}
 % \pkg{relative} has not been tested with package \pkg{import}.
@@ -548,8 +548,8 @@
 % \cs{RLTVSetUp} "{ names = { mypart, mychapter, mysection, ... } }"
 % \end{syntax}
 % \end{function}
-% You may also want to specify what is the level correponding to the raw
-% \mylstinline|\section{...}| calls. For that you will use for example
+% In order to specify what is the level corresponding to the raw
+% \mylstinline|\section{...}| calls, one will use for example
 % \begin{function}{\RLTVSetUp}
 % \begin{syntax}
 % \cs{RLTVSetUp} "{ base = mysection }"
@@ -734,7 +734,8 @@
       }
     }
     \cs_generate_variant:Nn \@@_tmpa:nnn { xxx }
-    \@@_tmpa:xxx { #1 } { \seq_item:Nn \l_tmpa_seq 2 } { \seq_item:Nn \l_tmpa_seq 3 }
+    \@@_tmpa:xxx { #1 } { \seq_item:Nn \l_tmpa_seq 2 }
+                        { \seq_item:Nn \l_tmpa_seq 3 }
     \msg_term:nnxx  { relative } { SetBaseOfFileInfo } { #1 } { #2 }
   } {
     \msg_error:nnx { relative } { BaseLevelError } { #2 }
@@ -745,7 +746,8 @@
   \group_begin:
   \regex_set:Nn \l_tmpa_regex { \A \s* (?:.*\/)? (.*?) \s* \Z }
   \regex_extract_once:NnNTF \l_tmpa_regex { #1 } \l_tmpa_seq {
-    \RemoveFromHook { file/before/\seq_item:Nn \l_tmpa_seq 2 } [ @@/file/before/#1 ]
+    \RemoveFromHook { file/before/\seq_item:Nn \l_tmpa_seq 2 }
+      [ @@/file/before/#1 ]
     \msg_term:nnx  { relative } { UnsetBaseOfFileInfo } { #1 }
   } {
     \msg_error:nnx { relative } { BaseLevelError } { #1 }
@@ -968,7 +970,7 @@
 %    \begin{macrocode}
 \cs_generate_variant:Nn \regex_extract_once:NnNTF { NVNTF }
 %    \end{macrocode}
-% and define a convenient shortcut to branch according to capture groups emptyness.
+% and define a convenient shortcut to branch according to capture groups emptiness.
 %    \begin{macrocode}
 \cs_new:Npn \@@_if_capture_empty:nTF #1 {
   \tl_if_empty:xTF { \seq_item:Nn \l_tmpa_seq { #1 } }
@@ -982,7 +984,8 @@
 % \end{function}
 %    \begin{macrocode}
 \AddToHook { @@ / init } {
-  \cs_gset:cpn { \clist_item:Nn \c_@@_clist { \g_@@_base_int } } { \@@_base_sxn }
+  \cs_gset:cpn { \clist_item:Nn \c_@@_clist { \g_@@_base_int } }
+    { \@@_base_sxn }
 }
 \cs_generate_variant:Nn \msg_warning:nnnn { nnnx }
 %    \end{macrocode}
@@ -1033,7 +1036,7 @@
                 \int_add:Nn \l_tmpa_int { \g_@@_base_int - 1 }
               } {
 %    \end{macrocode}
-% Ther is a leading  ``"."''.
+% There is a leading  ``"."''.
 %    \begin{macrocode}
                 \int_add:Nn \l_tmpa_int { \g_@@_prnt_int }
               }

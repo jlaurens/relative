@@ -169,9 +169,9 @@ end
 local function test_tlg (what, how)
   local list
   if what == 'all' or not what then
-    list = execute_cmd("find testfiles -name '*.tlg' -type f -exec grep '%s' '{}' \\; -print0")
+    list = execute_cmd(string.format("find testfiles -name '*.tlg' -type f -exec grep '%s' '{}' \\; -print0", how))
   elseif what then
-    list = execute_cmd("find testfiles -name '%s.tlg' -type f -exec grep '%s' '{}' \\; -print0")
+    list = execute_cmd(string.format("find testfiles -name '%s.tlg' -type f -exec grep '%s' '{}' \\; -print0", how))
   else
     print('Problem ', arg[3])
     os.exit()
@@ -237,7 +237,7 @@ elseif arg[1] == 'clean' then
 elseif arg[1] == 'test' then
   if arg[2] == 'tlg' then
     test_tlg(arg[3], '^! ')
-    test_tlg(arg[3], '^.*XPCT:.*FAILED.*PASSED.*out.*of')
+    test_tlg(arg[3], '^\\*\\*\\*\\* FAILED at line')
   else
     test(arg[2], arg[3])
   end

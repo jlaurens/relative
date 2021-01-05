@@ -44,6 +44,11 @@ Check
 l3build check
 ```
 
+CTAN
+----
+```
+l3build ctan -c build2
+```
 
 
 

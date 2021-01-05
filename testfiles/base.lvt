@@ -71,7 +71,7 @@
 \ExplSyntaxOn
 \cs_set:Npn \myTest #1 {
   \cs_set:Npx \myRLTVBaseSaved { \RLTVBase }
-  \RLTVSetBaseOfFile { #1 } { base.tex } % do not forget the extension
+  \RLTVSetBaseOfFile { #1 } { input/base.tex } % do not forget the extension
   \XPCTIntCompare{
     lhs = \RLTVBase,
     rhs = \myRLTVBaseSaved,

@@ -8,10 +8,17 @@ checksuppfiles = {"*.tex"}
 
 typesetsuppfiles = { 'pkginfo.sty' }
 
+excludefiles = {
+  'BUILD.md',
+  'relative-code.tex',
+  'relative-doc.tex'
+}
+
 cleanfiles = {
   '*.aux',
   '*.glo',
   '*.synctex',
+  '*.synctex(busy)',
   '*.gz',
   '*.fls',
   '*.hd',

@@ -9,41 +9,48 @@
   \clist_item:Nn \c__rltv_clist {#1}:~level~\int_eval:n { #1 }
 }
 \ExplSyntaxOff
-\newcommand\myRLTVLevelBaseSaved{\RLTVLevelBase}%
-\newcommand\myRLTVLevelBaseExpected{\RLTVLevelBase}%
+\newcommand\myRLTVBaseSaved{\RLTVBase}%
+\newcommand\myRLTVBaseExpected{\RLTVBase}%
 \input{input/base3.tex}%
 \input{input/lib/base3.tex}%
 \input{input/base3bis.tex}%
 %
-\RLTVLevelSetBaseOfFile {3} {input/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{3}%
+\RLTVSetBaseOfFile {3} {input/base3.tex}%
+\renewcommand\myRLTVBaseExpected{3}%
 \input{input/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\renewcommand\myRLTVBaseExpected{\myRLTVBaseSaved}%
 \input{input/lib/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\renewcommand\myRLTVBaseExpected{\myRLTVBaseSaved}%
 \input{input/base3bis.tex}%
 %
-\RLTVLevelSetBaseOfFile {4} {input/lib/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{3}%
+\RLTVSetBaseOfFile {4} {input/lib/base3.tex}%
+\renewcommand\myRLTVBaseExpected{3}%
 \input{input/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{4}%
+\renewcommand\myRLTVBaseExpected{4}%
 \input{input/lib/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\renewcommand\myRLTVBaseExpected{\myRLTVBaseSaved}%
 \input{input/base3bis.tex}%
 %
-\RLTVLevelUnsetBaseOfFile {input/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\RLTVUnsetBaseOfFile {input/base3.tex}%
+\renewcommand\myRLTVBaseExpected{\myRLTVBaseSaved}%
 \input{input/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{4}%
+\renewcommand\myRLTVBaseExpected{4}%
 \input{input/lib/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\renewcommand\myRLTVBaseExpected{\myRLTVBaseSaved}%
 \input{input/base3bis.tex}%
 %
-\RLTVLevelUnsetBaseOfFile {input/lib/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\RLTVUnsetBaseOfFile {input/lib/base3.tex}%
+\renewcommand\myRLTVBaseExpected{\myRLTVBaseSaved}%
 \input{input/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\renewcommand\myRLTVBaseExpected{\myRLTVBaseSaved}%
 \input{input/lib/base3.tex}%
-\renewcommand\myRLTVLevelBaseExpected{\myRLTVLevelBaseSaved}%
+\renewcommand\myRLTVBaseExpected{\myRLTVBaseSaved}%
 \input{input/base3bis.tex}%
+\section<3>{Absolute level 3}
+\renewcommand\myRLTVBaseExpected{3}%
+\RLTVSetBaseOfFile {=} {input/lib/base3.tex}%
+\input{input/lib/base3.tex}%
+\renewcommand\myRLTVBaseExpected{4}%
+\RLTVSetBaseOfFile {+} {input/lib/base3.tex}%
+\input{input/lib/base3.tex}%
 \end{document}

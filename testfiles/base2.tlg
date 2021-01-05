@@ -7,12 +7,13 @@ TEST 1: /Expect/int/ \RLTVBase  = 2
 PASSED
 ============================================================
 )
-Registered base level 3 for base2.tex on line ....
+Registered base level 3 for input/base2.tex on line ....
+Base level set to 3|3 on line ....
 (input/base2.tex
 ============================================================
 TEST 2: /Expect/int/ \RLTVBase  = 3
 ============================================================
-**** FAILED at line 7:  2 = 3
+PASSED
 ============================================================
 )
 ============================================================
@@ -21,7 +22,8 @@ TEST 3: /Expect/int/ \RLTVBase  = 2
 PASSED
 ============================================================
 Registered base level 4 for input/base2.tex on line ....
-Base level set to 4 on line ....
+Base level set to 3|3 on line ....
+Base level set to 4|4 on line ....
 (input/base2.tex
 ============================================================
 TEST 4: /Expect/int/ \RLTVBase  = 4
@@ -35,7 +37,7 @@ TEST 5: /Expect/int/ \RLTVBase  = 2
 PASSED
 ============================================================
 Registered base level 5 for input/lib/base2.tex on line ....
-Base level set to 5 on line ....
+Base level set to 5|5 on line ....
 (input/lib/base2.tex
 ============================================================
 TEST 6: /Expect/int/ \RLTVBase  = 5
@@ -48,7 +50,8 @@ TEST 7: /Expect/int/ \RLTVBase  = 2
 ============================================================
 PASSED
 ============================================================
-Base level set to 4 on line ....
+Base level set to 3|3 on line ....
+Base level set to 4|4 on line ....
 (input/base2.tex
 ============================================================
 TEST 8: /Expect/int/ \RLTVBase  = 4
@@ -62,5 +65,5 @@ TEST 9: /Expect/int/ \RLTVBase  = 2
 ============================================================
 PASSED
 ============================================================
-**** XPCT: 1 FAILED, 8 PASSED out of 9
+**** XPCT: 0 FAILED, 9 PASSED out of 9
 [2] (base2.aux)

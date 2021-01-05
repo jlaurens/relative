@@ -200,9 +200,9 @@
 %
 % \section{Summary}
 %
-% This package simply extends the \mylstinline|section| command to accept a supplemental optional \meta{level descriptor} between "<" and ">",
+% This package simply extends the \mylstinline|\section| command to accept a supplemental optional \meta{level descriptor} between "<" and ">",
 % just after the command. The sectioning level is an integer used to uniquely identify a sectioning command.
-% It starts at $1$ for the top sectioning and is increased by $1$ at each subsection level.
+% It starts at $1$ for the top sectioning (in general \mylstinline|\part|) and is increased by $1$ at each subsection level.
 % \begin{function}{\section}
 % \begin{syntax}
 % \cs{section} "<" \meta{level descriptor} ">" \oarg{option} \marg{title}
@@ -374,19 +374,19 @@
 %
 % \subsection {Relative to the last}
 % \label{sect:last}
-% Some special \meta{level descriptor} allow to specify the level relatively to the level of the last section command executed. Let us see them is a straightforward example with standard section command equivalent on the right. 
+% Some special \meta{level descriptor} allow to specify the level relatively to the \myIndex{last level} which is the level of the last sectioning command executed. Let us see them is a straightforward example with standard section command equivalent on the right. 
 % ^^A4567890123456789012345678901234567890123456789012345678901234567890
 % \begin{LaTeXdemo}[code only]
 %   \documentclass{article}
 %   \usepackage{relative}
 %   \begin{document}
-%   \section <1> {Top level}             \part {Top level}
-%   \section <+> {One level down}        \section {One level down}
-%   \section <=> {Same level}            \section {Same level}
-%   \section <+> {One level down}        \subsection {One level down}
-%   \section <=> {Same level}            \subsection {Same level}
-%   \section <-> {One level up}          \section {One level up}
-%   \section <-1> {One more level up}    \part {One more level up}
+%   \section <1>  {Top level}            \part       {Top level}
+%   \section <+>  {One level down}       \section    {One level down}
+%   \section <=>  {Same level}           \section    {Same level}
+%   \section <+>  {One level down}       \subsection {One level down}
+%   \section <=>  {Same level}           \subsection {Same level}
+%   \section <->  {One level up}         \section    {One level up}
+%   \section <-1> {One more level up}    \part       {One more level up}
 %   \end{document}
 % \end{LaTeXdemo}
 %
@@ -435,14 +435,14 @@
 %  \input {foo}
 %  \end{document}
 % \end{LaTeXdemo}
-% When first input on line $5$, the last sectioning command performed is \mylstinline|\section <1>| such that the parent section level of "foo.tex" is $1$. This file would read together with its absolute equivalent
+% When first input on line $5$, the last sectioning command performed is \mylstinline|\section <1>| such that the parent section level of "foo.tex" is $1$. This file would read together with its absolute equivalent on the right
 % ^^A4567890123456789012345678901234567890123456789012345678901234567890
 % \begin{LaTeXdemo}[code only]
 %  \section <.1> {Relative level 1}      \section       {Relative level 1}
 %  \section <.2> {Relative level 2}      \subsection    {Relative level 2}
 %  \section <.3> {Relative level 3}      \subsubsection {Relative level 3}
 % \end{LaTeXdemo}
-% When input on line $7$, the last sectioning command performed is now \mylstinline|\section <2>| such that the parent section level of "foo.tex" is now $2$. This file would read together with its absolute equivalent
+% When input on line $7$, the last sectioning command performed is now \mylstinline|\section <2>| such that the parent section level of "foo.tex" is now $2$. This file would read together with its absolute equivalent on the right
 % ^^A4567890123456789012345678901234567890123456789012345678901234567890
 % \begin{LaTeXdemo}[code only]
 %  \section <.1> {Relative level 1}      \subsection    {Relative level 1}
@@ -503,7 +503,8 @@
 %  \cs{RLTVSetBase} \marg{base level}
 % \end{syntax}
 % Sets the \textbf{base level} to the given value, which can be either an integer or a known section command name. This is a local assignment
-% in the sense that it does not change the \textbf{base level} in the parent file where an eventual \mylstinline|input| has been executed.
+% in the sense that it does not change the \textbf{base level} in the parent file where an eventual \mylstinline|\input| has been executed.
+% The special instruction \mylstinline|\RLTVSetBase{=}| sets the base to the last level and the special instruction \mylstinline|\RLTVSetBase{+}| sets the base to the last level plus one. An error message is displayed if the level is too deep.
 % \end{function}
 %
 % \begin{function}{\RLTVSetBaseOfFile}
@@ -512,6 +513,7 @@
 % \end{syntax}
 % Sets the \textbf{base level} to the given value for the given file only.
 % For example, after a \mylstinline|\RLTVSetBaseOfFile{4}{foo.tex}|, at any subsequent \mylstinline|\input{foo.tex}| the \textbf{base level} becomes $4$ and will switch back to its previous value once the \mylstinline|\input| is complete.
+% The special instruction \mylstinline|\RLTVSetBaseOfFile{=}|\marg{file name} sets the base to the last level and the special instruction \mylstinline|\RLTVSetBaseOfFile{+}|\marg{file name} sets the base to the last level plus one. An error message is displayed if the level is too deep.
 % \end{function}
 %
 % This is interesting if the \textbf{base level} must change without editing the file.
@@ -699,18 +701,31 @@
     }
   }
 %    \end{macrocode}
-% If the argument is not a section name, it must be a section level.
+% If the argument is not a section name, it is either ``"="'' or a section level.
 %    \begin{macrocode}
   \bool_if:NT \l_tmpa_bool {
-    \int_set:Nn \l_tmpa_int { #1 }
-    \int_compare:nNnTF \l_tmpa_int > 0 {
-      \int_compare:nNnTF \l_tmpa_int > \c_@@_sxn_max_int {
-        \msg_error:nnx { relative } { Bad-base-value } { #1 }
-      } {
-        \int_gset:Nn \g_@@_base_int \l_tmpa_int
-      }
+    \str_if_eq:nnTF { #1 } { = } {
+      \int_gset:Nn \g_@@_base_int { \g_@@_last_int }
     } {
-      \msg_error:nnx { relative } { Bad-base-value } { #1 }
+      \str_if_eq:nnTF { #1 } { + } {
+        \int_compare:nNnTF \g_@@_last_int < \c_@@_sxn_max_int {
+          \int_gset:Nn \g_@@_base_int { \g_@@_last_int + 1 }
+        } {
+          \msg_error:nnx { relative } { Bad-base-value } { #1 }
+          \int_gset:Nn \g_@@_base_int \c_@@_sxn_max_int
+        }
+      } {
+        \int_set:Nn \l_tmpa_int { #1 }
+        \int_compare:nNnTF \l_tmpa_int > 0 {
+          \int_compare:nNnTF \l_tmpa_int > \c_@@_sxn_max_int {
+            \msg_error:nnx { relative } { Bad-base-value } { #1 }
+          } {
+            \int_gset:Nn \g_@@_base_int \l_tmpa_int
+          }
+        } {
+          \msg_error:nnx { relative } { Bad-base-value } { #1 }
+        }
+      }
     }
   }
   \group_end:
@@ -729,7 +744,7 @@
       \AddToHook { file/before/##3 } [ @@/file/before/#2 ] {
         \str_if_eq:VnT \CurrentFilePath { ##2 } {
           \RLTVSetBase { ##1 }
-          \msg_term:nnx { relative } { BaseOfFileInfo } { ##1 }
+          \msg_term:nnx { relative } { BaseOfFileInfo } { ##1|\int_use:N \g_@@_base_int }
         }
       }
     }

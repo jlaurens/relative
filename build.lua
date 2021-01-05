@@ -6,6 +6,8 @@ typesetfiles  = {"*.tex"}
 
 checksuppfiles = {"*.tex"}
 
+typesetsuppfiles = { 'pkginfo.sty' }
+
 cleanfiles = {
   '*.aux',
   '*.glo',
